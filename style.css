@@ -586,26 +586,40 @@ html {
 
 
 
+/* =========================
+   DARK / LIGHT THEME
+=========================== */
 
-/* =============================
-   SCROLL PROGRESS INDICATOR
-============================= */
+body.light {
+  background: #f5f5f5;
+  color: #111;
+}
 
-#scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  width: 0%;
-  z-index: 9999;
+body.light nav {
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom-color: rgba(0, 240, 255, 0.2);
+}
 
-  background: linear-gradient(
-    90deg,
-    #00f0ff,
-    #7cfffb,
-    #00f0ff
-  );
+body.light .glass,
+body.light .card,
+body.light .contact-final-item {
+  background: rgba(255, 255, 255, 0.15);
+  color: #111;
+}
 
-  box-shadow: 0 0 12px rgba(0, 240, 255, 0.8);
-  transition: width 0.1s linear;
+body.light .btn {
+  background: #00f0ff;
+  color: #000;
+}
+
+body.light .btn.outline {
+  background: transparent;
+  border-color: #00f0ff;
+  color: #00f0ff;
+}
+
+body.light nav a,
+body.light .skills span,
+body.light .contact-final-item span {
+  color: #111;
 }

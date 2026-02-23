@@ -99,3 +99,21 @@ window.addEventListener("scroll", () => {
   const scrollPercent = (scrollTop / docHeight) * 100;
   scrollProgress.style.width = scrollPercent + "%";
 });
+
+
+/* =========================
+   DARK / LIGHT THEME TOGGLE
+=========================== */
+
+const themeBtn = document.getElementById("themeToggle");
+
+themeBtn.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+
+  // switch icon
+  if (document.body.classList.contains("light")) {
+    themeBtn.textContent = "🌞";
+  } else {
+    themeBtn.textContent = "🌙";
+  }
+});
