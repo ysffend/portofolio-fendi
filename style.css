@@ -583,3 +583,29 @@ html {
     padding: 25px 18px;
   }
 }
+
+
+
+
+/* =============================
+   SCROLL PROGRESS INDICATOR
+============================= */
+
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  z-index: 9999;
+
+  background: linear-gradient(
+    90deg,
+    #00f0ff,
+    #7cfffb,
+    #00f0ff
+  );
+
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.8);
+  transition: width 0.1s linear;
+}
