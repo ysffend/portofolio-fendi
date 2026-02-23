@@ -623,3 +623,55 @@ body.light .skills span,
 body.light .contact-final-item span {
   color: #111;
 }
+
+
+
+
+/* ==============================
+   DARK / LIGHT THEME STYLES
+============================== */
+
+body.light {
+  background: #f5f5f5;
+  color: #181818;
+}
+
+body.light nav {
+  background: rgba(255,255,255,0.9);
+  border-bottom-color: rgba(0,240,255,0.3);
+}
+
+body.light .logo span {
+  color: #006cff;
+}
+
+body.light nav a {
+  color: #181818;
+}
+
+body.light .hero .glass,
+body.light .card,
+body.light .about-container,
+body.light .contact-final-box {
+  background: rgba(255,255,255,0.2);
+  color: #181818;
+}
+
+body.light .btn {
+  background: #00d4ff;
+  color: #000;
+}
+
+body.light .btn.outline {
+  border-color: #00d4ff;
+  color: #00d4ff;
+}
+
+body.light .skills span {
+  border-color: #00d4ff;
+  color: #000;
+}
+
+body.light .contact-final-item i {
+  color: #00d4ff;
+}
