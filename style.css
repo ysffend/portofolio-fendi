@@ -463,3 +463,123 @@ footer {
   transform: translateY(-6px) scale(1.02);
   box-shadow: 0 0 22px rgba(0, 240, 255, 0.35);
 }
+
+
+/* ===============================
+   GLOBAL RESPONSIVE IMPROVEMENT
+=============================== */
+
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 1200px) {
+  html { font-size: 15px; }
+}
+
+@media (max-width: 992px) {
+  html { font-size: 14px; }
+}
+
+@media (max-width: 768px) {
+  html { font-size: 13px; }
+}
+
+@media (max-width: 480px) {
+  html { font-size: 12px; }
+}
+
+/* ===============================
+   NAVBAR MOBILE FINAL
+=============================== */
+
+@media (max-width: 768px) {
+  nav ul {
+    position: absolute;
+    top: 80px;
+    right: 8%;
+    width: 200px;
+    flex-direction: column;
+    gap: 18px;
+    background: rgba(0,0,0,0.95);
+    border-radius: 18px;
+    padding: 20px;
+    display: none;
+    box-shadow: 0 0 20px rgba(0,240,255,0.3);
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+}
+
+/* ===============================
+   HERO RESPONSIVE FIX
+=============================== */
+
+.hero .glass {
+  max-width: 680px;
+}
+
+@media (max-width: 600px) {
+  .hero .glass {
+    padding: 35px 20px;
+  }
+}
+
+/* ===============================
+   ABOUT RESPONSIVE
+=============================== */
+
+@media (max-width: 768px) {
+  .about-container {
+    gap: 30px;
+    padding: 30px 20px;
+  }
+}
+
+/* ===============================
+   PROJECTS RESPONSIVE (IMPORTANT)
+=============================== */
+
+.projects {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.card {
+  min-height: 140px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(0,240,255,0.35);
+}
+
+/* ===============================
+   CONTACT RESPONSIVE FINAL
+=============================== */
+
+.contact-final-box {
+  width: 100%;
+  padding: 0 10px;
+}
+
+.contact-final-item {
+  width: 100%;
+}
+
+/* ===============================
+   SMALL PHONE FIX
+=============================== */
+
+@media (max-width: 400px) {
+  .section h2 {
+    font-size: 26px;
+  }
+
+  .card {
+    padding: 25px 18px;
+  }
+}

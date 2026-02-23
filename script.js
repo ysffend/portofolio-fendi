@@ -1,63 +1,71 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* ===============================
+   NAVBAR TOGGLE
+=============================== */
+const menuToggle = document.querySelector(".menu-toggle");
+const navLinks = document.querySelector("nav ul");
 
-  /* =============================
-     INTERSECTION OBSERVER (ALL)
-  ============================= */
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+});
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("active", "show");
-        }
-      });
-    },
-    { threshold: 0.15 }
-  );
+/* ===============================
+   INTERSECTION OBSERVER (FINAL)
+=============================== */
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  },
+  { threshold: 0.2 }
+);
 
-  document
-    .querySelectorAll(".fade-up, .stagger")
-    .forEach(el => observer.observe(el));
+document.querySelectorAll(".fade-up, .stagger").forEach(el => {
+  observer.observe(el);
+});
 
+/* ===============================
+   TYPING EFFECT
+=============================== */
+const text = "UI Futuristic • Responsive • Modern Web";
+let index = 0;
+const typing = document.querySelector(".typing");
 
-  /* =============================
-     TYPING EFFECT
-  ============================= */
-
-  const text = "UI Futuristic • Responsive • Modern Web";
-  let index = 0;
-  const typing = document.querySelector(".typing");
-
-  function typeEffect() {
-    if (typing && index < text.length) {
-      typing.textContent += text.charAt(index);
-      index++;
-      setTimeout(typeEffect, 80);
-    }
+function typeEffect() {
+  if (!typing) return;
+  if (index < text.length) {
+    typing.textContent += text.charAt(index);
+    index++;
+    setTimeout(typeEffect, 80);
   }
-  typeEffect();
+}
+typeEffect();
 
-
-  /* =============================
-     PARTICLES BACKGROUND
-  ============================= */
-
-  const canvas = document.getElementById("particles");
-  if (!canvas) return;
-
+/* ===============================
+   PARTICLES BACKGROUND
+=============================== */
+const canvas = document.getElementById("particles");
+if (canvas) {
   const ctx = canvas.getContext("2d");
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+
+  window.addEventListener("resize", () => {
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+  });
 
   let particles = Array.from({ length: 60 }, () => ({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     vx: Math.random() - 0.5,
-    vy: Math.random() - 0.5,
+    vy: Math.random() - 0.5
   }));
 
   function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
     particles.forEach(p => {
       p.x += p.vx;
       p.y += p.vy;
@@ -70,15 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.fillStyle = "#00f0ff";
       ctx.fill();
     });
-
     requestAnimationFrame(draw);
   }
-
   draw();
-
-  window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
-
-});
+}
