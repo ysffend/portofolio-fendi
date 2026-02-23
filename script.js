@@ -117,31 +117,3 @@ themeBtn.addEventListener("click", () => {
     themeBtn.textContent = "🌙";
   }
 });
-
-
-
-
-
-/* ==============================
-   DARK / LIGHT THEME TOGGLE
-============================== */
-
-const themeToggle = document.getElementById("themeToggle");
-
-// Initial theme from localStorage
-if (localStorage.getItem("theme") === "light") {
-  document.body.classList.add("light");
-  themeToggle.textContent = "🌞";
-}
-
-themeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("light");
-
-  if (document.body.classList.contains("light")) {
-    themeToggle.textContent = "🌞";
-    localStorage.setItem("theme", "light");
-  } else {
-    themeToggle.textContent = "🌙";
-    localStorage.removeItem("theme");
-  }
-});
