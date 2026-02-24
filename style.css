@@ -625,22 +625,41 @@ body.light .contact-final-item span {
 }
 
 
-/* =============================
-   THEME BUTTON MOBILE FIX
-============================= */
+/* =========================
+   PRESTASI SECTION
+========================= */
 
-@media (max-width: 768px) {
+.prestasi-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
 
-  .theme-toggle-btn {
-    position: fixed;
-    top: 90px;            /* 🔥 di bawah navbar */
-    right: 20px;          /* tidak nabrak hamburger */
-    z-index: 999;
-    background: rgba(0,0,0,0.7);
-    backdrop-filter: blur(10px);
-  }
+.prestasi-card {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(14px);
+  padding: 28px 30px;
+  border-radius: 22px;
+  text-align: left;
+  box-shadow: 0 0 25px rgba(0,240,255,0.15);
+  transition: all 0.35s ease;
+}
 
-  body.light .theme-toggle-btn {
-    background: rgba(255,255,255,0.85);
-  }
+.prestasi-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #00f0ff;
+}
+
+.prestasi-card p {
+  font-size: 15px;
+  color: #ddd;
+  line-height: 1.6;
+}
+
+.prestasi-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 30px rgba(0,240,255,0.35);
 }
