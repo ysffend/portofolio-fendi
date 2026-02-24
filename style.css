@@ -623,3 +623,42 @@ body.light .skills span,
 body.light .contact-final-item span {
   color: #111;
 }
+
+
+/* =============================
+   THEME TOGGLE BUTTON FIX
+============================= */
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.theme-toggle-btn {
+  background: transparent;
+  border: 2px solid #00f0ff;
+  color: #00f0ff;
+  font-size: 18px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(0, 240, 255, 0.15);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+}
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
+  .theme-toggle-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+}
