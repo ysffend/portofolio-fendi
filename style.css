@@ -623,3 +623,24 @@ body.light .skills span,
 body.light .contact-final-item span {
   color: #111;
 }
+
+
+/* =============================
+   THEME BUTTON MOBILE FIX
+============================= */
+
+@media (max-width: 768px) {
+
+  .theme-toggle-btn {
+    position: fixed;
+    top: 90px;            /* 🔥 di bawah navbar */
+    right: 20px;          /* tidak nabrak hamburger */
+    z-index: 999;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+  }
+
+  body.light .theme-toggle-btn {
+    background: rgba(255,255,255,0.85);
+  }
+}
