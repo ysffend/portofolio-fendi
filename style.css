@@ -663,3 +663,68 @@ body.light .contact-final-item span {
   transform: translateY(-6px);
   box-shadow: 0 0 30px rgba(0,240,255,0.35);
 }
+
+
+
+/* ===============================
+   ORGANISASI & KEPANITIAAN FINAL
+=============================== */
+
+.org-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.org-card {
+  padding: 26px 30px;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(14px);
+  text-align: center;
+  transition: all 0.35s ease;
+}
+
+.org-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 22px rgba(0,240,255,0.35);
+}
+
+.org-card h3 {
+  font-size: 19px;
+  font-weight: 600;
+  color: #00f0ff;
+  margin-bottom: 8px;
+}
+
+.org-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+/* LIGHT MODE */
+body.light .org-card {
+  background: rgba(255,255,255,0.55);
+}
+
+body.light .org-card p {
+  color: #333;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .org-card {
+    padding: 20px;
+  }
+
+  .org-card h3 {
+    font-size: 17px;
+  }
+
+  .org-card p {
+    font-size: 14px;
+  }
+}
