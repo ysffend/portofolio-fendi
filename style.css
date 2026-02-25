@@ -728,3 +728,16 @@ body.light .org-card p {
     font-size: 14px;
   }
 }
+
+
+/* ===============================
+   FIX SCROLL NAVBAR OFFSET
+=============================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 90px; /* sesuaikan tinggi navbar */
+}
