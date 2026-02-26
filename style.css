@@ -741,3 +741,72 @@ html {
 section {
   scroll-margin-top: 90px; /* sesuaikan tinggi navbar */
 }
+
+
+
+
+/* ===============================
+   KEPANITIAAN SECTION
+================================ */
+
+#kepanitiaan {
+  padding: 80px 20px;
+}
+
+/* GRID WRAPPER */
+.kepanitiaan-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* CARD */
+.kepanitiaan-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 26px 22px;
+  text-align: center;
+
+  border-left: 3px solid #00e5ff;
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.15);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* HOVER EFFECT */
+.kepanitiaan-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 35px rgba(0, 229, 255, 0.35);
+}
+
+/* TITLE */
+.kepanitiaan-card h3 {
+  color: #00f7ff;
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+}
+
+/* TEXT */
+.kepanitiaan-card p {
+  color: #ddd;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* MOBILE TWEAK */
+@media (max-width: 480px) {
+  .kepanitiaan-card {
+    padding: 22px 18px;
+  }
+
+  .kepanitiaan-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .kepanitiaan-card p {
+    font-size: 0.9rem;
+  }
+}
