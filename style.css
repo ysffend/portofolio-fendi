@@ -810,3 +810,35 @@ section {
     font-size: 0.9rem;
   }
 }
+
+
+
+
+/* ===============================
+   FIX THEME BUTTON - MOBILE
+================================ */
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 9999;
+
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+    border: 1px solid #00e5ff;
+
+    font-size: 20px;
+  }
+}
