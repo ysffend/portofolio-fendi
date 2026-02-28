@@ -27,3 +27,11 @@ modal.addEventListener("click", (e) => {
     modal.style.display = "none";
   }
 });
+
+
+// Tombol kembali ke halaman sebelumnya
+const backBtn = document.getElementById("backBtn");
+
+backBtn.addEventListener("click", () => {
+  window.history.back();
+});
