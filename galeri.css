@@ -110,3 +110,40 @@ footer {
   color: #fff;
   margin-top: 3rem;
 }
+
+
+
+/* MODAL BACKGROUND */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* MODAL IMAGE */
+.modal-img {
+  max-width: 80%;
+  max-height: 70%;
+  border-radius: 8px;
+}
+
+/* CAPTION */
+.modal-caption {
+  margin-top: 1rem;
+  color: #fff;
+}
+
+/* CLOSE BUTTON */
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+}
