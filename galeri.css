@@ -7,70 +7,89 @@
 
 /* BODY */
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: #fff;
+  font-family: system-ui, sans-serif;
+  background: linear-gradient(180deg, #f6f7fb, #ffffff);
   color: #111;
 }
 
-/* HEADER (mirip app mobile) */
-.app-header {
+/* HEADER */
+.header {
   text-align: center;
-  padding: 1rem;
-  font-weight: 600;
-  border-bottom: 1px solid #eee;
+  padding: 2rem 1rem;
+}
+
+.header h1 {
+  font-size: 2rem;
+  margin-bottom: .5rem;
+}
+
+.header p {
+  color: #666;
 }
 
 /* GALLERY GRID */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
 }
 
-/* PHOTO ITEM */
-.photo {
+/* CARD */
+.card {
+  position: relative;
   aspect-ratio: 1 / 1;
+  border-radius: 16px;
   overflow: hidden;
-  background-color: #ddd;
+  background: #e0e0e0;
+  cursor: pointer;
+  transition: transform .3s ease, box-shadow .3s ease;
 }
 
-.photo img {
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(0,0,0,.15);
+}
+
+/* IMAGE */
+.card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  cursor: pointer;
 }
 
-/* FULLSCREEN VIEWER */
-.viewer {
-  position: fixed;
+/* OVERLAY CAPTION */
+.card figcaption {
+  position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  background: linear-gradient(to top, rgba(0,0,0,.6), transparent);
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.card:hover figcaption {
+  opacity: 1;
+}
+
+/* FALLBACK JIKA IMAGE ERROR */
+.card img:not([src]),
+.card img[src=""] {
   display: none;
+}
+
+.card::before {
+  content: "Image Preview";
+  position: absolute;
+  inset: 0;
+  display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
-}
-
-.viewer img {
-  max-width: 95%;
-  max-height: 90%;
-  border-radius: 10px;
-}
-
-/* CLOSE BUTTON */
-.close {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 1.8rem;
-  color: #fff;
-  cursor: pointer;
-}
-
-/* RESPONSIVE (Tablet / Desktop) */
-@media (min-width: 768px) {
-  .gallery {
-    grid-template-columns: repeat(5, 1fr);
-  }
+  color: #999;
+  font-size: .9rem;
 }

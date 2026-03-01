@@ -2,47 +2,39 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Mobile Style Gallery</title>
+  <title>Gallery</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="galeri.css">
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="app-header">
-    <h1>Gallery</h1>
-  </header>
+<header class="header">
+  <h1>Gallery</h1>
+  <p>Koleksi foto pilihan</p>
+</header>
 
-  <!-- MAIN -->
-  <main class="gallery">
+<main class="gallery">
+  <figure class="card">
+    <img src="img/img1.jpg" alt="Foto 1">
+    <figcaption>Foto 1</figcaption>
+  </figure>
 
-    <figure class="photo">
-      <img src="img/img1.jpg" alt="Foto 1">
-    </figure>
+  <figure class="card">
+    <img src="img/img2.jpg" alt="Foto 2">
+    <figcaption>Foto 2</figcaption>
+  </figure>
 
-    <figure class="photo">
-      <img src="img/img2.jpg" alt="Foto 2">
-    </figure>
+  <figure class="card">
+    <img src="img/img3.jpg" alt="Foto 3">
+    <figcaption>Foto 3</figcaption>
+  </figure>
 
-    <figure class="photo">
-      <img src="img/img3.jpg" alt="Foto 3">
-    </figure>
+  <figure class="card">
+    <img src="img/img4.jpg" alt="Foto 4">
+    <figcaption>Foto 4</figcaption>
+  </figure>
+</main>
 
-    <figure class="photo">
-      <img src="img/img4.jpg" alt="Foto 4">
-    </figure>
-
-  </main>
-
-  <!-- FULLSCREEN PREVIEW -->
-  <div class="viewer" id="viewer">
-    <span class="close" id="closeBtn">✕</span>
-    <img id="viewerImg">
-  </div>
-
-  <!-- JS -->
-  <script src="galeri.js"></script>
+<script src="galeri.js"></script>
 </body>
 </html>

@@ -1,24 +1,7 @@
-const photos = document.querySelectorAll(".photo img");
-const viewer = document.getElementById("viewer");
-const viewerImg = document.getElementById("viewerImg");
-const closeBtn = document.getElementById("closeBtn");
+const cards = document.querySelectorAll(".card");
 
-// buka fullscreen
-photos.forEach(photo => {
-  photo.addEventListener("click", () => {
-    viewer.style.display = "flex";
-    viewerImg.src = photo.src;
+cards.forEach(card => {
+  card.addEventListener("click", () => {
+    alert("Preview / Detail Photo (bisa dikembangkan)");
   });
-});
-
-// tutup via tombol
-closeBtn.addEventListener("click", () => {
-  viewer.style.display = "none";
-});
-
-// tutup via tap background
-viewer.addEventListener("click", (e) => {
-  if (e.target === viewer) {
-    viewer.style.display = "none";
-  }
 });
