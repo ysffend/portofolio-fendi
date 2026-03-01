@@ -1,37 +1,24 @@
-// Ambil semua gambar gallery
-const images = document.querySelectorAll("article img");
+const photos = document.querySelectorAll(".photo img");
+const viewer = document.getElementById("viewer");
+const viewerImg = document.getElementById("viewerImg");
+const closeBtn = document.getElementById("closeBtn");
 
-// Ambil elemen modal
-const modal = document.getElementById("modal");
-const modalImg = document.getElementById("modalImg");
-const modalCaption = document.getElementById("modalCaption");
-const closeBtn = document.querySelector(".close");
-
-// Klik gambar → buka modal
-images.forEach(img => {
-  img.addEventListener("click", () => {
-    modal.style.display = "flex";
-    modalImg.src = img.src;
-    modalCaption.textContent = img.alt;
+// buka fullscreen
+photos.forEach(photo => {
+  photo.addEventListener("click", () => {
+    viewer.style.display = "flex";
+    viewerImg.src = photo.src;
   });
 });
 
-// Tutup modal via tombol
+// tutup via tombol
 closeBtn.addEventListener("click", () => {
-  modal.style.display = "none";
+  viewer.style.display = "none";
 });
 
-// Tutup modal via background
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    modal.style.display = "none";
+// tutup via tap background
+viewer.addEventListener("click", (e) => {
+  if (e.target === viewer) {
+    viewer.style.display = "none";
   }
-});
-
-
-// Tombol kembali ke halaman sebelumnya
-const backBtn = document.getElementById("backBtn");
-
-backBtn.addEventListener("click", () => {
-  window.history.back();
 });

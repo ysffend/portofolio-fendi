@@ -2,85 +2,47 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Gallery Showcase</title>
+  <title>Mobile Style Gallery</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Gallery showcase berisi kumpulan karya dan project">
-    <link rel="stylesheet" href="galeri.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="galeri.css">
 </head>
 <body>
 
   <!-- HEADER -->
-  <header>
-    <h1>My Gallery</h1>
-    <p>Kumpulan karya dan project terbaik</p>
+  <header class="app-header">
+    <h1>Gallery</h1>
   </header>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Gallery</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </nav>
+  <!-- MAIN -->
+  <main class="gallery">
 
-  <!-- MAIN CONTENT -->
-  <main>
+    <figure class="photo">
+      <img src="img/img1.jpg" alt="Foto 1">
+    </figure>
 
-    <!-- GALLERY SECTION -->
-    <section>
-      <h2>Gallery Project</h2>
+    <figure class="photo">
+      <img src="img/img2.jpg" alt="Foto 2">
+    </figure>
 
-      <!-- ITEM 1 -->
-      <article>
-        <figure>
-          <img src="portofolio.jpeg" alt="Website Portofolio HTML CSS">
-          <figcaption>
-            <h3>Website Portofolio</h3>
-            <p>Project website portofolio menggunakan HTML semantik.</p>
-          </figcaption>
-        </figure>
-      </article>
+    <figure class="photo">
+      <img src="img/img3.jpg" alt="Foto 3">
+    </figure>
 
-      <!-- ITEM 2 -->
-      <article>
-        <figure>
-          <img src="img/project2.jpg" alt="Landing Page Produk">
-          <figcaption>
-            <h3>Landing Page Produk</h3>
-            <p>Desain landing page sederhana dan rapi.</p>
-          </figcaption>
-        </figure>
-      </article>
-
-      <!-- ITEM 3 -->
-      <article>
-        <figure>
-          <img src="img/project3.jpg" alt="Gallery Website">
-          <figcaption>
-            <h3>Website Gallery</h3>
-            <p>Menampilkan karya dalam bentuk galeri visual.</p>
-          </figcaption>
-        </figure>
-      </article>
-
-    </section>
-
-    <button class="back-btn" id="backBtn">← Kembali</button>
+    <figure class="photo">
+      <img src="img/img4.jpg" alt="Foto 4">
+    </figure>
 
   </main>
-<!-- MODAL POPUP -->
-<div class="modal" id="modal">
-  <span class="close">&times;</span>
-  <img class="modal-img" id="modalImg">
-  <p class="modal-caption" id="modalCaption"></p>
-</div>
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2026 My Gallery. All rights reserved.</p>
-  </footer>
 
-<script src="galeri.js"></script>
+  <!-- FULLSCREEN PREVIEW -->
+  <div class="viewer" id="viewer">
+    <span class="close" id="closeBtn">✕</span>
+    <img id="viewerImg">
+  </div>
+
+  <!-- JS -->
+  <script src="galeri.js"></script>
 </body>
 </html>
