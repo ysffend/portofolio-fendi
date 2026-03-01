@@ -5,50 +5,73 @@
   box-sizing: border-box;
 }
 
-/* BODY */
+/* BODY - GRADIENT SOFT */
 body {
   font-family: system-ui, sans-serif;
-  background: linear-gradient(180deg, #f6f7fb, #ffffff);
+  background: linear-gradient(135deg, #f5f7ff, #fdfbff);
   color: #111;
 }
 
 /* HEADER */
 .header {
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 2.5rem 1rem;
 }
 
 .header h1 {
-  font-size: 2rem;
-  margin-bottom: .5rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+
+  /* fallback */
+  color: #6a5cff;
+
+  background: linear-gradient(90deg, #6a5cff, #ff6ec4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .header p {
   color: #666;
+  margin-top: .5rem;
 }
 
 /* GALLERY GRID */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  gap: 24px;
+  padding: 30px;
 }
 
 /* CARD */
 .card {
   position: relative;
   aspect-ratio: 1 / 1;
-  border-radius: 16px;
+  border-radius: 22px;
   overflow: hidden;
-  background: #e0e0e0;
-  cursor: pointer;
-  transition: transform .3s ease, box-shadow .3s ease;
+  background: linear-gradient(135deg, #e0e7ff, #fce7f3);
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+  transition: transform .35s ease, box-shadow .35s ease;
 }
 
+/* ACCENT COLOR PER CARD */
+.card:nth-child(1) {
+  background: linear-gradient(135deg, #fde68a, #fca5a5);
+}
+.card:nth-child(2) {
+  background: linear-gradient(135deg, #a5b4fc, #c7d2fe);
+}
+.card:nth-child(3) {
+  background: linear-gradient(135deg, #6ee7b7, #99f6e4);
+}
+.card:nth-child(4) {
+  background: linear-gradient(135deg, #fbcfe8, #f9a8d4);
+}
+
+/* HOVER EFFECT */
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 15px 30px rgba(0,0,0,.15);
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 25px 45px rgba(0,0,0,.18);
 }
 
 /* IMAGE */
@@ -56,6 +79,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  mix-blend-mode: multiply;
 }
 
 /* OVERLAY CAPTION */
@@ -64,11 +88,11 @@ body {
   inset: 0;
   display: flex;
   align-items: flex-end;
-  padding: 16px;
-  font-size: 1rem;
-  font-weight: 500;
+  padding: 18px;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: white;
-  background: linear-gradient(to top, rgba(0,0,0,.6), transparent);
+  background: linear-gradient(to top, rgba(0,0,0,.55), transparent);
   opacity: 0;
   transition: opacity .3s ease;
 }
@@ -77,12 +101,7 @@ body {
   opacity: 1;
 }
 
-/* FALLBACK JIKA IMAGE ERROR */
-.card img:not([src]),
-.card img[src=""] {
-  display: none;
-}
-
+/* FALLBACK PREVIEW */
 .card::before {
   content: "Image Preview";
   position: absolute;
@@ -90,6 +109,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #999;
-  font-size: .9rem;
+  color: rgba(0,0,0,.4);
+  font-weight: 500;
 }
