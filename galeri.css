@@ -103,7 +103,7 @@ body {
 
 /* FALLBACK PREVIEW */
 .card::before {
-  content: "Image Preview";
+  content: "";
   position: absolute;
   inset: 0;
   display: flex;
