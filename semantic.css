@@ -131,3 +131,90 @@ button:hover {
   transform: translateY(-3px);
   box-shadow: 0 15px 30px rgba(0,0,0,.25);
 }
+
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #e0e7ff, #f8fafc);
+  padding: 40px;
+  transition: 0.3s ease;
+}
+
+body.dark {
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+/* DARK MODE BUTTON */
+.dark-mode-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+#btnDarkMode {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: linear-gradient(90deg, #6366f1, #ec4899);
+  color: white;
+  transition: 0.3s ease;
+}
+
+#btnDarkMode:hover {
+  transform: scale(1.05);
+}
+
+/* SECTION */
+.section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section img {
+  width: 100%;
+  max-width: 700px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  margin-top: 10px;
+}
+
+/* ARTICLE BOX */
+.article-box {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: 0.3s ease;
+}
+
+.article-box:hover {
+  transform: translateY(-5px);
+}
+
+body.dark .article-box {
+  background: #1e293b;
+}
+
+/* BACK BUTTON */
+.btn-back {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 8px 15px;
+  border-radius: 10px;
+  text-decoration: none;
+  background: #6366f1;
+  color: white;
+}
