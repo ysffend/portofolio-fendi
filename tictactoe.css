@@ -1,7 +1,14 @@
 body {
+  margin: 0;
   font-family: Arial, sans-serif;
   text-align: center;
-  background: #f5f7ff;
+  color: white;
+
+  background-image: url("mountain.jpeg");
+  background-size: cover;        /* biar penuh layar */
+  background-position: center;   /* posisi tengah */
+  background-repeat: no-repeat;  /* tidak diulang */
+  height: 100vh;
 }
 
 h1 {
