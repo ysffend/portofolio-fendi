@@ -39,7 +39,7 @@ h1 {
 }
 
 .cell:hover {
-  background: #f3f4f8;
+  background: #355aec;
 }
 
 button {
@@ -47,6 +47,6 @@ button {
   border: none;
   border-radius: 8px;
   background: #6a5cff;
-  color: white;
+  color: rgb(40, 36, 36);
   cursor: pointer;
 }
