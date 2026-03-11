@@ -218,3 +218,20 @@ body.dark .article-box {
   background: #6366f1;
   color: white;
 }
+
+
+.video-container{
+    display:flex;
+    justify-content:center;
+    margin-top:40px;
+}
+
+/* VIDEO KOTAK */
+.video-container video{
+    width:400px;
+    aspect-ratio:1 / 1;   /* membuat video kotak */
+    object-fit:cover;     /* memotong video agar tetap proporsional */
+    border-radius:20px;
+    border:6px solid white;
+    box-shadow:0 15px 30px rgba(0,0,0,0.25);
+}
