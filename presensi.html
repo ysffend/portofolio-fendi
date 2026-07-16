@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistem Presensi Kuliah</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.x/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="Presensi.css" />
+</head>
+<body>
+<div class="container">
+
+  <!-- ─── Header ─── -->
+  <div class="header">
+    <div>
+      <h1>
+        <i class="ti ti-calendar-check" style="color:#185FA5"></i>
+        Sistem Presensi Kuliah
+      </h1>
+      <p class="header-sub" id="info-matkul">Memuat data...</p>
+    </div>
+    <button class="btn sm" onclick="openMatkul()">
+      <i class="ti ti-settings"></i> Pengaturan
+    </button>
+  </div>
+
+  <!-- ─── Tabs ─── -->
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('presensi', this)">
+      <i class="ti ti-clipboard-check"></i> Presensi
+    </button>
+    <button class="tab" onclick="switchTab('mahasiswa', this)">
+      <i class="ti ti-users"></i> Mahasiswa
+    </button>
+    <button class="tab" onclick="switchTab('rekap', this)">
+      <i class="ti ti-chart-bar"></i> Rekap
+    </button>
+  </div>
+
+  <!-- ══════ TAB: PRESENSI ══════ -->
+  <div id="tab-presensi" class="section active">
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Mahasiswa</div>
+        <div class="stat-val" id="s-total">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Hadir</div>
+        <div class="stat-val green" id="s-hadir">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Izin</div>
+        <div class="stat-val amber" id="s-izin">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Alpha</div>
+        <div class="stat-val red" id="s-alpha">0</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2>Pertemuan ke-<span id="pertemuan-label">1</span></h2>
+        <div class="row-gap">
+          <input type="date" id="tgl-presensi" />
+          <button class="btn success" onclick="simpanPresensi()">
+            <i class="ti ti-device-floppy"></i> Simpan
+          </button>
+        </div>
+      </div>
+
+      <div class="attendance-grid" id="attendance-list">
+        <div class="empty">
+          <i class="ti ti-users-group icon-empty"></i>
+          Belum ada mahasiswa terdaftar
+        </div>
+      </div>
+
+      <div id="presensi-toolbar">
+        <hr class="divider" />
+        <div class="row-gap wrap">
+          <button class="btn sm" onclick="allStatus('hadir')">
+            <i class="ti ti-check"></i> Tandai Semua Hadir
+          </button>
+          <button class="btn sm" onclick="allStatus('izin')">
+            <i class="ti ti-file-text"></i> Tandai Semua Izin
+          </button>
+          <button class="btn sm danger" onclick="allStatus('alpha')">
+            <i class="ti ti-x"></i> Tandai Semua Alpha
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Riwayat -->
+    <div class="card">
+      <div class="card-header">
+        <h2>Riwayat Presensi</h2>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Pertemuan</th>
+            <th>Tanggal</th>
+            <th>Hadir</th>
+            <th>Izin</th>
+            <th>Alpha</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="riwayat-tbody"></tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- ══════ TAB: MAHASISWA ══════ -->
+  <div id="tab-mahasiswa" class="section">
+
+    <div class="card">
+      <div class="card-header"><h2>Tambah Mahasiswa</h2></div>
+      <div class="form-row three">
+        <div class="field">
+          <label for="inp-nim">NIM</label>
+          <input id="inp-nim" type="text" placeholder="contoh: 2310001" />
+        </div>
+        <div class="field">
+          <label for="inp-nama">Nama Lengkap</label>
+          <input id="inp-nama" type="text" placeholder="Nama mahasiswa" />
+        </div>
+        <div class="field">
+          <label for="inp-kelas">Kelas</label>
+          <input id="inp-kelas" type="text" placeholder="contoh: A" />
+        </div>
+      </div>
+      <button class="btn primary" onclick="tambahMahasiswa()">
+        <i class="ti ti-plus"></i> Tambah Mahasiswa
+      </button>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2>Daftar Mahasiswa</h2>
+        <span id="jml-mhs" class="muted-sm">0 mahasiswa</span>
+      </div>
+      <div class="search-row">
+        <input
+          type="text"
+          placeholder="Cari NIM atau nama..."
+          oninput="renderMhsList(this.value)"
+        />
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>NIM</th>
+            <th>Nama</th>
+            <th>Kelas</th>
+            <th>Kehadiran</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="mhs-tbody"></tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- ══════ TAB: REKAP ══════ -->
+  <div id="tab-rekap" class="section">
+
+    <div class="card">
+      <div class="card-header">
+        <h2>Rekap Kehadiran</h2>
+        <div class="row-gap wrap">
+          <select id="filter-kelas" onchange="renderRekap()">
+            <option value="">Semua Kelas</option>
+          </select>
+          <button class="btn sm" onclick="exportCSV()">
+            <i class="ti ti-download"></i> Export CSV
+          </button>
+        </div>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr id="rekap-head"></tr></thead>
+          <tbody id="rekap-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h2>Ringkasan per Mahasiswa</h2></div>
+      <div id="ringkasan-list"></div>
+    </div>
+
+  </div>
+
+</div><!-- /container -->
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

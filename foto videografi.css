@@ -1,0 +1,237 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BODY */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #e0e7ff, #f8fafc);
+  color: #1e293b;
+  line-height: 1.6;
+  transition: 0.3s ease;
+  padding: 40px;
+}
+
+/* DARK MODE */
+body.dark {
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+/* JUDUL */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 32px;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+/* GAMBAR */
+figure {
+  text-align: center;
+}
+
+figure img {
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 3 / 2; /* Rasio 600x400 */
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+img {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* HOVER IMAGE */
+img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+/* CAPTION */
+figcaption {
+  margin-top: 10px;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* ARTIKEL */
+article {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: 0.3s ease;
+}
+
+body.dark article {
+  background: #1e293b;
+}
+
+/* BUTTON */
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #6366f1;
+  color: white;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: #4338ca;
+}
+
+/* FADE ANIMATION */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.8s ease;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* BUTTON KEMBALI */
+.btn-back {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #6a5cff, #ff6ec4);
+  color: white;
+  font-weight: 600;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 10px 20px rgba(0,0,0,.15);
+  transition: transform .25s ease, box-shadow .25s ease;
+  z-index: 999;
+}
+
+.btn-back:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0,0,0,.25);
+}
+
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #e0e7ff, #f8fafc);
+  padding: 40px;
+  transition: 0.3s ease;
+}
+
+body.dark {
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+/* DARK MODE BUTTON */
+.dark-mode-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+#btnDarkMode {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: linear-gradient(90deg, #6366f1, #ec4899);
+  color: white;
+  transition: 0.3s ease;
+}
+
+#btnDarkMode:hover {
+  transform: scale(1.05);
+}
+
+/* SECTION */
+.section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section img {
+  width: 100%;
+  max-width: 700px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  margin-top: 10px;
+}
+
+/* ARTICLE BOX */
+.article-box {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: 0.3s ease;
+}
+
+.article-box:hover {
+  transform: translateY(-5px);
+}
+
+body.dark .article-box {
+  background: #1e293b;
+}
+
+/* BACK BUTTON */
+.btn-back {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 8px 15px;
+  border-radius: 10px;
+  text-decoration: none;
+  background: #6366f1;
+  color: white;
+}
+
+
+.video-container{
+    display:flex;
+    justify-content:center;
+    margin-top:40px;
+}
+
+/* VIDEO KOTAK */
+.video-container video{
+    width:400px;
+    aspect-ratio:1 / 1;   /* membuat video kotak */
+    object-fit:cover;     /* memotong video agar tetap proporsional */
+    border-radius:20px;
+    border:6px solid white;
+    box-shadow:0 15px 30px rgba(0,0,0,0.25);
+}

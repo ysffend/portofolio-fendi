@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nebula Vault - Savings Tracker</title>
+    <link rel="stylesheet" href="tabungan.css" />
+    <!-- Menggunakan Font-Awesome untuk ikon roket dan planet -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+
+    <div class="container">
+      <!-- Header -->
+      <header>
+        <div class="logo">
+          <i class="fa-solid fa-user-astronaut logo-icon"></i>
+          <h1>Nebula <span>Vault</span></h1>
+        </div>
+        <div class="total-balance">
+          <p>Total Tabungan</p>
+          <h2 id="overall-balance">Rp 0</h2>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <!-- Sisi Kiri: Form Input & Riwayat -->
+        <section class="control-panel">
+          <div class="card glass">
+            <h3>
+              <i class="fa-solid fa-rocket"></i> Orbit Baru (Tambah Target)
+            </h3>
+            <form id="goal-form">
+              <div class="form-group">
+                <label for="goal-name">Nama Target Tabungan</label>
+                <input
+                  type="text"
+                  id="goal-name"
+                  placeholder="Contoh: Beli Laptop Baru"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="goal-amount">Target Nominal (Rp)</label>
+                <input
+                  type="number"
+                  id="goal-amount"
+                  placeholder="Contoh: 5000000"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="goal-planet">Pilih Planet Visual</label>
+                <select id="goal-planet">
+                  <option value="🪐">🪐 Saturnus (Kuning)</option>
+                  <option value="🔴">🔴 Mars (Merah)</option>
+                  <option value="🔵">🔵 Neptunus (Biru)</option>
+                  <option value="🟢">🟢 Uranus (Hijau)</option>
+                </select>
+              </div>
+              <button type="submit" class="btn-primary">
+                Luncurkan Target <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+
+          <!-- Riwayat Transaksi -->
+          <div class="card glass history-card">
+            <h3><i class="fa-solid fa-list-ul"></i> Log Transaksi</h3>
+            <div class="history-list" id="history-container">
+              <p class="empty-text">Belum ada aktivitas finansial di orbit.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sisi Kanan: Daftar Target Tabungan -->
+        <section class="goals-panel">
+          <h2><i class="fa-solid fa-circle-nodes"></i> Target Aktif</h2>
+          <div class="goals-grid" id="goals-container">
+            <!-- Kartu target tabungan akan di-render secara dinamis menggunakan JS di sini -->
+
+            <!-- Contoh Tampilan Kartu Target (Nanti akan dibuat dinamis) -->
+            <div class="card glass goal-card">
+              <div class="goal-header">
+                <span class="planet-icon">🪐</span>
+                <div>
+                  <h4>Beli Laptop</h4>
+                  <p>Target: Rp 10.000.000</p>
+                </div>
+              </div>
+              <div class="progress-container">
+                <div class="progress-bar-wrapper">
+                  <div class="progress-bar" style="width: 40%"></div>
+                  <i
+                    class="fa-solid fa-shuttle-space rocket-progress"
+                    style="left: calc(40% - 10px)"
+                  ></i>
+                </div>
+                <span class="progress-percentage">40%</span>
+              </div>
+              <div class="goal-footer">
+                <p class="saved-amount">Terkumpul: Rp 4.000.000</p>
+                <div class="action-buttons">
+                  <button class="btn-action deposit-btn" title="Simpan Uang">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                  <button class="btn-action withdraw-btn" title="Tarik Uang">
+                    <i class="fa-solid fa-minus"></i>
+                  </button>
+                  <button class="btn-action delete-btn" title="Hapus Target">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Custom Modal untuk Deposit / Withdraw -->
+    <div id="transaction-modal" class="modal-overlay">
+      <div class="modal-content glass">
+        <div class="modal-header">
+          <h3 id="modal-title">
+            <i class="fa-solid fa-money-bill-transfer"></i> Transaksi Orbit
+          </h3>
+          <button id="close-modal-btn" class="btn-close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="modal-target-info">Target: -</p>
+          <div class="form-group">
+            <label for="transaction-amount">Jumlah Nominal (Rp)</label>
+            <input
+              type="number"
+              id="transaction-amount"
+              placeholder="Masukkan jumlah uang"
+              min="1"
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="cancel-modal-btn" class="btn-secondary">Batal</button>
+          <button id="submit-modal-btn" class="btn-primary">Konfirmasi</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="tabungan.js"></script>
+  </body>
+</html>

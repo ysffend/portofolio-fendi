@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orbit — Manajemen Tugas Mahasiswa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="manajemen tugas.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- ===== SIDEBAR ===== -->
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-mark">◎</span>
+          <span class="brand-name">Orbit</span>
+        </div>
+
+        <button class="btn-add" id="btnAdd">
+          <span class="plus">+</span> Tugas baru
+        </button>
+
+        <button class="btn-add btn-add-secondary" id="btnAddLaprak">
+          <span class="plus">+</span> Laprak baru
+        </button>
+
+        <nav class="filters">
+          <span class="filters-label">Status</span>
+          <button class="filter-item active" data-filter="all">
+            Semua <span class="count" id="countAll">0</span>
+          </button>
+          <button class="filter-item" data-filter="todo">
+            Belum dikerjakan <span class="count" id="countTodo">0</span>
+          </button>
+          <button class="filter-item" data-filter="doing">
+            Sedang dikerjakan <span class="count" id="countDoing">0</span>
+          </button>
+          <button class="filter-item" data-filter="done">
+            Selesai <span class="count" id="countDone">0</span>
+          </button>
+        </nav>
+
+        <nav class="filters">
+          <span class="filters-label">Jenis</span>
+          <button
+            class="filter-item"
+            id="filterLaprak"
+            data-typefilter="laprak"
+          >
+            Laprak <span class="count" id="countLaprak">0</span>
+          </button>
+        </nav>
+
+        <nav class="filters course-filters" id="courseFilters">
+          <span class="filters-label">Mata kuliah</span>
+          <!-- diisi dinamis -->
+        </nav>
+      </aside>
+
+      <!-- ===== MAIN ===== -->
+      <main class="main">
+        <header class="topbar">
+          <div class="orbit-ring-wrap">
+            <svg class="orbit-ring" viewBox="0 0 120 120" id="orbitRing">
+              <circle class="ring-track" cx="60" cy="60" r="52"></circle>
+              <circle
+                class="ring-progress"
+                cx="60"
+                cy="60"
+                r="52"
+                id="ringProgress"
+              ></circle>
+              <text x="60" y="56" class="ring-percent" id="ringPercent">
+                0%
+              </text>
+              <text x="60" y="72" class="ring-sub">selesai</text>
+              <g id="ringDots"></g>
+            </svg>
+          </div>
+          <div class="topbar-text">
+            <h1 id="greeting">Halo!</h1>
+            <p id="summaryLine">Belum ada tugas. Yuk tambahkan yang pertama.</p>
+          </div>
+        </header>
+
+        <section class="board" id="board">
+          <!-- task cards diisi via JS -->
+        </section>
+
+        <div class="empty-state" id="emptyState">
+          <div class="empty-icon">✦</div>
+          <h3>Belum ada tugas di sini</h3>
+          <p>Tambahkan tugas pertamamu dan mulai lacak deadline-nya.</p>
+        </div>
+      </main>
+    </div>
+
+    <!-- ===== MODAL TAMBAH/EDIT ===== -->
+    <div class="modal-backdrop" id="modalBackdrop">
+      <div class="modal">
+        <div class="modal-head">
+          <h2 id="modalTitle">Tugas baru</h2>
+          <button class="modal-close" id="modalClose">✕</button>
+        </div>
+
+        <form id="taskForm">
+          <input type="hidden" id="taskId" />
+
+          <label class="field">
+            <span>Judul tugas</span>
+            <input
+              type="text"
+              id="taskTitle"
+              placeholder="Contoh: Laporan Praktikum Jaringan"
+              required
+            />
+          </label>
+
+          <label class="field">
+            <span>Mata kuliah</span>
+            <input
+              type="text"
+              id="taskCourse"
+              placeholder="Contoh: Algoritma & Struktur Data"
+              required
+              list="courseSuggestions"
+            />
+            <datalist id="courseSuggestions"></datalist>
+          </label>
+
+          <div class="field-row">
+            <label class="field">
+              <span id="deadlineLabel">Deadline</span>
+              <input type="datetime-local" id="taskDeadline" required />
+            </label>
+
+            <label class="field">
+              <span>Prioritas</span>
+              <select id="taskPriority">
+                <option value="low">Rendah</option>
+                <option value="medium" selected>Sedang</option>
+                <option value="high">Tinggi</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Catatan (opsional)</span>
+            <textarea
+              id="taskNotes"
+              rows="3"
+              placeholder="Detail tambahan, link, atau reminder..."
+            ></textarea>
+          </label>
+
+          <div class="field">
+            <span>Status</span>
+            <div class="status-toggle" id="statusToggle">
+              <button
+                type="button"
+                class="status-opt active"
+                data-status="todo"
+              >
+                Belum
+              </button>
+              <button type="button" class="status-opt" data-status="doing">
+                Dikerjakan
+              </button>
+              <button type="button" class="status-opt" data-status="done">
+                Selesai
+              </button>
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button
+              type="button"
+              class="btn-delete"
+              id="btnDelete"
+              style="display: none"
+            >
+              Hapus tugas
+            </button>
+            <div class="modal-actions-right">
+              <button type="button" class="btn-secondary" id="btnCancel">
+                Batal
+              </button>
+              <button type="submit" class="btn-primary">Simpan</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="manajemen tugas.js"></script>
+  </body>
+</html>

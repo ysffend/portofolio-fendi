@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cosmic Spend — Expense Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="expense tracker.css" />
+  </head>
+  <body>
+    <canvas id="starfield"></canvas>
+
+    <div class="app">
+      <!-- HEADER -->
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark">✦</span>
+          <span class="brand-name">Cosmic Spend</span>
+        </div>
+        <button class="btn-ghost" id="exportBtn">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" />
+          </svg>
+          Export CSV
+        </button>
+      </header>
+
+      <!-- SUMMARY CARDS -->
+      <section class="summary-grid">
+        <div class="card glow-cyan">
+          <span class="card-label">Saldo</span>
+          <span class="card-value" id="balanceValue">Rp 0</span>
+          <span class="card-sub">Klik untuk edit</span>
+        </div>
+        <div class="card glow-green">
+          <span class="card-label">Pemasukan bulan ini</span>
+          <span class="card-value" id="incomeValue">Rp 0</span>
+          <span class="card-sub" id="incomeCount">0 transaksi</span>
+        </div>
+        <div class="card glow-coral">
+          <span class="card-label">Pengeluaran bulan ini</span>
+          <span class="card-value" id="expenseValue">Rp 0</span>
+          <span class="card-sub" id="expenseCount">0 transaksi</span>
+        </div>
+      </section>
+
+      <!-- MAIN GRID -->
+      <section class="main-grid">
+        <!-- LEFT: Form + History -->
+        <div class="col-left">
+          <div class="panel">
+            <h2 class="panel-title">Tambah transaksi</h2>
+            <form id="transactionForm" class="tx-form">
+              <div class="seg-control" id="typeToggle">
+                <button
+                  type="button"
+                  class="seg-btn active"
+                  data-type="expense"
+                >
+                  Pengeluaran
+                </button>
+                <button type="button" class="seg-btn" data-type="income">
+                  Pemasukan
+                </button>
+                <button type="button" class="seg-btn" data-type="saldo">
+                  Saldo
+                </button>
+              </div>
+
+              <div class="form-row">
+                <label for="txAmount" id="txAmountLabel">Jumlah</label>
+                <div class="amount-input">
+                  <span>Rp</span>
+                  <input
+                    type="number"
+                    id="txAmount"
+                    placeholder="0"
+                    min="0"
+                    step="1"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <label for="txCategory">Kategori</label>
+                <select id="txCategory" required></select>
+              </div>
+
+              <div class="form-row" id="txNoteRow">
+                <label for="txNote">Catatan (opsional)</label>
+                <input
+                  type="text"
+                  id="txNote"
+                  placeholder="cth. Makan siang di kantin"
+                />
+              </div>
+
+              <div class="form-row" id="txDateRow">
+                <label for="txDate">Tanggal</label>
+                <input type="date" id="txDate" required />
+              </div>
+
+              <button type="submit" class="btn-primary" id="txSubmitBtn">
+                Simpan transaksi
+              </button>
+            </form>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header-row">
+              <h2 class="panel-title">Riwayat transaksi</h2>
+              <select id="filterCategory" class="filter-select">
+                <option value="all">Semua kategori</option>
+              </select>
+            </div>
+            <div id="historyList" class="history-list">
+              <!-- populated by JS -->
+            </div>
+          </div>
+          <center>
+            <a href="index.html" class="btn-back">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M19 12H5m7-7l-7 7 7 7" />
+              </svg>
+              Kembali
+            </a>
+          </center>
+        </div>
+
+        <!-- RIGHT: Charts + Budgets -->
+        <div class="col-right">
+          <div class="panel">
+            <h2 class="panel-title">Distribusi pengeluaran</h2>
+            <div class="chart-wrap">
+              <canvas id="categoryChart"></canvas>
+            </div>
+            <div id="chartEmpty" class="empty-state hidden">
+              <p>Belum ada pengeluaran bulan ini.</p>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h2 class="panel-title">Tren 6 bulan</h2>
+            <div class="chart-wrap chart-wrap-bar">
+              <canvas id="trendChart"></canvas>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header-row">
+              <h2 class="panel-title">Budget kategori</h2>
+              <button class="btn-text" id="addBudgetBtn">+ Atur budget</button>
+            </div>
+            <div id="budgetList" class="budget-list"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- BUDGET MODAL -->
+    <div class="modal-overlay hidden" id="budgetModalOverlay">
+      <div class="modal">
+        <h3>Atur budget bulanan</h3>
+        <form id="budgetForm">
+          <div class="form-row">
+            <label for="budgetCategory">Kategori</label>
+            <select id="budgetCategory" required></select>
+          </div>
+          <div class="form-row">
+            <label for="budgetAmount">Limit bulanan</label>
+            <div class="amount-input">
+              <span>Rp</span>
+              <input
+                type="number"
+                id="budgetAmount"
+                placeholder="0"
+                min="0"
+                step="10000"
+                required
+              />
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-ghost" id="cancelBudgetBtn">
+              Batal
+            </button>
+            <button type="submit" class="btn-primary">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="expense tracker.js"></script>
+  </body>
+</html>
