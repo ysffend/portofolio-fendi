@@ -459,3 +459,21 @@ header {
 .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.1);
 }
+
+.btn-danger {
+  background: linear-gradient(135deg, #ef4444, #f87171);
+  border: none;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+}
+
+.btn-danger:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}

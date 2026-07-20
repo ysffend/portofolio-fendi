@@ -162,19 +162,7 @@ function handleWithdraw(goalId) {
 
 // 7. Fitur Hapus Target (Delete)
 function handleDelete(goalId) {
-  const goal = goals.find((g) => g.id === goalId);
-  if (!goal) return;
-
-  const confirmDelete = confirm(
-    `Apakah Anda yakin ingin menghapus orbit target "${goal.name}"? sisa saldo di dalamnya akan hilang.`,
-  );
-
-  if (confirmDelete) {
-    goals = goals.filter((g) => g.id !== goalId);
-    addLog(`Orbit "${goal.name}" dihapus`, "system", 0);
-    saveToLocalStorage();
-    render();
-  }
+  openDeleteModal(goalId);
 }
 
 // --- RENDER ENGINE (UI UPDATE) ---
@@ -401,3 +389,45 @@ function handleDeposit(goalId) {
 function handleWithdraw(goalId) {
   openModal(goalId, "withdraw");
 }
+
+// --- DOM ELEMENTS UNTUK MODAL HAPUS ---
+const deleteModal = document.getElementById("delete-modal");
+const deleteModalInfo = document.getElementById("delete-modal-info");
+const cancelDeleteBtn = document.getElementById("cancel-delete-btn");
+const confirmDeleteBtn = document.getElementById("confirm-delete-btn");
+const closeDeleteModalBtn = document.getElementById("close-delete-modal-btn");
+
+// State sementara untuk melacak target yang akan dihapus
+let pendingDeleteGoalId = null;
+
+function openDeleteModal(goalId) {
+  const goal = goals.find((g) => g.id === goalId);
+  if (!goal) return;
+
+  pendingDeleteGoalId = goalId;
+  deleteModalInfo.innerHTML = `Apakah Anda yakin ingin menghapus orbit target <strong>"${goal.name}"</strong>? Sisa saldo <strong>${formatRupiah(goal.savedAmount)}</strong> di dalamnya akan hilang.`;
+
+  deleteModal.classList.add("active");
+}
+
+function closeDeleteModal() {
+  deleteModal.classList.remove("active");
+  pendingDeleteGoalId = null;
+}
+
+closeDeleteModalBtn.addEventListener("click", closeDeleteModal);
+cancelDeleteBtn.addEventListener("click", closeDeleteModal);
+deleteModal.addEventListener("click", (e) => {
+  if (e.target === deleteModal) closeDeleteModal();
+});
+
+confirmDeleteBtn.addEventListener("click", () => {
+  const goal = goals.find((g) => g.id === pendingDeleteGoalId);
+  if (!goal) return;
+
+  goals = goals.filter((g) => g.id !== pendingDeleteGoalId);
+  addLog(`Orbit "${goal.name}" dihapus`, "system", 0);
+  saveToLocalStorage();
+  render();
+  closeDeleteModal();
+});
