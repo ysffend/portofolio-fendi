@@ -202,6 +202,13 @@ function render() {
       let progress = (goal.savedAmount / goal.targetAmount) * 100;
       progress = Math.min(progress, 100); // Batasi maksimal 100% secara visual
 
+      // Hitung sisa kekurangan uang (selisih target vs terkumpul)
+      const remainingAmount = Math.max(goal.targetAmount - goal.savedAmount, 0);
+      const remainingText =
+        remainingAmount > 0
+          ? `Kurang: ${formatRupiah(remainingAmount)}`
+          : `🚀 Terpenuhi!`;
+
       const card = document.createElement("div");
       card.className = "card glass goal-card";
       card.innerHTML = `
@@ -220,7 +227,10 @@ function render() {
           <span class="progress-percentage">${Math.floor(progress)}%</span>
         </div>
         <div class="goal-footer">
-          <p class="saved-amount">Terkumpul: ${formatRupiah(goal.savedAmount)}</p>
+          <div class="amount-info">
+            <p class="saved-amount">Terkumpul: ${formatRupiah(goal.savedAmount)}</p>
+            <p class="remaining-amount">${remainingText}</p>
+          </div>
           <div class="action-buttons">
             <button class="btn-action deposit-btn" title="Setor Uang" data-id="${goal.id}"><i class="fa-solid fa-plus"></i></button>
             <button class="btn-action withdraw-btn" title="Tarik Uang" data-id="${goal.id}"><i class="fa-solid fa-minus"></i></button>
@@ -391,49 +401,3 @@ function handleDeposit(goalId) {
 function handleWithdraw(goalId) {
   openModal(goalId, "withdraw");
 }
-
-goals.forEach((goal) => {
-  // Hitung persentase progres
-  let progress = (goal.savedAmount / goal.targetAmount) * 100;
-  progress = Math.min(progress, 100); // Batasi maksimal 100% secara visual
-
-  // Hitung sisa kekurangan uang
-  const remainingAmount = goal.targetAmount - goal.savedAmount;
-
-  // Tentukan teks info kekurangan (jika sudah lunas, tampilkan pesan selesai)
-  const remainingText =
-    remainingAmount > 0
-      ? ` (Kurang: ${formatRupiah(remainingAmount)})`
-      : ` <span style="color: #60a5fa;">🚀 Terpenuhi!</span>`;
-
-  const card = document.createElement("div");
-  card.className = "card glass goal-card";
-  card.innerHTML = `
-        <div class="goal-header">
-          <span class="planet-icon">${goal.planet}</span>
-          <div>
-            <h4>${goal.name}</h4>
-            <p>Target: ${formatRupiah(goal.targetAmount)}</p>
-          </div>
-        </div>
-        <div class="progress-container">
-          <div class="progress-bar-wrapper">
-            <div class="progress-bar" style="width: ${progress}%;"></div>
-            <i class="fa-solid fa-shuttle-space rocket-progress" style="left: calc(${progress}% - 10px);"></i>
-          </div>
-          <span class="progress-percentage">${Math.floor(progress)}%</span>
-        </div>
-        <div class="goal-footer">
-          <p class="saved-amount">
-            Terkumpul: ${formatRupiah(goal.savedAmount)}
-            <span style="font-size: 0.8rem; color: #f87171; font-weight: 400; margin-left: 4px;">${remainingText}</span>
-          </p>
-          <div class="action-buttons">
-            <button class="btn-action deposit-btn" title="Setor Uang" data-id="${goal.id}"><i class="fa-solid fa-plus"></i></button>
-            <button class="btn-action withdraw-btn" title="Tarik Uang" data-id="${goal.id}"><i class="fa-solid fa-minus"></i></button>
-            <button class="btn-action delete-btn" title="Hapus Target" data-id="${goal.id}"><i class="fa-solid fa-trash-can"></i></button>
-          </div>
-        </div>
-      `;
-  goalsContainer.appendChild(card);
-});

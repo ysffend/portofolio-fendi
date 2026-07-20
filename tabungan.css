@@ -280,10 +280,22 @@ header {
   margin-top: 0.5rem;
 }
 
+.amount-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
 .saved-amount {
   font-size: 0.9rem;
   font-weight: 500;
   color: #34d399;
+}
+
+.remaining-amount {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #f87171; /* Merah muda untuk kekurangan */
 }
 
 .action-buttons {
