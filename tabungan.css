@@ -477,11 +477,3 @@ header {
   opacity: 0.9;
   transform: translateY(-2px);
 }
-
-.futuristic-text {
-  background: linear-gradient(135deg, var(--accent-color), var(--accent-blue));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 700;
-}

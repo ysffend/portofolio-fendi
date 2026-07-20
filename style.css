@@ -994,3 +994,15 @@ body.light .contact-final-item:hover {
   background: rgba(0, 240, 255, 0.08);
   border-color: #00f0ff;
 }
+
+.futuristic-text {
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #00f0ff;
+  text-shadow:
+    0 0 5px #00f0ff,
+    0 0 10px #00f0ff,
+    0 0 20px #00f0ff,
+    0 0 40px #00f0ff;
+}
