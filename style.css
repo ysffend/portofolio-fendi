@@ -766,6 +766,22 @@ body.light .contact-final-item span {
   color: #111;
 }
 
+body.light .about-text p {
+  color: #333;
+}
+
+body.light .about-text p strong {
+  color: #0090a3;
+  text-shadow: 0 0 4px rgba(0, 144, 163, 0.3);
+}
+
+body.light .futuristic-text {
+  color: #0090a3;
+  text-shadow:
+    0 0 4px rgba(0, 144, 163, 0.4),
+    0 0 10px rgba(0, 144, 163, 0.2);
+}
+
 body.light .org-card {
   background: rgba(255, 255, 255, 0.55);
 }
