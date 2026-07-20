@@ -212,6 +212,18 @@ body.light .section-subtitle {
   border: 3px solid #00f0ff;
 }
 
+.about-text p {
+  color: #d4d4f5;
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+  font-size: 16px;
+}
+
+.about-text p strong {
+  color: #00f0ff;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+
 /* ====================================
    NEW SKILLS SECTION (GLASS-GRID)
 ======================================= */
