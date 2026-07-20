@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Share+Tech+Mono&display=swap");
 
 /* RESET */
 * {
@@ -1007,4 +1007,27 @@ body.light .contact-final-item:hover {
     0 0 10px #00f0ff,
     0 0 20px #00f0ff,
     0 0 40px #00f0ff;
+}
+
+/* Efek untuk blok teks perkenalan */
+.about-text p {
+  font-family:
+    "Share Tech Mono", "Courier New", monospace; /* Font ala kode/terminal */
+  color: #e0faff; /* Warna teks putih kebiruan biar senada dengan tema futuristik */
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+
+  /* Pendaran cahaya halus pada seluruh teks agar seperti layar monitor */
+  text-shadow: 0 0 2px rgba(0, 240, 255, 0.3);
+}
+
+/* Efek khusus untuk teks yang ditebalkan (Nama, Universitas, Jurusan) */
+.about-text p strong {
+  color: #00f0ff; /* Mengubah teks tebal menjadi warna cyan neon */
+  font-weight: 600;
+
+  /* Glow yang lebih tegas untuk teks penting */
+  text-shadow:
+    0 0 4px rgba(0, 240, 255, 0.6),
+    0 0 10px rgba(0, 240, 255, 0.3);
 }
