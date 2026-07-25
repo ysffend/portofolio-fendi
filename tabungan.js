@@ -13,7 +13,6 @@ const overallBalanceEl = document.getElementById("overall-balance");
 const clearHistoryBtn = document.getElementById("clear-history-btn");
 
 // --- HELPER FUNCTIONS ---
-// Format angka ke format Rupiah (IDR)
 function formatRupiah(number) {
   return new Intl.NumberFormat("id-ID", {
     style: "currency",
@@ -23,7 +22,6 @@ function formatRupiah(number) {
   }).format(number);
 }
 
-// Mendapatkan tanggal & waktu saat ini dengan format ringkas
 function getFormattedDate() {
   const now = new Date();
   return now.toLocaleDateString("id-ID", {
@@ -34,15 +32,12 @@ function getFormattedDate() {
   });
 }
 
-// --- CORE FUNCTIONS ---
-
-// 1. Simpan data ke LocalStorage
+// --- STORAGE ---
 function saveToLocalStorage() {
   localStorage.setItem("nebula_goals", JSON.stringify(goals));
   localStorage.setItem("nebula_logs", JSON.stringify(logs));
 }
 
-// 2. Load data saat pertama kali aplikasi dibuka
 function loadData() {
   const storedGoals = localStorage.getItem("nebula_goals");
   const storedLogs = localStorage.getItem("nebula_logs");
@@ -53,7 +48,7 @@ function loadData() {
   render();
 }
 
-// 3. Menambahkan Goal Baru
+// --- FORM SUBMIT ---
 goalForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -72,64 +67,43 @@ goalForm.addEventListener("submit", (e) => {
   };
 
   goals.push(newGoal);
-
-  // Catat ke log aktivitas
   addLog(`Orbit Target "${name}" diluncurkan!`, "system", 0);
-
-  // Reset Form
   goalForm.reset();
 
   saveToLocalStorage();
   render();
 });
 
-// 4. Tambah Log Transaksi
+// --- LOG SYSTEM ---
 function addLog(message, type, amount) {
   const newLog = {
     id: "log_" + Date.now(),
     message: message,
-    type: type, // 'deposit', 'withdraw', atau 'system'
+    type: type,
     amount: amount,
     date: getFormattedDate(),
   };
 
-  // Batasi log maksimal 15 item teratas saja
   logs.unshift(newLog);
   if (logs.length > 15) logs.pop();
 }
 
-// 5. Fitur Hapus 1 Item Log Transaksi
 function hapusLogSatu(logId) {
   logs = logs.filter((log) => log.id !== logId);
   saveToLocalStorage();
   render();
 }
 
-// 6. Fitur Hapus Seluruh Log Transaksi
-if (clearHistoryBtn) {
-  clearHistoryBtn.addEventListener("click", () => {
-    if (logs.length === 0) return;
-
-    if (confirm("Apakah Anda yakin ingin menghapus seluruh log transaksi?")) {
-      logs = [];
-      saveToLocalStorage();
-      render();
-    }
-  });
-}
-
-// --- RENDER ENGINE (UI UPDATE) ---
+// --- RENDER ENGINE ---
 function render() {
-  // A. Hitung & Tampilkan Total Saldo Keseluruhan
   const totalBalance = goals.reduce(
     (acc, current) => acc + current.savedAmount,
     0,
   );
   overallBalanceEl.textContent = formatRupiah(totalBalance);
 
-  // B. Render Daftar Target (Goals Grid)
+  // Render Target
   goalsContainer.innerHTML = "";
-
   if (goals.length === 0) {
     goalsContainer.innerHTML = `
       <div class="card glass" style="text-align: center; padding: 3rem;">
@@ -139,11 +113,9 @@ function render() {
     `;
   } else {
     goals.forEach((goal) => {
-      // Hitung persentase progres
       let progress = (goal.savedAmount / goal.targetAmount) * 100;
-      progress = Math.min(progress, 100); // Batasi maksimal 100% secara visual
+      progress = Math.min(progress, 100);
 
-      // Hitung sisa kekurangan uang (selisih target vs terkumpul)
       const remainingAmount = Math.max(goal.targetAmount - goal.savedAmount, 0);
       const remainingText =
         remainingAmount > 0
@@ -182,7 +154,6 @@ function render() {
       goalsContainer.appendChild(card);
     });
 
-    // Pasang Event Listener untuk tombol di dalam card secara dinamis
     document.querySelectorAll(".deposit-btn").forEach((btn) => {
       btn.addEventListener("click", () =>
         handleDeposit(btn.getAttribute("data-id")),
@@ -202,9 +173,8 @@ function render() {
     });
   }
 
-  // C. Render Log Transaksi
+  // Render Log
   historyContainer.innerHTML = "";
-
   if (logs.length === 0) {
     historyContainer.innerHTML =
       '<p class="empty-text">Belum ada aktivitas finansial di orbit.</p>';
@@ -237,20 +207,17 @@ function render() {
       historyContainer.appendChild(logItem);
     });
 
-    // Event listener untuk tombol hapus log per-item
     document.querySelectorAll(".btn-delete-log").forEach((btn) => {
       btn.addEventListener("click", () => {
-        const logId = btn.getAttribute("data-id");
-        hapusLogSatu(logId);
+        hapusLogSatu(btn.getAttribute("data-id"));
       });
     });
   }
 }
 
-// Jalankan Load Data pertama kali aplikasi di-render
 loadData();
 
-// --- DOM ELEMENTS UNTUK MODAL ---
+// --- MODAL DEPOSIT / WITHDRAW ---
 const transactionModal = document.getElementById("transaction-modal");
 const modalTitle = document.getElementById("modal-title");
 const modalTargetInfo = document.getElementById("modal-target-info");
@@ -259,13 +226,7 @@ const submitModalBtn = document.getElementById("submit-modal-btn");
 const cancelModalBtn = document.getElementById("cancel-modal-btn");
 const closeModalBtn = document.getElementById("close-modal-btn");
 
-// State sementara untuk melacak transaksi aktif di modal
-let activeTransaction = {
-  goalId: null,
-  type: null, // 'deposit' atau 'withdraw'
-};
-
-// --- MODAL FUNCTIONS ---
+let activeTransaction = { goalId: null, type: null };
 
 function openModal(goalId, type) {
   const goal = goals.find((g) => g.id === goalId);
@@ -274,22 +235,21 @@ function openModal(goalId, type) {
   activeTransaction.goalId = goalId;
   activeTransaction.type = type;
 
-  // Sesuaikan tulisan modal berdasarkan aksi
   if (type === "deposit") {
     modalTitle.innerHTML = `<i class="fa-solid fa-circle-down" style="color: #34d399"></i> Setor Tabungan`;
     modalTargetInfo.innerHTML = `Setor ke orbit target <strong>"${goal.name}"</strong>.<br>Kekurangan: <strong>${formatRupiah(goal.targetAmount - goal.savedAmount)}</strong>`;
     submitModalBtn.textContent = "Setor Uang";
     submitModalBtn.style.background =
-      "linear-gradient(135deg, #10b981, #34d399)"; // Hijau neon
+      "linear-gradient(135deg, #10b981, #34d399)";
   } else {
     modalTitle.innerHTML = `<i class="fa-solid fa-circle-up" style="color: #fbbf24"></i> Tarik Tabungan`;
     modalTargetInfo.innerHTML = `Tarik dari orbit target <strong>"${goal.name}"</strong>.<br>Saldo saat ini: <strong>${formatRupiah(goal.savedAmount)}</strong>`;
     submitModalBtn.textContent = "Tarik Uang";
     submitModalBtn.style.background =
-      "linear-gradient(135deg, #f59e0b, #fbbf24)"; // Oranye/Kuning
+      "linear-gradient(135deg, #f59e0b, #fbbf24)";
   }
 
-  transactionAmountInput.value = ""; // Reset input nominal
+  transactionAmountInput.value = "";
   transactionModal.classList.add("active");
   transactionAmountInput.focus();
 }
@@ -299,43 +259,27 @@ function closeModal() {
   activeTransaction = { goalId: null, type: null };
 }
 
-// Event Listener Penutup Modal
 closeModalBtn.addEventListener("click", closeModal);
 cancelModalBtn.addEventListener("click", closeModal);
 transactionModal.addEventListener("click", (e) => {
   if (e.target === transactionModal) closeModal();
 });
 
-// Proses Transaksi Saat Konfirmasi Di-klik
 submitModalBtn.addEventListener("click", () => {
   const amount = parseFloat(transactionAmountInput.value);
   const goal = goals.find((g) => g.id === activeTransaction.goalId);
 
-  if (!goal) return;
-
-  if (isNaN(amount) || amount <= 0) {
-    alert("Masukkan nominal yang valid!");
-    return;
-  }
+  if (!goal || isNaN(amount) || amount <= 0) return;
 
   if (activeTransaction.type === "deposit") {
-    // Jalankan Setor
     goal.savedAmount += amount;
     addLog(
       `Setor ${formatRupiah(amount)} ke target "${goal.name}"`,
       "deposit",
       amount,
     );
-
-    if (goal.savedAmount >= goal.targetAmount) {
-      alert(`🎉 Selamat! Target tabungan "${goal.name}" Anda telah tercapai!`);
-    }
   } else if (activeTransaction.type === "withdraw") {
-    // Jalankan Tarik
-    if (amount > goal.savedAmount) {
-      alert("Saldo tidak mencukupi untuk ditarik!");
-      return;
-    }
+    if (amount > goal.savedAmount) return;
     goal.savedAmount -= amount;
     addLog(
       `Tarik ${formatRupiah(amount)} dari target "${goal.name}"`,
@@ -349,37 +293,45 @@ submitModalBtn.addEventListener("click", () => {
   closeModal();
 });
 
-// Ganti fungsi handler lama agar membuka modal custom
 function handleDeposit(goalId) {
   openModal(goalId, "deposit");
 }
-
 function handleWithdraw(goalId) {
   openModal(goalId, "withdraw");
 }
 
-// --- DOM ELEMENTS UNTUK MODAL HAPUS ---
+// --- CUSTOM MODAL HAPUS (TARGET & LOGS) ---
 const deleteModal = document.getElementById("delete-modal");
 const deleteModalInfo = document.getElementById("delete-modal-info");
 const cancelDeleteBtn = document.getElementById("cancel-delete-btn");
 const confirmDeleteBtn = document.getElementById("confirm-delete-btn");
 const closeDeleteModalBtn = document.getElementById("close-delete-modal-btn");
 
-// State sementara untuk melacak target yang akan dihapus
+let pendingDeleteType = null; // 'goal' atau 'clear_logs'
 let pendingDeleteGoalId = null;
 
-function openDeleteModal(goalId) {
+function openDeleteGoalModal(goalId) {
   const goal = goals.find((g) => g.id === goalId);
   if (!goal) return;
 
+  pendingDeleteType = "goal";
   pendingDeleteGoalId = goalId;
   deleteModalInfo.innerHTML = `Apakah Anda yakin ingin menghapus orbit target <strong>"${goal.name}"</strong>? Sisa saldo <strong>${formatRupiah(goal.savedAmount)}</strong> di dalamnya akan hilang.`;
+  deleteModal.classList.add("active");
+}
 
+function openClearLogsModal() {
+  if (logs.length === 0) return;
+
+  pendingDeleteType = "clear_logs";
+  pendingDeleteGoalId = null;
+  deleteModalInfo.innerHTML = `Apakah Anda yakin ingin menghapus <strong>seluruh riwayat log transaksi</strong>?`;
   deleteModal.classList.add("active");
 }
 
 function closeDeleteModal() {
   deleteModal.classList.remove("active");
+  pendingDeleteType = null;
   pendingDeleteGoalId = null;
 }
 
@@ -389,49 +341,30 @@ deleteModal.addEventListener("click", (e) => {
   if (e.target === deleteModal) closeDeleteModal();
 });
 
+// Aksi Tombol Hapus pada Custom Modal
 confirmDeleteBtn.addEventListener("click", () => {
-  const goal = goals.find((g) => g.id === pendingDeleteGoalId);
-  if (!goal) return;
+  if (pendingDeleteType === "goal") {
+    const goal = goals.find((g) => g.id === pendingDeleteGoalId);
+    if (goal) {
+      goals = goals.filter((g) => g.id !== pendingDeleteGoalId);
+      addLog(`Orbit "${goal.name}" dihapus`, "system", 0);
+    }
+  } else if (pendingDeleteType === "clear_logs") {
+    logs = []; // Hapus semua log
+  }
 
-  goals = goals.filter((g) => g.id !== pendingDeleteGoalId);
-  addLog(`Orbit "${goal.name}" dihapus`, "system", 0);
   saveToLocalStorage();
   render();
   closeDeleteModal();
 });
 
 function handleDelete(goalId) {
-  openDeleteModal(goalId);
+  openDeleteGoalModal(goalId);
 }
 
-// --- Buka modal custom saat tombol "Bersihkan Log" diklik ---
+// Event listener Bersihkan Log (Pakai Modal Custom)
 if (clearHistoryBtn) {
   clearHistoryBtn.addEventListener("click", () => {
-    if (logs.length === 0) return;
-
-    // Set judul modal
-    const deleteTitle = deleteModal.querySelector("h3");
-    if (deleteTitle) {
-      deleteTitle.innerHTML = `<i class="fa-solid fa-trash-can" style="color: #ef4444"></i> Bersihkan Log Transaksi`;
-    }
-
-    // Set isi pesan modal
-    deleteModalInfo.innerHTML = `Apakah Anda yakin ingin menghapus <strong>seluruh riwayat log transaksi</strong>?`;
-
-    // Tampilkan modal
-    deleteModal.classList.add("active");
-
-    // Tangani saat tombol "Ya, Hapus" di dalam modal diklik
-    const handleConfirmClear = () => {
-      logs = []; // Kosongkan log
-      saveToLocalStorage(); // Simpan
-      render(); // Render ulang tampilan
-      closeDeleteModal(); // Tutup modal
-
-      // Lepas event listener agar tidak bentrok dengan hapus target
-      confirmDeleteBtn.removeEventListener("click", handleConfirmClear);
-    };
-
-    confirmDeleteBtn.addEventListener("click", handleConfirmClear);
+    openClearLogsModal();
   });
 }
