@@ -10,6 +10,7 @@ const goalPlanetInput = document.getElementById("goal-planet");
 const goalsContainer = document.getElementById("goals-container");
 const historyContainer = document.getElementById("history-container");
 const overallBalanceEl = document.getElementById("overall-balance");
+const clearHistoryBtn = document.getElementById("clear-history-btn");
 
 // --- HELPER FUNCTIONS ---
 // Format angka ke format Rupiah (IDR)
@@ -97,72 +98,24 @@ function addLog(message, type, amount) {
   if (logs.length > 15) logs.pop();
 }
 
-// 5. Fitur Setor Uang (Deposit)
-function handleDeposit(goalId) {
-  const goal = goals.find((g) => g.id === goalId);
-  if (!goal) return;
-
-  const amountInput = prompt(
-    `Masukkan jumlah setoran untuk "${goal.name}":\n(Target: ${formatRupiah(goal.targetAmount)})`,
-  );
-  const amount = parseFloat(amountInput);
-
-  if (isNaN(amount) || amount <= 0) {
-    alert("Jumlah setoran tidak valid!");
-    return;
-  }
-
-  // Tambahkan ke tabungan target
-  goal.savedAmount += amount;
-
-  // Beri notifikasi jika sudah melampaui target (Tercapai!)
-  if (goal.savedAmount >= goal.targetAmount) {
-    alert(`🎉 Selamat! Target tabungan "${goal.name}" Anda telah tercapai!`);
-  }
-
-  addLog(
-    `Setor ${formatRupiah(amount)} ke target "${goal.name}"`,
-    "deposit",
-    amount,
-  );
+// 5. Fitur Hapus 1 Item Log Transaksi
+function hapusLogSatu(logId) {
+  logs = logs.filter((log) => log.id !== logId);
   saveToLocalStorage();
   render();
 }
 
-// 6. Fitur Tarik Uang (Withdraw)
-function handleWithdraw(goalId) {
-  const goal = goals.find((g) => g.id === goalId);
-  if (!goal) return;
+// 6. Fitur Hapus Seluruh Log Transaksi
+if (clearHistoryBtn) {
+  clearHistoryBtn.addEventListener("click", () => {
+    if (logs.length === 0) return;
 
-  const amountInput = prompt(
-    `Masukkan jumlah penarikan dari "${goal.name}":\n(Saldo saat ini: ${formatRupiah(goal.savedAmount)})`,
-  );
-  const amount = parseFloat(amountInput);
-
-  if (isNaN(amount) || amount <= 0) {
-    alert("Jumlah penarikan tidak valid!");
-    return;
-  }
-
-  if (amount > goal.savedAmount) {
-    alert("Saldo tabungan ini tidak mencukupi untuk melakukan penarikan!");
-    return;
-  }
-
-  goal.savedAmount -= amount;
-
-  addLog(
-    `Tarik ${formatRupiah(amount)} dari target "${goal.name}"`,
-    "withdraw",
-    amount,
-  );
-  saveToLocalStorage();
-  render();
-}
-
-// 7. Fitur Hapus Target (Delete)
-function handleDelete(goalId) {
-  openDeleteModal(goalId);
+    if (confirm("Apakah Anda yakin ingin menghapus seluruh log transaksi?")) {
+      logs = [];
+      saveToLocalStorage();
+      render();
+    }
+  });
 }
 
 // --- RENDER ENGINE (UI UPDATE) ---
@@ -195,7 +148,7 @@ function render() {
       const remainingText =
         remainingAmount > 0
           ? `Kurang: ${formatRupiah(remainingAmount)}`
-          : `🚀 Terpenuhi!`;
+          : `🎉 Terpenuhi!`;
 
       const card = document.createElement("div");
       card.className = "card glass goal-card";
@@ -261,7 +214,7 @@ function render() {
       logItem.className = "history-item";
 
       let badgeClass = "system-text";
-      let icon = "🛰️";
+      let icon = "🚀";
       if (log.type === "deposit") {
         badgeClass = "deposit-text";
         icon = "📥";
@@ -271,10 +224,25 @@ function render() {
       }
 
       logItem.innerHTML = `
-        <span>${icon} ${log.message}</span>
-        <span class="${badgeClass}" style="font-size: 0.75rem; margin-left: 10px;">${log.date}</span>
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+          <span>${icon} ${log.message}</span>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="${badgeClass}" style="font-size: 0.75rem;">${log.date}</span>
+            <button class="btn-delete-log" data-id="${log.id}" title="Hapus Log" style="background: none; border: none; color: #ef4444; cursor: pointer;">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+        </div>
       `;
       historyContainer.appendChild(logItem);
+    });
+
+    // Event listener untuk tombol hapus log per-item
+    document.querySelectorAll(".btn-delete-log").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const logId = btn.getAttribute("data-id");
+        hapusLogSatu(logId);
+      });
     });
   }
 }
@@ -432,10 +400,6 @@ confirmDeleteBtn.addEventListener("click", () => {
   closeDeleteModal();
 });
 
-function hapusLog(id) {
-  // 1. Hapus dari database via API
-  fetch(`/api/log/${id}`, { method: "DELETE" });
-
-  // 2. Hapus elemen dari tampilan
-  document.querySelector(`[data-id="${id}"]`).closest(".log-item").remove();
+function handleDelete(goalId) {
+  openDeleteModal(goalId);
 }
