@@ -80,34 +80,6 @@
             <button class="btn-secondary" id="clear-history-btn">
               <i class="fa-solid fa-trash-can"></i> Bersihkan Log
             </button>
-
-            <!-- Custom Modal untuk Konfirmasi Hapus -->
-            <div id="delete-modal" class="modal-overlay">
-              <div class="modal-content glass">
-                <div class="modal-header">
-                  <h3>
-                    <i class="fa-solid fa-trash-can" style="color: #ef4444"></i>
-                    Konfirmasi Hapus
-                  </h3>
-                  <button id="close-delete-modal-btn" class="btn-close">
-                    <i class="fa-solid fa-xmark"></i>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <p id="delete-modal-info">
-                    Apakah Anda yakin ingin menghapus?
-                  </p>
-                </div>
-                <div class="modal-footer">
-                  <button id="cancel-delete-btn" class="btn-secondary">
-                    Batal
-                  </button>
-                  <button id="confirm-delete-btn" class="btn-danger">
-                    Ya, Hapus
-                  </button>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -187,21 +159,20 @@
     </div>
 
     <!-- Custom Modal untuk Konfirmasi Hapus Target -->
+    <!-- Custom Modal untuk Konfirmasi Hapus -->
     <div id="delete-modal" class="modal-overlay">
       <div class="modal-content glass">
         <div class="modal-header">
           <h3>
             <i class="fa-solid fa-trash-can" style="color: #ef4444"></i>
-            Hapus Orbit Target
+            Konfirmasi Hapus
           </h3>
           <button id="close-delete-modal-btn" class="btn-close">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
         <div class="modal-body">
-          <p id="delete-modal-info">
-            Apakah Anda yakin ingin menghapus target ini?
-          </p>
+          <p id="delete-modal-info">Apakah Anda yakin ingin menghapus?</p>
         </div>
         <div class="modal-footer">
           <button id="cancel-delete-btn" class="btn-secondary">Batal</button>
