@@ -431,3 +431,11 @@ confirmDeleteBtn.addEventListener("click", () => {
   render();
   closeDeleteModal();
 });
+
+function hapusLog(id) {
+  // 1. Hapus dari database via API
+  fetch(`/api/log/${id}`, { method: "DELETE" });
+
+  // 2. Hapus elemen dari tampilan
+  document.querySelector(`[data-id="${id}"]`).closest(".log-item").remove();
+}
