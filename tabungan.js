@@ -403,3 +403,35 @@ confirmDeleteBtn.addEventListener("click", () => {
 function handleDelete(goalId) {
   openDeleteModal(goalId);
 }
+
+// --- Buka modal custom saat tombol "Bersihkan Log" diklik ---
+if (clearHistoryBtn) {
+  clearHistoryBtn.addEventListener("click", () => {
+    if (logs.length === 0) return;
+
+    // Set judul modal
+    const deleteTitle = deleteModal.querySelector("h3");
+    if (deleteTitle) {
+      deleteTitle.innerHTML = `<i class="fa-solid fa-trash-can" style="color: #ef4444"></i> Bersihkan Log Transaksi`;
+    }
+
+    // Set isi pesan modal
+    deleteModalInfo.innerHTML = `Apakah Anda yakin ingin menghapus <strong>seluruh riwayat log transaksi</strong>?`;
+
+    // Tampilkan modal
+    deleteModal.classList.add("active");
+
+    // Tangani saat tombol "Ya, Hapus" di dalam modal diklik
+    const handleConfirmClear = () => {
+      logs = []; // Kosongkan log
+      saveToLocalStorage(); // Simpan
+      render(); // Render ulang tampilan
+      closeDeleteModal(); // Tutup modal
+
+      // Lepas event listener agar tidak bentrok dengan hapus target
+      confirmDeleteBtn.removeEventListener("click", handleConfirmClear);
+    };
+
+    confirmDeleteBtn.addEventListener("click", handleConfirmClear);
+  });
+}
