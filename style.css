@@ -189,8 +189,123 @@ body.light .section-subtitle {
 #about,
 #skills,
 #projects,
-#contact {
+#contact,
+#education {
   scroll-margin-top: 100px;
+}
+
+/* ===================================
+   EDUCATION TIMELINE
+=================================== */
+.timeline {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+  padding-left: 40px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, #00f0ff, rgba(0, 240, 255, 0.15));
+}
+
+.timeline-item {
+  position: relative;
+  text-align: left;
+  padding-bottom: 45px;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-icon {
+  position: absolute;
+  left: -40px;
+  top: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #05050f;
+  border: 2px solid #00f0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00f0ff;
+  font-size: 14px;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
+  z-index: 2;
+}
+
+.timeline-content {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  border-radius: 14px;
+  padding: 18px 22px;
+  backdrop-filter: blur(6px);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.timeline-content:hover {
+  transform: translateX(6px);
+  border-color: rgba(0, 240, 255, 0.5);
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.15);
+}
+
+.timeline-year {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #00f0ff;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 20px;
+  padding: 3px 12px;
+  margin-bottom: 10px;
+}
+
+.timeline-content h3 {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.timeline-content p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+body.light .timeline-content {
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+body.light .timeline-content p {
+  color: #555;
+}
+
+body.light .timeline-icon {
+  background: #f5f5f5;
+}
+
+@media (max-width: 600px) {
+  .timeline {
+    padding-left: 30px;
+  }
+  .timeline-icon {
+    left: -30px;
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
 }
 
 /* ABOUT */
