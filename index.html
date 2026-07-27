@@ -5,6 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fendi | Futuristic Portfolio</title>
 
+    <!-- SEO -->
+    <meta
+      name="description"
+      content="Portofolio Muhammad Effendi Yusuf — Front-End Developer & mahasiswa Teknik Informatika UAD Yogyakarta. Lihat proyek web futuristik: Nebula Vault, Cosmic Spend, Orbit, Lumina, dan Astra Presence."
+    />
+    <meta
+      name="keywords"
+      content="Muhammad Effendi Yusuf, Fendi, portofolio, front-end developer, web developer Yogyakarta, Teknik Informatika UAD"
+    />
+    <meta name="author" content="Muhammad Effendi Yusuf" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Fendi | Futuristic Portfolio" />
+    <meta
+      property="og:description"
+      content="Portofolio Muhammad Effendi Yusuf — Front-End Developer & mahasiswa Teknik Informatika UAD Yogyakarta."
+    />
+    <meta property="og:image" content="Fendi1.jpeg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Fendi | Futuristic Portfolio" />
+    <meta
+      name="twitter:description"
+      content="Portofolio Muhammad Effendi Yusuf — Front-End Developer & mahasiswa Teknik Informatika UAD Yogyakarta."
+    />
+    <meta name="twitter:image" content="Fendi1.jpeg" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="Fendi1.jpeg" />
+
     <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
 
@@ -55,6 +87,14 @@
           <a href="#contact" class="btn-pill">
             Contact
             <i class="fas fa-envelope"></i>
+          </a>
+          <a
+            href="CV - Muhammad Effendi Yusuf.pdf"
+            target="_blank"
+            class="btn-pill btn-pill-solid"
+          >
+            Download CV
+            <i class="fas fa-download"></i>
           </a>
         </div>
 
@@ -131,27 +171,24 @@
           <div class="timeline-icon"><i class="fas fa-school"></i></div>
           <div class="timeline-content">
             <span class="timeline-year">2018 - 2021</span>
-            <h3>SMK Negeri 1 Kebonsari Kab.Madiun Provinsi Jawa Timur</h3>
-            <p>Jurusan Teknik Komputer dan Jaringan</p>
+            <h3>SMA Negeri 1 Pleret</h3>
+            <p>Jurusan IPA</p>
           </div>
         </div>
 
         <div class="timeline-item">
           <div class="timeline-icon"><i class="fas fa-school"></i></div>
           <div class="timeline-content">
-            <span class="timeline-year">2018 - 2021</span>
-            <h3>SMP Negeri 11 BanjarBaru Provinsi Kalimantan Selatan</h3>
+            <span class="timeline-year">2009 - 2015</span>
+            <h3>SMP Negeri 1 Pleret</h3>
           </div>
         </div>
 
         <div class="timeline-item">
           <div class="timeline-icon"><i class="fas fa-school"></i></div>
           <div class="timeline-content">
-            <span class="timeline-year">2012 - 2018</span>
-            <h3>
-              SD Alam Muhammadiyah Boarding School Kota Banjarbaru Provinsi
-              Kalimantan Selatan
-            </h3>
+            <span class="timeline-year">2003 - 2009</span>
+            <h3>SD Negeri 1 Pleret</h3>
           </div>
         </div>
       </div>
@@ -186,28 +223,58 @@
 
       <div class="skills-grid stagger">
         <div class="skill-card" style="--skill-color: #e34f26">
-          <i class="fab fa-html5"></i>
-          <span>HTML</span>
+          <div class="skill-head">
+            <i class="fab fa-html5"></i>
+            <span>HTML</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill" style="width: 90%"></div>
+          </div>
+          <small>Mahir</small>
         </div>
 
         <div class="skill-card" style="--skill-color: #1572b6">
-          <i class="fab fa-css3-alt"></i>
-          <span>CSS</span>
+          <div class="skill-head">
+            <i class="fab fa-css3-alt"></i>
+            <span>CSS</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill" style="width: 85%"></div>
+          </div>
+          <small>Mahir</small>
         </div>
 
         <div class="skill-card" style="--skill-color: #f7df1e">
-          <i class="fab fa-js"></i>
-          <span>JavaScript</span>
+          <div class="skill-head">
+            <i class="fab fa-js"></i>
+            <span>JavaScript</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill" style="width: 75%"></div>
+          </div>
+          <small>Menengah</small>
         </div>
 
         <div class="skill-card" style="--skill-color: #4caf50">
-          <i class="fas fa-pencil-ruler"></i>
-          <span>UI / UX</span>
+          <div class="skill-head">
+            <i class="fas fa-pencil-ruler"></i>
+            <span>UI / UX</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill" style="width: 70%"></div>
+          </div>
+          <small>Menengah</small>
         </div>
 
         <div class="skill-card" style="--skill-color: #ff5722">
-          <i class="fas fa-mobile-alt"></i>
-          <span>Responsive Design</span>
+          <div class="skill-head">
+            <i class="fas fa-mobile-alt"></i>
+            <span>Responsive Design</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill" style="width: 80%"></div>
+          </div>
+          <small>Mahir</small>
         </div>
       </div>
     </section>
@@ -221,177 +288,222 @@
       </p>
 
       <div class="projects stagger">
-        <a href="presensi.html" class="card-link">
-          <div
-            class="card"
-            data-tilt
-            data-tilt-max="8"
-            data-tilt-speed="400"
-            style="--card-glow: #00f0ff"
-          >
-            <div class="card-thumb">
-              <img
-                src="Astra Presence.jpeg"
-                alt="Astra Presence preview"
-                loading="lazy"
-              />
-              <span class="card-thumb-cta"
-                ><i class="fas fa-arrow-up-right-from-square"></i
-              ></span>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">Presensi</h3>
-              <p class="card-desc">
-                Aplikasi presensi berbasis web dengan fitur absensi, laporan,
-                dan manajemen data mahasiswa.
-              </p>
-              <span class="view-btn"
-                >View Details <i class="fas fa-arrow-right"></i
-              ></span>
-              <div class="card-tags">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JavaScript</span>
+        <div class="project-card-wrapper">
+          <a href="presensi.html" class="card-link">
+            <div
+              class="card"
+              data-tilt
+              data-tilt-max="8"
+              data-tilt-speed="400"
+              style="--card-glow: #00f0ff"
+            >
+              <div class="card-thumb">
+                <img
+                  src="Astra Presence.jpeg"
+                  alt="Astra Presence preview"
+                  loading="lazy"
+                />
+                <span class="card-thumb-cta"
+                  ><i class="fas fa-arrow-up-right-from-square"></i
+                ></span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Presensi</h3>
+                <p class="card-desc">
+                  Aplikasi presensi berbasis web dengan fitur absensi, laporan,
+                  dan manajemen data mahasiswa.
+                </p>
+                <span class="view-btn"
+                  >View Details <i class="fas fa-arrow-right"></i
+                ></span>
+                <div class="card-tags">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">JavaScript</span>
+                </div>
               </div>
             </div>
-          </div>
-        </a>
+          </a>
+          <a
+            href="https://github.com/ysffend/portofolio-fendi"
+            target="_blank"
+            class="github-badge"
+            title="Lihat source code"
+            ><i class="fab fa-github"></i
+          ></a>
+        </div>
 
-        <a href="foto videografi.html" class="card-link">
-          <div
-            class="card"
-            data-tilt
-            data-tilt-max="8"
-            data-tilt-speed="400"
-            style="--card-glow: #bd00ff"
-          >
-            <div class="card-thumb">
-              <img src="lumina.jpeg" alt="Lumina preview" loading="lazy" />
-              <span class="card-thumb-cta"
-                ><i class="fas fa-arrow-up-right-from-square"></i
-              ></span>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">Lumina</h3>
-              <p class="card-desc">
-                Aplikasi galeri foto videografi dengan tampilan modern dan fitur
-                upload serta kategorisasi foto.
-              </p>
-              <span class="view-btn"
-                >View Details <i class="fas fa-arrow-right"></i
-              ></span>
-              <div class="card-tags">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JavaScript</span>
+        <div class="project-card-wrapper">
+          <a href="foto videografi.html" class="card-link">
+            <div
+              class="card"
+              data-tilt
+              data-tilt-max="8"
+              data-tilt-speed="400"
+              style="--card-glow: #bd00ff"
+            >
+              <div class="card-thumb">
+                <img src="lumina.jpeg" alt="Lumina preview" loading="lazy" />
+                <span class="card-thumb-cta"
+                  ><i class="fas fa-arrow-up-right-from-square"></i
+                ></span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Lumina</h3>
+                <p class="card-desc">
+                  Aplikasi galeri foto videografi dengan tampilan modern dan
+                  fitur upload serta kategorisasi foto.
+                </p>
+                <span class="view-btn"
+                  >View Details <i class="fas fa-arrow-right"></i
+                ></span>
+                <div class="card-tags">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">JavaScript</span>
+                </div>
               </div>
             </div>
-          </div>
-        </a>
+          </a>
+          <a
+            href="https://github.com/ysffend/portofolio-fendi"
+            target="_blank"
+            class="github-badge"
+            title="Lihat source code"
+            ><i class="fab fa-github"></i
+          ></a>
+        </div>
 
-        <a href="expense tracker.html" class="card-link">
-          <div
-            class="card"
-            data-tilt
-            data-tilt-max="8"
-            data-tilt-speed="400"
-            style="--card-glow: #ff5722"
-          >
-            <div class="card-thumb">
-              <img
-                src="cosmic spend.jpeg"
-                alt="Cosmic Spend preview"
-                loading="lazy"
-              />
-              <span class="card-thumb-cta"
-                ><i class="fas fa-arrow-up-right-from-square"></i
-              ></span>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">Cosmic Spend</h3>
-              <p class="card-desc">
-                Expense tracker bertema galaxy dengan visualisasi chart, budget
-                tracking, dan export CSV.
-              </p>
-              <span class="view-btn"
-                >View Details <i class="fas fa-arrow-right"></i
-              ></span>
-              <div class="card-tags">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JavaScript</span>
+        <div class="project-card-wrapper">
+          <a href="expense tracker.html" class="card-link">
+            <div
+              class="card"
+              data-tilt
+              data-tilt-max="8"
+              data-tilt-speed="400"
+              style="--card-glow: #ff5722"
+            >
+              <div class="card-thumb">
+                <img
+                  src="cosmic spend.jpeg"
+                  alt="Cosmic Spend preview"
+                  loading="lazy"
+                />
+                <span class="card-thumb-cta"
+                  ><i class="fas fa-arrow-up-right-from-square"></i
+                ></span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Cosmic Spend</h3>
+                <p class="card-desc">
+                  Expense tracker bertema galaxy dengan visualisasi chart,
+                  budget tracking, dan export CSV.
+                </p>
+                <span class="view-btn"
+                  >View Details <i class="fas fa-arrow-right"></i
+                ></span>
+                <div class="card-tags">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">JavaScript</span>
+                </div>
               </div>
             </div>
-          </div>
-        </a>
+          </a>
+          <a
+            href="https://github.com/ysffend/portofolio-fendi"
+            target="_blank"
+            class="github-badge"
+            title="Lihat source code"
+            ><i class="fab fa-github"></i
+          ></a>
+        </div>
 
-        <a href="manajemen tugas.html" class="card-link">
-          <div
-            class="card"
-            data-tilt
-            data-tilt-max="8"
-            data-tilt-speed="400"
-            style="--card-glow: #4caf50"
-          >
-            <div class="card-thumb">
-              <img src="orbit.jpeg" alt="Orbit preview" loading="lazy" />
-              <span class="card-thumb-cta"
-                ><i class="fas fa-arrow-up-right-from-square"></i
-              ></span>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">Orbit</h3>
-              <p class="card-desc">
-                Manajemen tugas dengan antarmuka futuristik dan fitur
-                kolaborasi.
-              </p>
-              <span class="view-btn"
-                >View Details <i class="fas fa-arrow-right"></i
-              ></span>
-              <div class="card-tags">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JavaScript</span>
+        <div class="project-card-wrapper">
+          <a href="manajemen tugas.html" class="card-link">
+            <div
+              class="card"
+              data-tilt
+              data-tilt-max="8"
+              data-tilt-speed="400"
+              style="--card-glow: #4caf50"
+            >
+              <div class="card-thumb">
+                <img src="orbit.jpeg" alt="Orbit preview" loading="lazy" />
+                <span class="card-thumb-cta"
+                  ><i class="fas fa-arrow-up-right-from-square"></i
+                ></span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Orbit</h3>
+                <p class="card-desc">
+                  Manajemen tugas dengan antarmuka futuristik dan fitur
+                  kolaborasi.
+                </p>
+                <span class="view-btn"
+                  >View Details <i class="fas fa-arrow-right"></i
+                ></span>
+                <div class="card-tags">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">JavaScript</span>
+                </div>
               </div>
             </div>
-          </div>
-        </a>
+          </a>
+          <a
+            href="https://github.com/ysffend/portofolio-fendi"
+            target="_blank"
+            class="github-badge"
+            title="Lihat source code"
+            ><i class="fab fa-github"></i
+          ></a>
+        </div>
 
-        <a href="tabungan.html" class="card-link">
-          <div
-            class="card"
-            data-tilt
-            data-tilt-max="8"
-            data-tilt-speed="400"
-            style="--card-glow: #00f0ff"
-          >
-            <div class="card-thumb">
-              <img
-                src="nebula vault.jpeg"
-                alt="Nebula Vault preview"
-                loading="lazy"
-              />
-              <span class="card-thumb-cta"
-                ><i class="fas fa-arrow-up-right-from-square"></i
-              ></span>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">Nebula Vault</h3>
-              <p class="card-desc">
-                Aplikasi tabungan bertema luar angkasa dengan fitur target
-                tabungan, log transaksi, dan visualisasi progres.
-              </p>
-              <span class="view-btn"
-                >View Details <i class="fas fa-arrow-right"></i
-              ></span>
-              <div class="card-tags">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JavaScript</span>
+        <div class="project-card-wrapper">
+          <a href="tabungan.html" class="card-link">
+            <div
+              class="card"
+              data-tilt
+              data-tilt-max="8"
+              data-tilt-speed="400"
+              style="--card-glow: #00f0ff"
+            >
+              <div class="card-thumb">
+                <img
+                  src="nebula vault.jpeg"
+                  alt="Nebula Vault preview"
+                  loading="lazy"
+                />
+                <span class="card-thumb-cta"
+                  ><i class="fas fa-arrow-up-right-from-square"></i
+                ></span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Nebula Vault</h3>
+                <p class="card-desc">
+                  Aplikasi tabungan bertema luar angkasa dengan fitur target
+                  tabungan, log transaksi, dan visualisasi progres.
+                </p>
+                <span class="view-btn"
+                  >View Details <i class="fas fa-arrow-right"></i
+                ></span>
+                <div class="card-tags">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">JavaScript</span>
+                </div>
               </div>
             </div>
-          </div>
-        </a>
+          </a>
+          <a
+            href="https://github.com/ysffend/portofolio-fendi"
+            target="_blank"
+            class="github-badge"
+            title="Lihat source code"
+            ><i class="fab fa-github"></i
+          ></a>
+        </div>
       </div>
     </section>
 
@@ -446,20 +558,27 @@
       </div>
     </section>
 
-    <h2 style="margin-top: 40px">
-      <center><b>Kritik & Saran</b></center>
-    </h2>
+    <!-- FEEDBACK -->
+    <section id="feedback" class="section fade-up">
+      <h2 class="futuristic-text">Kritik & Saran</h2>
+      <p class="section-subtitle">
+        Ada masukan buat portofolio atau proyek saya? Kirim lewat form di bawah
+        ini.
+      </p>
 
-    <form id="contactForm" class="contact-form">
-      <input type="text" name="user_name" placeholder="Nama" required />
-      <input type="email" name="user_email" placeholder="Email" required />
-      <textarea
-        name="message"
-        placeholder="Kritik & Saran..."
-        required
-      ></textarea>
-      <button type="submit">Kirim Pesan</button>
-    </form>
+      <form id="contactForm" class="contact-form glass">
+        <input type="text" name="user_name" placeholder="Nama" required />
+        <input type="email" name="user_email" placeholder="Email" required />
+        <textarea
+          name="message"
+          placeholder="Kritik & Saran..."
+          required
+        ></textarea>
+        <button type="submit" class="btn-pill btn-pill-solid">
+          Kirim Pesan <i class="fas fa-paper-plane"></i>
+        </button>
+      </form>
+    </section>
 
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
