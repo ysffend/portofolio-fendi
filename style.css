@@ -466,11 +466,115 @@ body.light .skill-card:hover {
 }
 
 /* PROJECTS */
+.carousel-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
 .projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  display: flex;
   gap: 25px;
   align-items: stretch;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 6px 4px 18px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.projects::-webkit-scrollbar {
+  display: none;
+}
+
+.projects {
+  cursor: grab;
+}
+
+.projects.dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+
+.project-card-wrapper {
+  flex: 0 0 auto;
+  width: 300px;
+  scroll-snap-align: start;
+}
+
+.carousel-btn {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(5, 5, 15, 0.75);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  color: #00f0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: all 0.25s ease;
+}
+
+.carousel-btn:hover {
+  background: #00f0ff;
+  color: #05050f;
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.5);
+}
+
+.carousel-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+  box-shadow: none;
+  background: rgba(5, 5, 15, 0.75);
+  color: #00f0ff;
+}
+
+body.light .carousel-btn {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.carousel-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.carousel-dots .dot.active {
+  width: 24px;
+  border-radius: 4px;
+  background: #00f0ff;
+}
+
+body.light .carousel-dots .dot {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 640px) {
+  .carousel-btn {
+    display: none;
+  }
+
+  .project-card-wrapper {
+    width: 82vw;
+  }
 }
 
 .card-link {
