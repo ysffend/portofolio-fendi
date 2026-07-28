@@ -278,3 +278,62 @@ if (contactForm) {
       });
   });
 }
+
+/* ===============================
+   ACHIEVEMENTS CAROUSEL
+=============================== */
+const achTrack = document.getElementById("achievementsTrack");
+const achPrev = document.getElementById("achievementsPrev");
+const achNext = document.getElementById("achievementsNext");
+const achDotsWrap = document.getElementById("achievementsDots");
+
+if (achTrack && achPrev && achNext && achDotsWrap) {
+  const achCards = Array.from(achTrack.children);
+
+  // Bikin Dots secara otomatis
+  achCards.forEach((_, i) => {
+    const dot = document.createElement("button");
+    dot.className = "dot";
+    dot.setAttribute("aria-label", `Ke prestasi ${i + 1}`);
+    dot.addEventListener("click", () => {
+      achCards[i].scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
+    });
+    achDotsWrap.appendChild(dot);
+  });
+
+  const achDots = Array.from(achDotsWrap.children);
+
+  function getAchCardStep() {
+    const style = getComputedStyle(achTrack);
+    const gap = parseFloat(style.columnGap || style.gap || 0);
+    return achCards[0].getBoundingClientRect().width + gap;
+  }
+
+  function updateAchActiveDot() {
+    const index = Math.round(achTrack.scrollLeft / getAchCardStep());
+    achDots.forEach((d, i) => d.classList.toggle("active", i === index));
+
+    achPrev.disabled = achTrack.scrollLeft <= 4;
+    achNext.disabled =
+      achTrack.scrollLeft >= achTrack.scrollWidth - achTrack.clientWidth - 4;
+  }
+
+  achPrev.addEventListener("click", () => {
+    achTrack.scrollBy({ left: -getAchCardStep(), behavior: "smooth" });
+  });
+
+  achNext.addEventListener("click", () => {
+    achTrack.scrollBy({ left: getAchCardStep(), behavior: "smooth" });
+  });
+
+  achTrack.addEventListener("scroll", () => {
+    requestAnimationFrame(updateAchActiveDot);
+  });
+
+  window.addEventListener("resize", updateAchActiveDot);
+  updateAchActiveDot();
+}
