@@ -278,3 +278,27 @@ if (contactForm) {
       });
   });
 }
+
+/* ===============================
+   INTERSECTION OBSERVER (ANIMASI SLIDE)
+=============================== */
+const observerOptions = {
+  root: null,
+  rootMargin: "0px",
+  threshold: 0.15, // Animasi aktif saat 15% elemen masuk layar
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+}, observerOptions);
+
+// Daftarkan semua elemen animasi termasuk kartu prestasi
+document
+  .querySelectorAll(".fade-up, .stagger, .achievement-card")
+  .forEach((el) => {
+    observer.observe(el);
+  });
