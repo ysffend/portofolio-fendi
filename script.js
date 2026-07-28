@@ -27,6 +27,87 @@ document.querySelectorAll(".fade-up, .stagger").forEach((el) => {
 });
 
 /* ===============================
+   PROJECTS CAROUSEL
+=============================== */
+const track = document.getElementById("projectsTrack");
+const prevBtn = document.getElementById("projectsPrev");
+const nextBtn = document.getElementById("projectsNext");
+const dotsWrap = document.getElementById("projectsDots");
+
+if (track && prevBtn && nextBtn && dotsWrap) {
+  const cards = Array.from(track.children);
+
+  // build dots, one per card
+  cards.forEach((_, i) => {
+    const dot = document.createElement("button");
+    dot.className = "dot";
+    dot.setAttribute("aria-label", `Ke project ${i + 1}`);
+    dot.addEventListener("click", () => {
+      cards[i].scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
+    });
+    dotsWrap.appendChild(dot);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function cardStep() {
+    const style = getComputedStyle(track);
+    const gap = parseFloat(style.columnGap || style.gap || 0);
+    return cards[0].getBoundingClientRect().width + gap;
+  }
+
+  function updateActiveDot() {
+    const index = Math.round(track.scrollLeft / cardStep());
+    dots.forEach((d, i) => d.classList.toggle("active", i === index));
+
+    prevBtn.disabled = track.scrollLeft <= 4;
+    nextBtn.disabled =
+      track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
+  }
+
+  prevBtn.addEventListener("click", () => {
+    track.scrollBy({ left: -cardStep(), behavior: "smooth" });
+  });
+
+  nextBtn.addEventListener("click", () => {
+    track.scrollBy({ left: cardStep(), behavior: "smooth" });
+  });
+
+  track.addEventListener("scroll", () => {
+    requestAnimationFrame(updateActiveDot);
+  });
+
+  window.addEventListener("resize", updateActiveDot);
+  updateActiveDot();
+
+  // drag-to-scroll for mouse/desktop users
+  let isDown = false;
+  let startX = 0;
+  let startScroll = 0;
+
+  track.addEventListener("mousedown", (e) => {
+    isDown = true;
+    track.classList.add("dragging");
+    startX = e.pageX;
+    startScroll = track.scrollLeft;
+  });
+
+  window.addEventListener("mouseup", () => {
+    isDown = false;
+    track.classList.remove("dragging");
+  });
+
+  window.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    track.scrollLeft = startScroll - (e.pageX - startX);
+  });
+}
+
+/* ===============================
    TYPING EFFECT
 =============================== */
 const text = "UI Futuristic • Responsive • Modern Web";
