@@ -279,26 +279,23 @@ if (contactForm) {
   });
 }
 
-/* ===============================
-   INTERSECTION OBSERVER (ANIMASI SLIDE)
-=============================== */
-const observerOptions = {
-  root: null,
-  rootMargin: "0px",
-  threshold: 0.15, // Animasi aktif saat 15% elemen masuk layar
-};
+document.addEventListener("DOMContentLoaded", () => {
+  const achievements = document.querySelectorAll(".achievement-card");
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("show");
-    }
-  });
-}, observerOptions);
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          // Optional: unobserve agar animasi hanya jalan 1x
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.1, // Cukup 10% kartu terlihat, langsung pemicu animasi
+    },
+  );
 
-// Daftarkan semua elemen animasi termasuk kartu prestasi
-document
-  .querySelectorAll(".fade-up, .stagger, .achievement-card")
-  .forEach((el) => {
-    observer.observe(el);
-  });
+  achievements.forEach((card) => observer.observe(card));
+});

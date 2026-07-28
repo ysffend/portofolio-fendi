@@ -1546,37 +1546,54 @@ body.light .contact-final-item:hover {
   }
 }
 
-/* Styling Dasar Kartu Prestasi */
-.achievement-card {
-  opacity: 0;
-  /* Awalnya digeser ke bawah/samping & disembunyikan */
-  transform: translateY(40px) scale(0.95);
-  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  will-change: transform, opacity;
+/* Container Utama */
+.achievements-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 
-/* Efek Slide Masuk ketika kelas .show ditambahkan */
+/* Kartu Prestasi (Keadaan Awal) */
+.achievement-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.2rem;
+
+  /* Animasi Slide */
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+/* Saat Elemen Terlihat di Screen (Ditambah oleh JS) */
 .achievement-card.show {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
 }
 
-/* Efek Stagger (Muncul Bergantian) */
+/* Stagger Delay per Kartu */
 .achievement-card:nth-child(1) {
   transition-delay: 0.1s;
 }
 .achievement-card:nth-child(2) {
-  transition-delay: 0.25s;
+  transition-delay: 0.2s;
 }
 .achievement-card:nth-child(3) {
-  transition-delay: 0.4s;
+  transition-delay: 0.3s;
 }
 .achievement-card:nth-child(4) {
-  transition-delay: 0.55s;
+  transition-delay: 0.4s;
 }
-
-/* Efek Hover tambahan saat sudah muncul */
-.achievement-card.show:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 10px 25px rgba(0, 240, 255, 0.3);
+.achievement-card:nth-child(5) {
+  transition-delay: 0.5s;
 }
