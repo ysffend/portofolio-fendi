@@ -154,45 +154,67 @@
       </div>
     </section>
 
-    <!--Riwayat Pendidikan-->
-    <section id="education" class="section fade-up">
-      <h2 class="futuristic-text">Riwayat Pendidikan</h2>
+    <!-- RIWAYAT PENDIDIKAN -->
+    <section id="education" class="education-section">
+      <h2 class="section-title-neon">RIWAYAT PENDIDIKAN</h2>
 
-      <div class="timeline stagger">
-        <div class="timeline-item">
-          <div class="timeline-icon"><i class="fas fa-graduation-cap"></i></div>
-          <div class="timeline-content">
-            <span class="timeline-year">2024 - Sekarang</span>
+      <div class="carousel-wrapper">
+        <!-- Tombol Prev -->
+        <button
+          class="carousel-btn carousel-prev"
+          id="eduPrev"
+          aria-label="Pendidikan sebelumnya"
+        >
+          <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <!-- Track Slider -->
+        <div class="education-track" id="eduTrack">
+          <!-- Kuliah -->
+          <div class="education-card">
             <h3>Universitas Ahmad Dahlan Yogyakarta</h3>
-            <p>Program Studi Teknik Informatika</p>
+            <p class="edu-degree">Program Studi Teknik Informatika</p>
+            <span class="edu-year">2024 - Sekarang</span>
+            <p class="edu-desc">Provinsi D.I. Yogyakarta</p>
+          </div>
+
+          <!-- SMA -->
+          <div class="education-card">
+            <h3>SMA Negeri 1 Kebonsari</h3>
+            <p class="edu-degree">Jurusan Teknik Komputer dan Jaringan</p>
+            <span class="edu-year">2021 - 2024</span>
+            <p class="edu-desc">Kab. Madiun, Provinsi Jawa Timur</p>
+          </div>
+
+          <!-- SMP -->
+          <div class="education-card">
+            <h3>SMP Negeri 11 BanjarBaru</h3>
+            <p class="edu-degree">Pendidikan Menengah Pertama</p>
+            <span class="edu-year">2018 - 2021</span>
+            <p class="edu-desc">Provinsi Kalimantan Selatan</p>
+          </div>
+
+          <!-- SD -->
+          <div class="education-card">
+            <h3>SD Alam Muhammadiyah BanjarBaru</h3>
+            <p class="edu-degree">Pendidikan Dasar</p>
+            <span class="edu-year">2012 - 2018</span>
+            <p class="edu-desc">Provinsi Kalimantan Selatan</p>
           </div>
         </div>
 
-        <div class="timeline-item">
-          <div class="timeline-icon"><i class="fas fa-school"></i></div>
-          <div class="timeline-content">
-            <span class="timeline-year">2021 - 2024</span>
-            <h3>SMA Negeri 1 Kebonsari Kab.Madiun Provinsi Jawa Timur</h3>
-            <p>Jurusan Teknik Komputer dan Jaringan</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-icon"><i class="fas fa-school"></i></div>
-          <div class="timeline-content">
-            <span class="timeline-year">2018 - 2021</span>
-            <h3>SMP Negeri 11 BanjarBaru Provinsi Kalimantan Selatan</h3>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-icon"><i class="fas fa-school"></i></div>
-          <div class="timeline-content">
-            <span class="timeline-year">2012 - 2018</span>
-            <h3>SD Alam Muhammadiyah BanjarBaru Provinsi Kalimantan Selatan</h3>
-          </div>
-        </div>
+        <!-- Tombol Next -->
+        <button
+          class="carousel-btn carousel-next"
+          id="eduNext"
+          aria-label="Pendidikan selanjutnya"
+        >
+          <i class="fas fa-chevron-right"></i>
+        </button>
       </div>
+
+      <!-- Indikator Dots -->
+      <div class="carousel-dots" id="eduDots"></div>
     </section>
 
     <!-- ABOUT -->
