@@ -278,24 +278,3 @@ if (contactForm) {
       });
   });
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  const achievements = document.querySelectorAll(".achievement-card");
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-          // Optional: unobserve agar animasi hanya jalan 1x
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.1, // Cukup 10% kartu terlihat, langsung pemicu animasi
-    },
-  );
-
-  achievements.forEach((card) => observer.observe(card));
-});
