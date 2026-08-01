@@ -1583,30 +1583,25 @@ body.light .contact-final-item:hover {
 
 .slide-side > * {
   opacity: 0;
-  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.slide-side > *:nth-child(odd) {
-  transform: translateX(-70px);
-}
-.slide-side > *:nth-child(even) {
-  transform: translateX(70px);
+  transform: translateY(60px) scale(0.92);
+  transition: all 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .slide-side.show > * {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateY(0) scale(1);
 }
 .slide-side.show > *:nth-child(1) {
-  transition-delay: 0.1s;
+  transition-delay: 0.05s;
 }
 .slide-side.show > *:nth-child(2) {
-  transition-delay: 0.2s;
+  transition-delay: 0.15s;
 }
 .slide-side.show > *:nth-child(3) {
-  transition-delay: 0.3s;
+  transition-delay: 0.25s;
 }
 .slide-side.show > *:nth-child(4) {
-  transition-delay: 0.4s;
+  transition-delay: 0.35s;
 }
 .slide-side.show > *:nth-child(5) {
-  transition-delay: 0.5s;
+  transition-delay: 0.45s;
 }
