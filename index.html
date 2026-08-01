@@ -23,7 +23,10 @@
       property="og:description"
       content="Portofolio Muhammad Effendi Yusuf — Front-End Developer & mahasiswa Teknik Informatika UAD Yogyakarta."
     />
-    <meta property="og:image" content="Fendi1.jpeg" />
+    <meta
+      property="og:image"
+      content="https://portofolio-fendi-nine.vercel.app/Fendi1.jpeg"
+    />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -32,7 +35,10 @@
       name="twitter:description"
       content="Portofolio Muhammad Effendi Yusuf — Front-End Developer & mahasiswa Teknik Informatika UAD Yogyakarta."
     />
-    <meta name="twitter:image" content="Fendi1.jpeg" />
+    <meta
+      name="twitter:image"
+      content="https://portofolio-fendi-nine.vercel.app/Fendi1.jpeg"
+    />
 
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="Fendi1.jpeg" />
@@ -342,7 +348,7 @@
               >
                 <div class="card-thumb">
                   <img
-                    src="Astra Presence.jpeg"
+                    src="astra-presence.jpeg"
                     alt="Astra Presence preview"
                     loading="lazy"
                   />
@@ -377,7 +383,7 @@
           </div>
 
           <div class="project-card-wrapper">
-            <a href="foto videografi.html" class="card-link">
+            <a href="foto-videografi.html" class="card-link">
               <div
                 class="card"
                 data-tilt
@@ -418,7 +424,7 @@
           </div>
 
           <div class="project-card-wrapper">
-            <a href="expense tracker.html" class="card-link">
+            <a href="expense-tracker.html" class="card-link">
               <div
                 class="card"
                 data-tilt
@@ -428,7 +434,7 @@
               >
                 <div class="card-thumb">
                   <img
-                    src="cosmic spend.jpeg"
+                    src="cosmic-spend.jpeg"
                     alt="Cosmic Spend preview"
                     loading="lazy"
                   />
@@ -463,7 +469,7 @@
           </div>
 
           <div class="project-card-wrapper">
-            <a href="manajemen tugas.html" class="card-link">
+            <a href="manajemen-tugas.html" class="card-link">
               <div
                 class="card"
                 data-tilt
@@ -514,7 +520,7 @@
               >
                 <div class="card-thumb">
                   <img
-                    src="nebula vault.jpeg"
+                    src="nebula-vault.jpeg"
                     alt="Nebula Vault preview"
                     loading="lazy"
                   />
@@ -579,7 +585,11 @@
         <div class="achievements-track" id="achievementsTrack">
           <div class="achievement-card">
             <div class="card-icon-container">
-              <img src="UBL.jpeg" alt="Ikon Karate" class="card-icon-3d" />
+              <img
+                src="medali1.jpeg"
+                alt="Foto medali Budi Luhur University"
+                class="card-icon-3d"
+              />
             </div>
             <div class="card-content">
               <h3>
@@ -592,8 +602,8 @@
           <div class="achievement-card">
             <div class="card-icon-container">
               <img
-                src="UDINUS.jpeg"
-                alt="Ikon Medali Perak"
+                src="medali.jpeg"
+                alt="Foto medali Udinus"
                 class="card-icon-3d"
               />
             </div>
@@ -604,12 +614,8 @@
           </div>
 
           <div class="achievement-card">
-            <div class="card-icon-container">
-              <img
-                src="path/to/uiux_icon.png"
-                alt="Ikon UI/UX"
-                class="card-icon-3d"
-              />
+            <div class="card-icon-container card-icon-fallback">
+              <i class="fas fa-palette"></i>
             </div>
             <div class="card-content">
               <h3>Juara Harapan 1 Lomba UI/UX</h3>
@@ -618,12 +624,8 @@
           </div>
 
           <div class="achievement-card">
-            <div class="card-icon-container">
-              <img
-                src="path/to/desain_icon.png"
-                alt="Ikon Desain Grafis"
-                class="card-icon-3d"
-              />
+            <div class="card-icon-container card-icon-fallback">
+              <i class="fas fa-pen-nib"></i>
             </div>
             <div class="card-content">
               <h3>Juara 3 Lomba Desain Grafis</h3>
@@ -650,7 +652,7 @@
     <section id="contact" class="section fade-up contact-final">
       <h2>Follow Me</h2>
 
-      <div class="contact-box contact-final-box stagger">
+      <div class="contact-box contact-final-box slide-side">
         <a
           href="mailto:fendiysf70@email.com"
           class="contact-item contact-final-item"
@@ -718,30 +720,6 @@
         </button>
       </form>
     </section>
-
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    <script>
-      (function () {
-        emailjs.init("HmV9k46EYfnkmS5MM");
-      })();
-
-      document
-        .getElementById("contactForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          emailjs.sendForm("service_5s47424", "template_idx5rs9sm", this).then(
-            function () {
-              alert("Pesan berhasil terkirim, terima kasih!");
-              e.target.reset();
-            },
-            function (error) {
-              alert("Gagal mengirim pesan, coba lagi.");
-              console.log(error);
-            },
-          );
-        });
-    </script>
 
     <!-- FOOTER -->
     <footer>
