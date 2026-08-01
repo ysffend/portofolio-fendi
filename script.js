@@ -22,7 +22,7 @@ const observer = new IntersectionObserver(
   { threshold: 0.2 },
 );
 
-document.querySelectorAll(".fade-up, .stagger").forEach((el) => {
+document.querySelectorAll(".fade-up, .stagger, .slide-side").forEach((el) => {
   observer.observe(el);
 });
 
