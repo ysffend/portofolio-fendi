@@ -1615,3 +1615,84 @@ body.light .contact-final-item:hover {
     flex: 0 0 82vw;
   }
 }
+
+/* ===============================
+   EDUCATION CAROUSEL STYLES
+=============================== */
+.education-track {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 10px 4px 20px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.education-track::-webkit-scrollbar {
+  display: none;
+}
+
+.education-card-wrapper {
+  flex: 0 0 320px; /* Lebar masing-masing kartu */
+  scroll-snap-align: start;
+}
+
+.education-card {
+  height: 100%;
+  background: var(--card-bg, rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--card-border, rgba(255, 255, 255, 0.1));
+  border-radius: 16px;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.education-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-color, #00f0ff);
+  box-shadow: 0 8px 25px rgba(0, 240, 255, 0.15);
+}
+
+.edu-icon {
+  font-size: 2rem;
+  color: var(--accent-color, #00f0ff);
+  margin-bottom: 12px;
+}
+
+.edu-year {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(0, 240, 255, 0.1);
+  color: var(--accent-color, #00f0ff);
+  margin-bottom: 12px;
+}
+
+.education-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.education-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted, #a0a0a0);
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .education-card-wrapper {
+    flex: 0 0 82vw;
+  }
+}
