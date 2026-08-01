@@ -1615,3 +1615,17 @@ body.light .contact-final-item:hover {
   box-sizing: border-box;
   text-decoration: none;
 }
+
+.contact-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px; /* Memberi jarak konsisten antar item */
+  flex-wrap: wrap; /* Mencegah item saling bertabrakan/keluar layar */
+  width: 100%;
+}
+
+.contact-card {
+  flex: 0 1 auto; /* Mengikuti ukuran konten tanpa dipaksa melebar */
+  white-space: nowrap; /* Mencegah teks terpotong ke baris baru di dalam tombol */
+}
