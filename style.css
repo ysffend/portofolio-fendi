@@ -106,7 +106,7 @@ nav a:hover::after {
 
 /* HERO */
 .hero {
-  min-height: calc(100vh - 80px); /* FIX */
+  min-height: calc(100vh - 80px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -341,9 +341,8 @@ body.light .timeline-icon {
 }
 
 /* ====================================
-   NEW SKILLS SECTION (GLASS-GRID)
+   SKILLS SECTION
 ======================================= */
-
 .skills-grid {
   display: flex;
   flex-wrap: wrap;
@@ -405,7 +404,6 @@ body.light .skill-card small {
   color: #666;
 }
 
-/* Mengatur ukuran dan warna dasar ikon */
 .skill-card i {
   font-size: 22px;
   transition:
@@ -413,16 +411,10 @@ body.light .skill-card small {
     color 0.3s ease;
 }
 
-/* ====================================
-   INTERACTIVE HOVER STATE
-======================================= */
-
 .skill-card:hover {
   transform: translateY(-5px);
   background: rgba(255, 255, 255, 0.08);
-  /* Memberikan efek border bercahaya sesuai warna brand teknologi */
   border-color: var(--skill-color);
-  /* Efek pendaran glow halus di bawah kartu */
   box-shadow:
     0 10px 25px rgba(0, 0, 0, 0.3),
     0 0 15px var(--skill-color);
@@ -432,7 +424,6 @@ body.light .skill-card small {
   transform: scale(1.15) rotate(5deg);
 }
 
-/* Animasi khusus saat Light Mode aktif */
 body.light .skill-card {
   background: rgba(255, 255, 255, 0.75);
   border: 1px solid rgba(0, 0, 0, 0.06);
@@ -448,7 +439,6 @@ body.light .skill-card:hover {
     0 0 12px var(--skill-color);
 }
 
-/* Responsivitas untuk layar kecil */
 @media (max-width: 600px) {
   .skills-grid {
     gap: 12px;
@@ -465,11 +455,15 @@ body.light .skill-card:hover {
   }
 }
 
-/* PROJECTS */
+/* PROJECTS CAROUSEL */
 .carousel-wrapper {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 14px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .projects {
@@ -482,14 +476,11 @@ body.light .skill-card:hover {
   padding: 6px 4px 18px;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  cursor: grab;
 }
 
 .projects::-webkit-scrollbar {
   display: none;
-}
-
-.projects {
-  cursor: grab;
 }
 
 .projects.dragging {
@@ -518,6 +509,7 @@ body.light .skill-card:hover {
   cursor: pointer;
   backdrop-filter: blur(6px);
   transition: all 0.25s ease;
+  z-index: 10;
 }
 
 .carousel-btn:hover {
@@ -882,61 +874,71 @@ footer {
 }
 
 /* ====================================
-   CONTACT FINAL (MODERN GRID TATA LETAK)
+   PERBAIKAN BESAR: CONTACT CAROUSEL / TRACK
 ======================================= */
+.contact-track {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 16px;
+  align-items: center;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 15px 5px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 100%;
+}
 
-.contact-final-box {
-  max-width: 960px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-  justify-content: center;
-  padding: 0 10px;
+.contact-track::-webkit-scrollbar {
+  display: none;
+}
+
+.contact-final-item-wrapper {
+  flex: 0 0 auto !important; /* Biarkan mengikuti ukuran konten tanpa terdistorsi */
+  scroll-snap-align: center;
 }
 
 .contact-final-item {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 16px;
-  padding: 18px 24px;
-  border-radius: 20px;
+  gap: 12px;
+  padding: 14px 24px;
+  border-radius: 999px; /* Desain kapsul pill */
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 240, 255, 0.25);
   color: white;
   text-decoration: none;
   font-size: 14px;
   transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-  width: 100% !important;
-  max-width: 100% !important;
+  white-space: nowrap; /* Mencegah teks terbelah/turun baris */
+  width: auto !important; /* HAPUS 100% yang bikin nabrak */
+  max-width: none !important;
 }
 
 .contact-final-item i {
-  font-size: 18px;
+  font-size: 16px;
   color: #00f0ff;
-  min-width: 24px;
-  text-align: center;
-}
-
-.contact-final-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 24px rgba(0, 240, 255, 0.25);
-  background: rgba(0, 240, 255, 0.12);
-  border-color: #00f0ff;
+  flex-shrink: 0;
 }
 
 .contact-final-item span {
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: block;
+  display: inline-block;
+}
+
+.contact-final-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+  background: rgba(0, 240, 255, 0.15);
+  border-color: #00f0ff;
 }
 
 @media (max-width: 480px) {
   .contact-final-item {
-    font-size: 13.5px;
-    padding: 15px 20px;
+    font-size: 13px;
+    padding: 12px 18px;
   }
 }
 
@@ -946,6 +948,7 @@ footer {
 
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 @media (max-width: 1200px) {
@@ -1071,72 +1074,16 @@ body.light .futuristic-text {
     0 0 10px rgba(0, 144, 163, 0.2);
 }
 
-body.light .org-card {
-  background: rgba(255, 255, 255, 0.55);
-}
-
-body.light .org-card p {
-  color: #333;
-}
-
-@media (max-width: 600px) {
-  .org-card {
-    padding: 20px;
-  }
-  .org-card h3 {
-    font-size: 17px;
-  }
-  .org-card p {
-    font-size: 14px;
-  }
-}
-
-html {
-  scroll-behavior: smooth;
+body.light .contact-final-item:hover {
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    0 0 15px rgba(0, 240, 255, 0.3);
+  background: rgba(0, 240, 255, 0.08);
+  border-color: #00f0ff;
 }
 
 section {
   scroll-margin-top: 90px;
-}
-
-@media (max-width: 768px) {
-  .theme-toggle {
-    position: fixed;
-    top: 16px;
-    right: 16px;
-    z-index: 9999;
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
-    border: 1px solid #00e5ff;
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 768px) {
-  #themeToggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 9999;
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(12px);
-    border: 1px solid #00f0ff;
-    box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
-  }
 }
 
 #themeToggle {
@@ -1314,20 +1261,11 @@ body.light .contact-form textarea {
     hue-rotate(140deg) brightness(100%) contrast(100%);
 }
 
-/* REDUPKAN HOVER GLOW DI LIGHT MODE */
 body.light .card-link:hover .card {
   box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.08),
     0 0 15px var(--card-glow);
   border-color: var(--card-glow);
-}
-
-body.light .contact-final-item:hover {
-  box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.08),
-    0 0 15px rgba(0, 240, 255, 0.3);
-  background: rgba(0, 240, 255, 0.08);
-  border-color: #00f0ff;
 }
 
 .futuristic-text {
@@ -1342,20 +1280,18 @@ body.light .contact-final-item:hover {
     0 0 40px #00f0ff;
 }
 
-/* --- Global Styles untuk Section Prestasi --- */
+/* --- PRESTASI SECTION --- */
 .achievements-section {
-  background-color: #000; /* Latar belakang hitam pekat */
-  /* Ganti dengan URL background galaxy jika ada */
+  background-color: #000;
   background-image: radial-gradient(circle at center, #0a192f 0%, #000 100%);
   color: #fff;
-  font-family: "Poppins", sans-serif; /* Pastikan font ini di-import */
+  font-family: "Poppins", sans-serif;
   padding: 80px 20px;
   text-align: center;
   position: relative;
   overflow: hidden;
 }
 
-/* Tambahkan efek partikel bintang sederhana dengan pseudo-element */
 .achievements-section::before {
   content: "";
   position: absolute;
@@ -1379,11 +1315,10 @@ body.light .contact-final-item:hover {
   opacity: 0.6;
 }
 
-/* --- Gaya Judul Neon --- */
 .section-title-neon {
   font-size: 3rem;
   font-weight: 800;
-  color: #00ffff; /* Warna Cyan Dasar */
+  color: #00ffff;
   text-transform: uppercase;
   letter-spacing: 4px;
   margin-bottom: 60px;
@@ -1415,70 +1350,52 @@ body.light .contact-final-item:hover {
   }
 }
 
-/* --- Container Kartu --- */
-.achievements-container {
+.achievements-track {
   display: flex;
-  flex-direction: column;
-  gap: 30px;
-  max-width: 1000px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 1rem 0;
+  scrollbar-width: none;
 }
 
-/* --- Gaya Kartu (Glassmorphism + Neon Border) --- */
-.achievement-card {
-  background: rgba(255, 255, 255, 0.05); /* Transparansi dasar */
-  backdrop-filter: blur(10px); /* Efek Blur Kaca */
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 255, 255, 0.3); /* Border Cyan Halus */
-  border-radius: 15px;
-  padding: 30px;
+.achievements-track::-webkit-scrollbar {
+  display: none;
+}
+
+.achievements-track .achievement-card {
+  flex: 0 0 320px;
+  scroll-snap-align: start;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.05);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
   display: flex;
   align-items: center;
-  gap: 30px;
-  text-align: left;
-  transition: all 0.4s ease;
-  position: relative;
+  gap: 20px;
 }
 
-.achievement-card:hover {
-  transform: translateY(-5px) scale(1.02);
-  background: rgba(255, 255, 255, 0.1);
-  border-color: #00ffff; /* Border Cyan Terang saat Hover */
-  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4); /* Glow saat Hover */
+.achievements-track .achievement-card:hover {
+  transform: translateY(-5px);
+  border-color: #00f0ff;
 }
 
-/* Efek Glow Cyan Tambahan di Pojok Kartu saat Hover */
-.achievement-card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0);
-  transition: box-shadow 0.4s ease;
-  z-index: -1;
-}
-
-.achievement-card:hover::after {
-  box-shadow: 0 0 20px #00ffff;
-}
-
-/* --- Container Ikon --- */
 .card-icon-container {
   flex-shrink: 0;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
 }
 
-/* Background Cahaya di belakang ikon */
 .card-icon-container::before {
   content: "";
   position: absolute;
@@ -1500,132 +1417,22 @@ body.light .contact-final-item:hover {
   object-fit: contain;
   position: relative;
   z-index: 1;
-  transform: translateZ(20px); /* Efek sedikit pop-out */
 }
 
-/* --- Konten Teks Kartu --- */
 .card-content {
   flex-grow: 1;
+  text-align: left;
 }
 
 .card-content h3 {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  margin: 0 0 10px 0;
+  margin: 0 0 6px 0;
   color: #fff;
   line-height: 1.3;
 }
 
 .card-content p {
-  font-size: 1rem;
-  font-weight: 400;
-  margin: 0;
-  color: #ddd; /* Warna abu-abu terang untuk sub-teks */
-}
-
-/* --- Media Queries untuk Responsivitas (Mobile) --- */
-@media (max-width: 768px) {
-  .section-title-neon {
-    font-size: 2.2rem;
-  }
-
-  .achievement-card {
-    flex-direction: column;
-    text-align: center;
-    padding: 20px;
-  }
-
-  .card-icon-container {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 15px;
-  }
-
-  .card-content h3 {
-    font-size: 1.2rem;
-  }
-}
-
-/* Slider Track Prestasi */
-.achievements-track {
-  display: flex;
-  gap: 1.5rem;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  padding: 1rem 0;
-  scrollbar-width: none; /* Sembunyikan scrollbar Firefox */
-}
-
-.achievements-track::-webkit-scrollbar {
-  display: none; /* Sembunyikan scrollbar Chrome/Safari */
-}
-
-/* Setiap Kartu di Slider */
-.achievements-track .achievement-card {
-  flex: 0 0 320px; /* Ukuran lebar kartu horizontal */
-  scroll-snap-align: start;
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 240, 255, 0.2);
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.05);
-  transition:
-    transform 0.3s ease,
-    border-color 0.3s ease;
-}
-
-.achievements-track .achievement-card:hover {
-  transform: translateY(-5px);
-  border-color: #00f0ff;
-}
-
-/* Pastikan container track membujur ke samping (row) */
-.contact-track {
-  display: flex !important;
-  flex-direction: row !important; /* Paksa ke samping, bukan column */
-  gap: 20px;
-  align-items: center;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  padding: 15px 5px;
-  scrollbar-width: none; /* Sembunyikan scrollbar Firefox */
-  -ms-overflow-style: none; /* Sembunyikan scrollbar IE/Edge */
-}
-
-.contact-track::-webkit-scrollbar {
-  display: none; /* Sembunyikan scrollbar Chrome/Safari */
-}
-
-/* Setiap kartu kontak diberi lebar tetap agar tidak menyusut/menumpuk */
-.contact-final-item-wrapper {
-  flex: 0 0 280px !important; /* Mencegah kartu menciut */
-  scroll-snap-align: center;
-}
-
-/* Memastikan link/kartu di dalamnya memenuhi wrapper */
-.contact-final-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  padding: 14px 20px;
-  box-sizing: border-box;
-  text-decoration: none;
-}
-
-.contact-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px; /* Memberi jarak konsisten antar item */
-  flex-wrap: wrap; /* Mencegah item saling bertabrakan/keluar layar */
-  width: 100%;
-}
-
-.contact-card {
-  flex: 0 1 auto; /* Mengikuti ukuran konten tanpa dipaksa melebar */
-  white-space: nowrap; /* Mencegah teks terpotong ke baris baru di dalam tombol */
+  font-size: 0.9rem;
+  color: #ddd;
 }
