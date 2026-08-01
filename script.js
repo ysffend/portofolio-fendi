@@ -456,7 +456,6 @@ if (contactTrack && contactPrev && contactNext && contactDotsWrap) {
   window.addEventListener("resize", updateContactActiveDot);
   updateContactActiveDot();
 }
-
 /* ===============================
    EDUCATION CAROUSEL
 =============================== */
