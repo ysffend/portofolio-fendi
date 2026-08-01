@@ -27,22 +27,21 @@ document.querySelectorAll(".fade-up, .stagger").forEach((el) => {
 });
 
 /* ===============================
-   PROJECTS & ACHIEVEMENTS CAROUSEL
+   PROJECTS CAROUSEL
 =============================== */
-function setupCarousel(trackId, prevId, nextId, dotsId) {
-  const track = document.getElementById(trackId);
-  const prevBtn = document.getElementById(prevId);
-  const nextBtn = document.getElementById(nextId);
-  const dotsWrap = document.getElementById(dotsId);
+const track = document.getElementById("projectsTrack");
+const prevBtn = document.getElementById("projectsPrev");
+const nextBtn = document.getElementById("projectsNext");
+const dotsWrap = document.getElementById("projectsDots");
 
-  if (!track || !prevBtn || !nextBtn || !dotsWrap) return;
-
+if (track && prevBtn && nextBtn && dotsWrap) {
   const cards = Array.from(track.children);
 
+  // build dots, one per card
   cards.forEach((_, i) => {
     const dot = document.createElement("button");
     dot.className = "dot";
-    dot.setAttribute("aria-label", `Item ${i + 1}`);
+    dot.setAttribute("aria-label", `Ke project ${i + 1}`);
     dot.addEventListener("click", () => {
       cards[i].scrollIntoView({
         behavior: "smooth",
@@ -84,6 +83,7 @@ function setupCarousel(trackId, prevId, nextId, dotsId) {
   window.addEventListener("resize", updateActiveDot);
   updateActiveDot();
 
+  // drag-to-scroll for mouse/desktop users
   let isDown = false;
   let startX = 0;
   let startScroll = 0;
@@ -106,15 +106,6 @@ function setupCarousel(trackId, prevId, nextId, dotsId) {
     track.scrollLeft = startScroll - (e.pageX - startX);
   });
 }
-
-setupCarousel("projectsTrack", "projectsPrev", "projectsNext", "projectsDots");
-
-setupCarousel(
-  "achievementsTrack",
-  "achievementsPrev",
-  "achievementsNext",
-  "achievementsDots",
-);
 
 /* ===============================
    TYPING EFFECT
@@ -206,7 +197,44 @@ themeBtn.addEventListener("click", () => {
   }
 });
 
-// ================= EMAIL FUNCTION (Formspree) =================
+// ================= EMAIL FUNCTION =================
+// pastikan script emailjs sudah dipanggil di HTML
+
+emailjs.init("ISI_PUBLIC_KEY_KAMU");
+
+const form = document.getElementById("contactForm");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  emailjs.sendForm("ISI_SERVICE_ID", "ISI_TEMPLATE_ID", this).then(function () {
+    alert("Pesan berhasil dikirim! ✅");
+    form.reset();
+  });
+});
+
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const nama = this.user_name.value;
+  const email = this.user_email.value;
+  const pesan = this.message.value;
+
+  const isi = `Nama: ${nama}
+Email: ${email}
+Pesan:
+${pesan}
+--------------------------`;
+
+  const blob = new Blob([isi], { type: "text/plain" });
+
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "pesan.txt";
+  a.click();
+
+  this.reset();
+});
 
 const contactForm = document.getElementById("contactForm");
 
@@ -249,4 +277,122 @@ if (contactForm) {
         button.disabled = false;
       });
   });
+}
+
+/* ===============================
+   ACHIEVEMENTS CAROUSEL
+=============================== */
+const achTrack = document.getElementById("achievementsTrack");
+const achPrev = document.getElementById("achievementsPrev");
+const achNext = document.getElementById("achievementsNext");
+const achDotsWrap = document.getElementById("achievementsDots");
+
+if (achTrack && achPrev && achNext && achDotsWrap) {
+  const achCards = Array.from(achTrack.children);
+
+  // Bikin Dots secara otomatis
+  achCards.forEach((_, i) => {
+    const dot = document.createElement("button");
+    dot.className = "dot";
+    dot.setAttribute("aria-label", `Ke prestasi ${i + 1}`);
+    dot.addEventListener("click", () => {
+      achCards[i].scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
+    });
+    achDotsWrap.appendChild(dot);
+  });
+
+  const achDots = Array.from(achDotsWrap.children);
+
+  function getAchCardStep() {
+    const style = getComputedStyle(achTrack);
+    const gap = parseFloat(style.columnGap || style.gap || 0);
+    return achCards[0].getBoundingClientRect().width + gap;
+  }
+
+  function updateAchActiveDot() {
+    const index = Math.round(achTrack.scrollLeft / getAchCardStep());
+    achDots.forEach((d, i) => d.classList.toggle("active", i === index));
+
+    achPrev.disabled = achTrack.scrollLeft <= 4;
+    achNext.disabled =
+      achTrack.scrollLeft >= achTrack.scrollWidth - achTrack.clientWidth - 4;
+  }
+
+  achPrev.addEventListener("click", () => {
+    achTrack.scrollBy({ left: -getAchCardStep(), behavior: "smooth" });
+  });
+
+  achNext.addEventListener("click", () => {
+    achTrack.scrollBy({ left: getAchCardStep(), behavior: "smooth" });
+  });
+
+  achTrack.addEventListener("scroll", () => {
+    requestAnimationFrame(updateAchActiveDot);
+  });
+
+  window.addEventListener("resize", updateAchActiveDot);
+  updateAchActiveDot();
+}
+
+/* ===============================
+   EDUCATION CAROUSEL
+=============================== */
+const eduTrack = document.getElementById("eduTrack");
+const eduPrev = document.getElementById("eduPrev");
+const eduNext = document.getElementById("eduNext");
+const eduDotsWrap = document.getElementById("eduDots");
+
+if (eduTrack && eduPrev && eduNext && eduDotsWrap) {
+  const eduCards = Array.from(eduTrack.children);
+
+  // Bikin Dots secara otomatis
+  eduCards.forEach((_, i) => {
+    const dot = document.createElement("button");
+    dot.className = "dot";
+    dot.setAttribute("aria-label", `Ke pendidikan ${i + 1}`);
+    dot.addEventListener("click", () => {
+      eduCards[i].scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
+    });
+    eduDotsWrap.appendChild(dot);
+  });
+
+  const eduDots = Array.from(eduDotsWrap.children);
+
+  function getEduCardStep() {
+    const style = getComputedStyle(eduTrack);
+    const gap = parseFloat(style.columnGap || style.gap || 0);
+    return eduCards[0].getBoundingClientRect().width + gap;
+  }
+
+  function updateEduActiveDot() {
+    const index = Math.round(eduTrack.scrollLeft / getEduCardStep());
+    eduDots.forEach((d, i) => d.classList.toggle("active", i === index));
+
+    eduPrev.disabled = eduTrack.scrollLeft <= 4;
+    eduNext.disabled =
+      eduTrack.scrollLeft >= eduTrack.scrollWidth - eduTrack.clientWidth - 4;
+  }
+
+  eduPrev.addEventListener("click", () => {
+    eduTrack.scrollBy({ left: -getEduCardStep(), behavior: "smooth" });
+  });
+
+  eduNext.addEventListener("click", () => {
+    eduTrack.scrollBy({ left: getEduCardStep(), behavior: "smooth" });
+  });
+
+  eduTrack.addEventListener("scroll", () => {
+    requestAnimationFrame(updateEduActiveDot);
+  });
+
+  window.addEventListener("resize", updateEduActiveDot);
+  updateEduActiveDot();
 }
