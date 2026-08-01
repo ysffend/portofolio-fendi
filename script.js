@@ -197,7 +197,44 @@ themeBtn.addEventListener("click", () => {
   }
 });
 
-// ================= EMAIL FUNCTION (Formspree) =================
+// ================= EMAIL FUNCTION =================
+// pastikan script emailjs sudah dipanggil di HTML
+
+emailjs.init("ISI_PUBLIC_KEY_KAMU");
+
+const form = document.getElementById("contactForm");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  emailjs.sendForm("ISI_SERVICE_ID", "ISI_TEMPLATE_ID", this).then(function () {
+    alert("Pesan berhasil dikirim! ✅");
+    form.reset();
+  });
+});
+
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const nama = this.user_name.value;
+  const email = this.user_email.value;
+  const pesan = this.message.value;
+
+  const isi = `Nama: ${nama}
+Email: ${email}
+Pesan:
+${pesan}
+--------------------------`;
+
+  const blob = new Blob([isi], { type: "text/plain" });
+
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "pesan.txt";
+  a.click();
+
+  this.reset();
+});
 
 const contactForm = document.getElementById("contactForm");
 
