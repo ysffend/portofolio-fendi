@@ -1580,3 +1580,38 @@ body.light .contact-final-item:hover {
   transform: translateY(-5px);
   border-color: #00f0ff;
 }
+
+/* Pastikan container track membujur ke samping (row) */
+.contact-track {
+  display: flex !important;
+  flex-direction: row !important; /* Paksa ke samping, bukan column */
+  gap: 20px;
+  align-items: center;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 15px 5px;
+  scrollbar-width: none; /* Sembunyikan scrollbar Firefox */
+  -ms-overflow-style: none; /* Sembunyikan scrollbar IE/Edge */
+}
+
+.contact-track::-webkit-scrollbar {
+  display: none; /* Sembunyikan scrollbar Chrome/Safari */
+}
+
+/* Setiap kartu kontak diberi lebar tetap agar tidak menyusut/menumpuk */
+.contact-final-item-wrapper {
+  flex: 0 0 280px !important; /* Mencegah kartu menciut */
+  scroll-snap-align: center;
+}
+
+/* Memastikan link/kartu di dalamnya memenuhi wrapper */
+.contact-final-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 20px;
+  box-sizing: border-box;
+  text-decoration: none;
+}
