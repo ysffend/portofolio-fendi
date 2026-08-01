@@ -396,3 +396,63 @@ if (eduTrack && eduPrev && eduNext && eduDotsWrap) {
   window.addEventListener("resize", updateEduActiveDot);
   updateEduActiveDot();
 }
+
+/* ===============================
+   CONTACT CAROUSEL
+=============================== */
+const contactTrack = document.getElementById("contactTrack");
+const contactPrev = document.getElementById("contactPrev");
+const contactNext = document.getElementById("contactNext");
+const contactDotsWrap = document.getElementById("contactDots");
+
+if (contactTrack && contactPrev && contactNext && contactDotsWrap) {
+  const contactCards = Array.from(contactTrack.children);
+
+  // Buat Dots secara otomatis
+  contactCards.forEach((_, i) => {
+    const dot = document.createElement("button");
+    dot.className = "dot";
+    dot.setAttribute("aria-label", `Ke kontak ${i + 1}`);
+    dot.addEventListener("click", () => {
+      contactCards[i].scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
+    });
+    contactDotsWrap.appendChild(dot);
+  });
+
+  const contactDots = Array.from(contactDotsWrap.children);
+
+  function getContactCardStep() {
+    const style = getComputedStyle(contactTrack);
+    const gap = parseFloat(style.columnGap || style.gap || 0);
+    return contactCards[0].getBoundingClientRect().width + gap;
+  }
+
+  function updateContactActiveDot() {
+    const index = Math.round(contactTrack.scrollLeft / getContactCardStep());
+    contactDots.forEach((d, i) => d.classList.toggle("active", i === index));
+
+    contactPrev.disabled = contactTrack.scrollLeft <= 4;
+    contactNext.disabled =
+      contactTrack.scrollLeft >=
+      contactTrack.scrollWidth - contactTrack.clientWidth - 4;
+  }
+
+  contactPrev.addEventListener("click", () => {
+    contactTrack.scrollBy({ left: -getContactCardStep(), behavior: "smooth" });
+  });
+
+  contactNext.addEventListener("click", () => {
+    contactTrack.scrollBy({ left: getContactCardStep(), behavior: "smooth" });
+  });
+
+  contactTrack.addEventListener("scroll", () => {
+    requestAnimationFrame(updateContactActiveDot);
+  });
+
+  window.addEventListener("resize", updateContactActiveDot);
+  updateContactActiveDot();
+}
