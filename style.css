@@ -1359,9 +1359,7 @@ body.light .contact-final-item:hover {
 
 /* --- Global Styles untuk Section Prestasi --- */
 .achievements-section {
-  background-color: #000; /* Latar belakang hitam pekat */
-  /* Ganti dengan URL background galaxy jika ada */
-  background-image: radial-gradient(circle at center, #0a192f 0%, #000 100%);
+  background: transparent; /* Nyatu dengan background utama body */
   color: #fff;
   font-family: "Poppins", sans-serif; /* Pastikan font ini di-import */
   padding: 80px 20px;
