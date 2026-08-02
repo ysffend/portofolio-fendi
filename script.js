@@ -396,3 +396,20 @@ if (eduTrack && eduPrev && eduNext && eduDotsWrap) {
   window.addEventListener("resize", updateEduActiveDot);
   updateEduActiveDot();
 }
+
+// ===== Slide-in observer untuk timeline & contact =====
+const slideObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        slideObserver.unobserve(entry.target); // animasi cukup sekali
+      }
+    });
+  },
+  { threshold: 0.2 }, // trigger saat 20% elemen kelihatan
+);
+
+document
+  .querySelectorAll(".timeline-item, .contact-final-item")
+  .forEach((el) => slideObserver.observe(el));

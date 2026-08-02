@@ -1649,3 +1649,69 @@ body.light .contact-final-item:hover {
   border-color: #0090a3;
   box-shadow: 0 4px 15px rgba(0, 144, 163, 0.25);
 }
+
+/* ===== SLIDE ANIMATION: Riwayat Pendidikan ===== */
+.timeline-item {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* selang-seling: item genap masuk dari kanan */
+.timeline-item:nth-child(even) {
+  transform: translateX(60px);
+}
+.timeline-item:nth-child(even).visible {
+  transform: translateX(0);
+}
+
+/* delay bertahap biar muncul satu-satu */
+.timeline-item:nth-child(1) {
+  transition-delay: 0s;
+}
+.timeline-item:nth-child(2) {
+  transition-delay: 0.15s;
+}
+.timeline-item:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.timeline-item:nth-child(4) {
+  transition-delay: 0.45s;
+}
+
+/* ===== SLIDE ANIMATION: Contact ===== */
+.contact-final-item {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.contact-final-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-final-item:nth-child(1) {
+  transition-delay: 0s;
+}
+.contact-final-item:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.contact-final-item:nth-child(3) {
+  transition-delay: 0.2s;
+}
+.contact-final-item:nth-child(4) {
+  transition-delay: 0.3s;
+}
+.contact-final-item:nth-child(5) {
+  transition-delay: 0.4s;
+}
