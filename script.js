@@ -435,3 +435,22 @@ document.addEventListener("DOMContentLoaded", () => {
     slideObserver.observe(el);
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const slideObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible"); // trigger animasi CSS
+          slideObserver.unobserve(entry.target); // stop mantau, biar animasi cuma jalan 1x
+        }
+      });
+    },
+    { threshold: 0.15 }, // trigger saat 15% elemen sudah kelihatan di layar
+  );
+
+  // ambil semua elemen yang mau dikasih animasi
+  document
+    .querySelectorAll(".timeline-item, .contact-final-item")
+    .forEach((el) => slideObserver.observe(el));
+});

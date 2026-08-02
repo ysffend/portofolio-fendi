@@ -1693,3 +1693,67 @@ body.light .contact-final-item:hover {
 .achievement-card:nth-child(4) {
   transition-delay: 0.45s;
 }
+
+/* ===== Pendidikan (slide dari kiri/kanan) ===== */
+.timeline-item {
+  opacity: 0;
+  transform: translateX(-60px); /* mulai geser 60px ke kiri */
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+/* item genap (2, 4, ...) masuk dari kanan biar variatif */
+.timeline-item:nth-child(even) {
+  transform: translateX(60px);
+}
+
+/* class ini ditambahin lewat JS saat elemen kelihatan */
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* delay bertahap biar item muncul gantian, bukan barengan */
+.timeline-item:nth-child(1) {
+  transition-delay: 0s;
+}
+.timeline-item:nth-child(2) {
+  transition-delay: 0.15s;
+}
+.timeline-item:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.timeline-item:nth-child(4) {
+  transition-delay: 0.45s;
+}
+
+/* ===== Contact (slide dari bawah) ===== */
+.contact-final-item {
+  opacity: 0;
+  transform: translateY(40px); /* mulai geser 40px ke bawah */
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.contact-final-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-final-item:nth-child(1) {
+  transition-delay: 0s;
+}
+.contact-final-item:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.contact-final-item:nth-child(3) {
+  transition-delay: 0.2s;
+}
+.contact-final-item:nth-child(4) {
+  transition-delay: 0.3s;
+}
+.contact-final-item:nth-child(5) {
+  transition-delay: 0.4s;
+}
