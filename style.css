@@ -1646,4 +1646,67 @@ body.light .contact-final-item:hover {
 }
 .contact-final-item:nth-child(5) {
   transition-delay: 0.45s;
+} /* ===== FIX SLIDE ANIMATION: Riwayat Pendidikan ===== */
+.timeline-item {
+  opacity: 0 !important;
+  transform: translateX(-60px) !important;
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease !important;
+}
+
+/* Item genap dari kanan */
+.timeline-item:nth-child(even) {
+  transform: translateX(60px) !important;
+}
+
+/* Class saat terlihat di viewport */
+.timeline-item.visible {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+/* Delay bertahap */
+.timeline-item:nth-child(1) {
+  transition-delay: 0s;
+}
+.timeline-item:nth-child(2) {
+  transition-delay: 0.15s;
+}
+.timeline-item:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.timeline-item:nth-child(4) {
+  transition-delay: 0.45s;
+}
+
+/* ===== FIX SLIDE ANIMATION: Contact ===== */
+.contact-final-item {
+  opacity: 0 !important;
+  transform: translateY(40px) !important;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease !important;
+}
+
+.contact-final-item.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Delay bertahap */
+.contact-final-item:nth-child(1) {
+  transition-delay: 0s;
+}
+.contact-final-item:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.contact-final-item:nth-child(3) {
+  transition-delay: 0.2s;
+}
+.contact-final-item:nth-child(4) {
+  transition-delay: 0.3s;
+}
+.contact-final-item:nth-child(5) {
+  transition-delay: 0.4s;
 }

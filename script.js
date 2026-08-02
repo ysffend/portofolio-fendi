@@ -400,19 +400,25 @@ if (eduTrack && eduPrev && eduNext && eduDotsWrap) {
 /* ===================================================
    SLIDE-IN OBSERVER (TIMELINE & CONTACT)
 =================================================== */
-const slideObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        slideObserver.unobserve(entry.target); // Animasi berjalan cukup 1x saja
-      }
-    });
-  },
-  { threshold: 0.2 }, // Animasi terpicu saat 20% elemen terlihat di viewport
-);
+document.addEventListener("DOMContentLoaded", () => {
+  const slideObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          slideObserver.unobserve(entry.target); // jalankan 1x
+        }
+      });
+    },
+    { threshold: 0.15 }, // Trigger saat 15% elemen masuk layar
+  );
 
-// Daftarkan semua elemen timeline dan contact item ke observer
-document
-  .querySelectorAll(".timeline-item, .contact-final-item")
-  .forEach((el) => slideObserver.observe(el));
+  // Ambil semua elemen timeline dan contact
+  const slideElements = document.querySelectorAll(
+    ".timeline-item, .contact-final-item",
+  );
+
+  slideElements.forEach((el) => {
+    slideObserver.observe(el);
+  });
+});
