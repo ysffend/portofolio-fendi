@@ -7,6 +7,15 @@ const navLinks = document.querySelector("nav ul");
 if (menuToggle && navLinks) {
   menuToggle.addEventListener("click", () => {
     navLinks.classList.toggle("active");
+    menuToggle.classList.toggle("open");
+  });
+
+  // Tutup menu otomatis saat salah satu link diklik (biar gak nyangkut kebuka)
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("active");
+      menuToggle.classList.remove("open");
+    });
   });
 }
 

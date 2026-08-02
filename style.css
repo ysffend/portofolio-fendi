@@ -1302,6 +1302,7 @@ body.light .contact-form textarea {
 /* HERO SOCIAL ROW */
 .hero-social {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 18px;
   margin-top: 22px;
@@ -1699,4 +1700,137 @@ body.light .contact-final-item:hover {
 }
 .achievement-card:nth-child(4) {
   transition-delay: 0.45s;
+}
+
+/* ===================================================
+   MOBILE RESPONSIVE FIX (iOS & Android)
+=================================================== */
+
+/* 1. Cegah horizontal scroll/overflow di semua device */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* 2. Momentum scroll halus buat carousel di iOS Safari */
+.projects,
+.timeline,
+.contact-final-box,
+.achievements-track {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 3. Safe-area: hindari elemen fixed ketutup notch/home-indicator */
+nav {
+  padding-top: calc(18px + env(safe-area-inset-top));
+}
+
+#themeToggle {
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  right: calc(20px + env(safe-area-inset-right));
+}
+
+#scroll-progress {
+  top: env(safe-area-inset-top);
+}
+
+/* 4. Hamburger jadi animasi silang (X) saat menu dibuka */
+.menu-toggle span {
+  transition: all 0.3s ease;
+}
+
+.menu-toggle.open span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* 5. Tap target lebih nyaman disentuh jari (min 44px area) */
+.carousel-dots .dot {
+  padding: 10px 6px;
+  background-clip: content-box;
+}
+
+nav ul li a,
+.contact-final-item,
+.btn-pill {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* 6. Fluid typography, biar teks nyaman di layar kecil-besar tanpa patah aneh */
+.glass h1 {
+  font-size: clamp(22px, 6vw, 40px);
+  line-height: 1.25;
+}
+
+.glass h2 {
+  font-size: clamp(15px, 4vw, 20px);
+}
+
+.section h2,
+.futuristic-text {
+  font-size: clamp(22px, 5vw, 32px) !important;
+}
+
+.section-title-neon {
+  font-size: clamp(1.6rem, 7vw, 3rem) !important;
+}
+
+/* 7. Penyesuaian ekstra untuk layar sangat kecil (iPhone SE dkk, ~375px) */
+@media (max-width: 380px) {
+  .hero .glass {
+    padding: 28px 16px;
+  }
+
+  .btn-group {
+    gap: 10px;
+  }
+
+  .btn-pill {
+    padding: 10px 16px;
+    font-size: 12.5px;
+  }
+
+  .hero-social {
+    gap: 12px;
+  }
+
+  .hero-social a {
+    width: 38px;
+    height: 38px;
+    font-size: 14px;
+  }
+
+  .section {
+    padding: 60px 6% 80px;
+  }
+
+  .timeline-item,
+  .project-card-wrapper,
+  .contact-final-item {
+    width: 78vw;
+  }
+}
+
+/* 8. Judul/teks panjang jangan sampai bikin card melebar/overflow */
+.card-title,
+.timeline-content h3,
+.card-content h3 {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* 9. Gambar responsif, tidak pernah melebihi lebar container-nya */
+img {
+  max-width: 100%;
+  height: auto;
 }
