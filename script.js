@@ -410,6 +410,66 @@ if (eduTrack && eduPrev && eduNext && eduDotsWrap) {
   updateEduActiveDot();
 }
 
+/* ===============================
+   CONTACT CAROUSEL
+=============================== */
+const contactTrack = document.getElementById("contactTrack");
+const contactPrev = document.getElementById("contactPrev");
+const contactNext = document.getElementById("contactNext");
+const contactDotsWrap = document.getElementById("contactDots");
+
+if (contactTrack && contactPrev && contactNext && contactDotsWrap) {
+  const contactCards = Array.from(contactTrack.children);
+
+  // Bikin Dots secara otomatis
+  contactCards.forEach((_, i) => {
+    const dot = document.createElement("button");
+    dot.className = "dot";
+    dot.setAttribute("aria-label", `Ke kontak ${i + 1}`);
+    dot.addEventListener("click", () => {
+      contactCards[i].scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
+    });
+    contactDotsWrap.appendChild(dot);
+  });
+
+  const contactDots = Array.from(contactDotsWrap.children);
+
+  function getContactCardStep() {
+    const style = getComputedStyle(contactTrack);
+    const gap = parseFloat(style.columnGap || style.gap || 0);
+    return contactCards[0].getBoundingClientRect().width + gap;
+  }
+
+  function updateContactActiveDot() {
+    const index = Math.round(contactTrack.scrollLeft / getContactCardStep());
+    contactDots.forEach((d, i) => d.classList.toggle("active", i === index));
+
+    contactPrev.disabled = contactTrack.scrollLeft <= 4;
+    contactNext.disabled =
+      contactTrack.scrollLeft >=
+      contactTrack.scrollWidth - contactTrack.clientWidth - 4;
+  }
+
+  contactPrev.addEventListener("click", () => {
+    contactTrack.scrollBy({ left: -getContactCardStep(), behavior: "smooth" });
+  });
+
+  contactNext.addEventListener("click", () => {
+    contactTrack.scrollBy({ left: getContactCardStep(), behavior: "smooth" });
+  });
+
+  contactTrack.addEventListener("scroll", () => {
+    requestAnimationFrame(updateContactActiveDot);
+  });
+
+  window.addEventListener("resize", updateContactActiveDot);
+  updateContactActiveDot();
+}
+
 /* ===================================================
    SLIDE-IN OBSERVER (TIMELINE, CONTACT, & ACHIVEMENTS)
 =================================================== */
@@ -434,23 +494,4 @@ document.addEventListener("DOMContentLoaded", () => {
   slideElements.forEach((el) => {
     slideObserver.observe(el);
   });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const slideObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible"); // trigger animasi CSS
-          slideObserver.unobserve(entry.target); // stop mantau, biar animasi cuma jalan 1x
-        }
-      });
-    },
-    { threshold: 0.15 }, // trigger saat 15% elemen sudah kelihatan di layar
-  );
-
-  // ambil semua elemen yang mau dikasih animasi
-  document
-    .querySelectorAll(".timeline-item, .contact-final-item")
-    .forEach((el) => slideObserver.observe(el));
 });
