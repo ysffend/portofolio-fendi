@@ -397,19 +397,22 @@ if (eduTrack && eduPrev && eduNext && eduDotsWrap) {
   updateEduActiveDot();
 }
 
-// ===== Slide-in observer untuk timeline & contact =====
+/* ===================================================
+   SLIDE-IN OBSERVER (TIMELINE & CONTACT)
+=================================================== */
 const slideObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
-        slideObserver.unobserve(entry.target); // animasi cukup sekali
+        slideObserver.unobserve(entry.target); // Animasi berjalan cukup 1x saja
       }
     });
   },
-  { threshold: 0.2 }, // trigger saat 20% elemen kelihatan
+  { threshold: 0.2 }, // Animasi terpicu saat 20% elemen terlihat di viewport
 );
 
+// Daftarkan semua elemen timeline dan contact item ke observer
 document
   .querySelectorAll(".timeline-item, .contact-final-item")
   .forEach((el) => slideObserver.observe(el));

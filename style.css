@@ -1581,79 +1581,10 @@ body.light .contact-final-item:hover {
   border-color: #00f0ff;
 }
 
-/* ===================================
-   CONTACT GRID MODERN (RAPI & RESPONSIVE)
-=================================== */
-
-.contact-final-box {
-  max-width: 900px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 16px;
-  justify-content: center;
-  padding: 0 10px;
-}
-
-.contact-final-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 20px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 240, 255, 0.2);
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Penyesuaian Ikon agar Rata Kiri */
-.contact-final-item i {
-  font-size: 20px;
-  color: #00f0ff;
-  width: 28px;
-  text-align: center;
-  flex-shrink: 0;
-}
-
-/* Efek Hover Futuristik */
-.contact-final-item:hover {
-  transform: translateY(-4px);
-  background: rgba(0, 240, 255, 0.12);
-  border-color: #00f0ff;
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
-}
-
-/* Memotong teks jika terlalu panjang di HP */
-.contact-final-item span {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Mode Terang (Light Mode) */
-body.light .contact-final-item {
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(0, 0, 0, 0.1);
-  color: #111;
-}
-
-body.light .contact-final-item:hover {
-  background: rgba(0, 240, 255, 0.15);
-  border-color: #0090a3;
-  box-shadow: 0 4px 15px rgba(0, 144, 163, 0.25);
-}
-
 /* ===== SLIDE ANIMATION: Riwayat Pendidikan ===== */
 .timeline-item {
   opacity: 0;
-  transform: translateX(-60px);
+  transform: translateX(-60px); /* Awalnya bergeser ke kiri */
   transition:
     opacity 0.7s ease,
     transform 0.7s ease;
@@ -1661,10 +1592,10 @@ body.light .contact-final-item:hover {
 
 .timeline-item.visible {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateX(0); /* Kembali ke posisi semula */
 }
 
-/* selang-seling: item genap masuk dari kanan */
+/* Item genap masuk dari arah kanan */
 .timeline-item:nth-child(even) {
   transform: translateX(60px);
 }
@@ -1672,7 +1603,7 @@ body.light .contact-final-item:hover {
   transform: translateX(0);
 }
 
-/* delay bertahap biar muncul satu-satu */
+/* Stagger / Delay bertahap agar muncul bergantian */
 .timeline-item:nth-child(1) {
   transition-delay: 0s;
 }
@@ -1689,7 +1620,7 @@ body.light .contact-final-item:hover {
 /* ===== SLIDE ANIMATION: Contact ===== */
 .contact-final-item {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(40px); /* Awalnya bergeser ke bawah */
   transition:
     opacity 0.6s ease,
     transform 0.6s ease;
@@ -1697,9 +1628,10 @@ body.light .contact-final-item:hover {
 
 .contact-final-item.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0); /* Kembali ke posisi semula */
 }
 
+/* Delay bertahap untuk ikon contact */
 .contact-final-item:nth-child(1) {
   transition-delay: 0s;
 }
@@ -1713,5 +1645,5 @@ body.light .contact-final-item:hover {
   transition-delay: 0.3s;
 }
 .contact-final-item:nth-child(5) {
-  transition-delay: 0.4s;
+  transition-delay: 0.45s;
 }
