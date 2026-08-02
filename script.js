@@ -4,9 +4,11 @@
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector("nav ul");
 
-menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-});
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+}
 
 /* ===============================
    INTERSECTION OBSERVER (FINAL)
@@ -171,6 +173,7 @@ if (canvas) {
 const scrollProgress = document.getElementById("scroll-progress");
 
 window.addEventListener("scroll", () => {
+  if (!scrollProgress) return;
   const scrollTop = window.scrollY;
   const docHeight =
     document.documentElement.scrollHeight -
@@ -186,55 +189,65 @@ window.addEventListener("scroll", () => {
 
 const themeBtn = document.getElementById("themeToggle");
 
-themeBtn.addEventListener("click", () => {
-  document.body.classList.toggle("light");
+if (themeBtn) {
+  themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("light");
 
-  // switch icon
-  if (document.body.classList.contains("light")) {
-    themeBtn.textContent = "🌞";
-  } else {
-    themeBtn.textContent = "🌙";
-  }
-});
+    // switch icon
+    if (document.body.classList.contains("light")) {
+      themeBtn.textContent = "🌞";
+    } else {
+      themeBtn.textContent = "🌙";
+    }
+  });
+}
 
 // ================= EMAIL FUNCTION =================
 // pastikan script emailjs sudah dipanggil di HTML
 
-emailjs.init("ISI_PUBLIC_KEY_KAMU");
+if (typeof emailjs !== "undefined") {
+  emailjs.init("ISI_PUBLIC_KEY_KAMU");
+}
 
 const form = document.getElementById("contactForm");
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+if (form) {
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  emailjs.sendForm("ISI_SERVICE_ID", "ISI_TEMPLATE_ID", this).then(function () {
-    alert("Pesan berhasil dikirim! ✅");
-    form.reset();
+    if (typeof emailjs !== "undefined") {
+      emailjs
+        .sendForm("ISI_SERVICE_ID", "ISI_TEMPLATE_ID", this)
+        .then(function () {
+          alert("Pesan berhasil dikirim! ✅");
+          form.reset();
+        });
+    }
   });
-});
 
-document.getElementById("contactForm").addEventListener("submit", function (e) {
-  e.preventDefault();
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  const nama = this.user_name.value;
-  const email = this.user_email.value;
-  const pesan = this.message.value;
+    const nama = this.user_name ? this.user_name.value : "";
+    const email = this.user_email ? this.user_email.value : "";
+    const pesan = this.message ? this.message.value : "";
 
-  const isi = `Nama: ${nama}
+    const isi = `Nama: ${nama}
 Email: ${email}
 Pesan:
 ${pesan}
 --------------------------`;
 
-  const blob = new Blob([isi], { type: "text/plain" });
+    const blob = new Blob([isi], { type: "text/plain" });
 
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "pesan.txt";
-  a.click();
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "pesan.txt";
+    a.click();
 
-  this.reset();
-});
+    this.reset();
+  });
+}
 
 const contactForm = document.getElementById("contactForm");
 

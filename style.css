@@ -1,3 +1,18 @@
+/* ===============================
+   SCROLL PROGRESS BAR
+=============================== */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #00f0ff, #bd00ff);
+  width: 0%;
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 10px #00f0ff;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap");
 
 /* RESET */
