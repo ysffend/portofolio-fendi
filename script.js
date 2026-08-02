@@ -411,7 +411,7 @@ if (eduTrack && eduPrev && eduNext && eduDotsWrap) {
 }
 
 /* ===================================================
-   SLIDE-IN OBSERVER (TIMELINE & CONTACT)
+   SLIDE-IN OBSERVER (TIMELINE, CONTACT, & ACHIVEMENTS)
 =================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const slideObserver = new IntersectionObserver(
@@ -419,16 +419,16 @@ document.addEventListener("DOMContentLoaded", () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
-          slideObserver.unobserve(entry.target); // jalankan 1x
+          slideObserver.unobserve(entry.target); // Jalankan animasi 1x
         }
       });
     },
     { threshold: 0.15 }, // Trigger saat 15% elemen masuk layar
   );
 
-  // Ambil semua elemen timeline dan contact
+  // Ambil semua elemen yang ingin diberi animasi slide
   const slideElements = document.querySelectorAll(
-    ".timeline-item, .contact-final-item",
+    ".timeline-item, .contact-final-item, .achievement-card, .skill-card",
   );
 
   slideElements.forEach((el) => {
