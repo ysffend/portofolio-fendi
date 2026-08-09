@@ -136,6 +136,62 @@ function typeEffect() {
 typeEffect();
 
 /* ===============================
+   TYPEWRITER — ABOUT ME
+   (ngetik ulang HTML asli si <p>, jadi <strong> tetap kebold/warna,
+    dan baru mulai pas section-nya kescroll ke pandangan)
+=============================== */
+const aboutTextEl = document.getElementById("aboutText");
+
+if (aboutTextEl) {
+  // Simpan HTML aslinya dulu, rapiin spasi/baris baru dari indentasi HTML,
+  // baru kosongin elemennya (nanti diisi ulang pelan-pelan)
+  const aboutOriginalHTML = aboutTextEl.innerHTML.trim().replace(/\s+/g, " ");
+  aboutTextEl.innerHTML = "";
+
+  function typeHTML(element, html, speed = 12) {
+    let i = 0;
+    element.classList.add("typing-cursor"); // kursor "|" berkedip selama ngetik
+
+    function step() {
+      if (i >= html.length) {
+        element.classList.remove("typing-cursor"); // matiin kursor kalau udah selesai
+        return;
+      }
+
+      if (html[i] === "<") {
+        // ketemu tag (mis. <strong> atau </strong>) -> masukin utuh sekaligus,
+        // jangan diketik huruf per huruf, biar HTML-nya nggak rusak
+        const closeIndex = html.indexOf(">", i);
+        element.innerHTML += html.slice(i, closeIndex + 1);
+        i = closeIndex + 1;
+      } else {
+        // karakter teks biasa -> diketik satu per satu
+        element.innerHTML += html[i];
+        i++;
+      }
+      setTimeout(step, speed);
+    }
+
+    step();
+  }
+
+  // Baru mulai ngetik pas paragraf ini kescroll masuk ke layar
+  const aboutObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          typeHTML(aboutTextEl, aboutOriginalHTML);
+          aboutObserver.unobserve(entry.target); // cukup sekali aja
+        }
+      });
+    },
+    { threshold: 0.4 },
+  );
+
+  aboutObserver.observe(aboutTextEl);
+}
+
+/* ===============================
    PARTICLES BACKGROUND
 =============================== */
 const canvas = document.getElementById("particles");
