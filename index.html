@@ -748,30 +748,6 @@
       </form>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    <script>
-      (function () {
-        emailjs.init("HmV9k46EYfnkmS5MM");
-      })();
-
-      document
-        .getElementById("contactForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          emailjs.sendForm("service_5s47424", "template_idx5rs9sm", this).then(
-            function () {
-              alert("Pesan berhasil terkirim, terima kasih!");
-              e.target.reset();
-            },
-            function (error) {
-              alert("Gagal mengirim pesan, coba lagi.");
-              console.log(error);
-            },
-          );
-        });
-    </script>
-
     <!-- FOOTER -->
     <footer>
       <p>© 2026 Fendi. All Rights Reserved.</p>

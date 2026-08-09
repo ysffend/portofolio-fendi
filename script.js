@@ -211,53 +211,7 @@ if (themeBtn) {
   });
 }
 
-// ================= EMAIL FUNCTION =================
-// pastikan script emailjs sudah dipanggil di HTML
-
-if (typeof emailjs !== "undefined") {
-  emailjs.init("ISI_PUBLIC_KEY_KAMU");
-}
-
-const form = document.getElementById("contactForm");
-
-if (form) {
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    if (typeof emailjs !== "undefined") {
-      emailjs
-        .sendForm("ISI_SERVICE_ID", "ISI_TEMPLATE_ID", this)
-        .then(function () {
-          alert("Pesan berhasil dikirim! ✅");
-          form.reset();
-        });
-    }
-  });
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const nama = this.user_name ? this.user_name.value : "";
-    const email = this.user_email ? this.user_email.value : "";
-    const pesan = this.message ? this.message.value : "";
-
-    const isi = `Nama: ${nama}
-Email: ${email}
-Pesan:
-${pesan}
---------------------------`;
-
-    const blob = new Blob([isi], { type: "text/plain" });
-
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "pesan.txt";
-    a.click();
-
-    this.reset();
-  });
-}
-
+// ================= FORM KRITIK & SARAN -> Formspree =================
 const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
