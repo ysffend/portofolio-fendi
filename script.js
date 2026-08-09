@@ -211,6 +211,27 @@ if (themeBtn) {
   });
 }
 
+// ================= TOAST NOTIFICATION =================
+// Pengganti alert() bawaan browser, biar bisa didandanin sesuai tema web
+function showToast(message, type = "success") {
+  const toast = document.getElementById("toastNotif");
+  const icon = document.getElementById("toastIcon");
+  const text = document.getElementById("toastText");
+
+  if (!toast || !icon || !text) return;
+
+  icon.textContent = type === "success" ? "🚀" : "⚠️";
+  text.textContent = message;
+
+  toast.className = `toast-notif show ${type}`;
+
+  // otomatis ilang lagi setelah 4 detik
+  clearTimeout(showToast._timer);
+  showToast._timer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 4000);
+}
+
 // ================= FORM KRITIK & SARAN -> Formspree =================
 const contactForm = document.getElementById("contactForm");
 
@@ -236,16 +257,23 @@ if (contactForm) {
     })
       .then((response) => {
         if (response.ok) {
-          alert("🚀 Kritik & Saran berhasil dikirim langsung ke email Fendi!");
+          showToast(
+            "Kritik & Saran berhasil dikirim langsung ke email Fendi!",
+            "success",
+          );
           contactForm.reset();
         } else {
-          alert("🛰️ Gagal mengirim. Pastikan form terisi dengan benar.");
+          showToast(
+            "Gagal mengirim. Pastikan form terisi dengan benar.",
+            "error",
+          );
         }
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert(
-          "📡 Terjadi kesalahan jaringan lokal. Coba deploy ke Vercel terlebih dahulu.",
+        showToast(
+          "Terjadi kesalahan jaringan lokal. Coba deploy ke Vercel terlebih dahulu.",
+          "error",
         );
       })
       .finally(() => {
