@@ -1915,3 +1915,25 @@ img {
     opacity: 0;
   }
 }
+
+.typing-cursor {
+  position: relative;
+}
+.typing-cursor::after {
+  content: "|";
+  position: absolute;
+  right: -10px;
+  color: #00f0ff;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.1%,
+  100% {
+    opacity: 0;
+  }
+}

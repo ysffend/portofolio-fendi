@@ -543,3 +543,29 @@ document.addEventListener("DOMContentLoaded", () => {
     slideObserver.observe(el);
   });
 });
+
+/* ===============================
+   TYPING EFFECT - HERO NAME
+=============================== */
+function typeEffect(element, text, speed = 80) {
+  if (!element) return;
+
+  let index = 0;
+  element.innerHTML = ""; // Mulai dari kosong
+
+  function type() {
+    if (index < text.length) {
+      element.textContent += text.charAt(index);
+      index++;
+      setTimeout(type, speed);
+    }
+  }
+
+  type();
+}
+
+// Panggil saat page load
+const heroName = document.getElementById("heroName");
+if (heroName) {
+  typeEffect(heroName, "Muhammad Effendi Yusuf", 80);
+}
