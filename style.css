@@ -158,11 +158,6 @@ nav a:hover::after {
   margin: 10px 0;
 }
 
-.typing::after {
-  content: "|";
-  animation: blink 0.7s infinite;
-}
-
 /* BUTTON */
 .btn {
   padding: 12px 30px;

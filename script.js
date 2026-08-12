@@ -134,7 +134,6 @@ function typeEffect() {
   }
 }
 typeEffect();
-
 /* ===============================
    TYPING EFFECT
 =============================== */
