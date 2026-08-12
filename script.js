@@ -121,6 +121,10 @@ if (track && prevBtn && nextBtn && dotsWrap) {
 /* ===============================
    TYPING EFFECT
 =============================== */
+const text = "Hi, I'm Muhammad Effendi Yusuf";
+let index = 0;
+const typing = document.querySelector(".typing");
+
 const text = "UI Futuristic • Responsive • Modern Web";
 let index = 0;
 const typing = document.querySelector(".typing");
