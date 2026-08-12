@@ -119,12 +119,25 @@ if (track && prevBtn && nextBtn && dotsWrap) {
 }
 
 /* ===============================
-   TYPING EFFECT
+    typing effect
 =============================== */
-const text = "Hi, I'm Muhammad Effendi Yusuf";
+const text = "Hi, Muhammad Effendi Yusuf";
 let index = 0;
 const typing = document.querySelector(".typing");
 
+function typeEffect() {
+  if (!typing) return;
+  if (index < text.length) {
+    typing.textContent += text.charAt(index);
+    index++;
+    setTimeout(typeEffect, 80);
+  }
+}
+typeEffect();
+
+/* ===============================
+   TYPING EFFECT
+=============================== */
 const text = "UI Futuristic • Responsive • Modern Web";
 let index = 0;
 const typing = document.querySelector(".typing");
