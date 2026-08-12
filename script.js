@@ -119,37 +119,22 @@ if (track && prevBtn && nextBtn && dotsWrap) {
 }
 
 /* ===============================
-    typing effect
+   TYPING EFFECT - SUBTITLE
+   Target: <h3 class="typing"></h3> di hero section
 =============================== */
-const text = "Hi, Muhammad Effendi Yusuf";
-let index = 0;
-const typing = document.querySelector(".typing");
+const subtitleText = "UI Futuristic • Responsive • Modern Web";
+let subtitleIndex = 0;
+const subtitleTyping = document.querySelector(".typing");
 
-function typeEffect() {
-  if (!typing) return;
-  if (index < text.length) {
-    typing.textContent += text.charAt(index);
-    index++;
-    setTimeout(typeEffect, 80);
+function typeSubtitle() {
+  if (!subtitleTyping) return;
+  if (subtitleIndex < subtitleText.length) {
+    subtitleTyping.textContent += subtitleText.charAt(subtitleIndex);
+    subtitleIndex++;
+    setTimeout(typeSubtitle, 80);
   }
 }
-typeEffect();
-/* ===============================
-   TYPING EFFECT
-=============================== */
-const text = "UI Futuristic • Responsive • Modern Web";
-let index = 0;
-const typing = document.querySelector(".typing");
-
-function typeEffect() {
-  if (!typing) return;
-  if (index < text.length) {
-    typing.textContent += text.charAt(index);
-    index++;
-    setTimeout(typeEffect, 80);
-  }
-}
-typeEffect();
+typeSubtitle();
 
 /* ===============================
    TYPEWRITER — ABOUT ME
