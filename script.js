@@ -569,3 +569,29 @@ const heroName = document.getElementById("heroName");
 if (heroName) {
   typeEffect(heroName, "Muhammad Effendi Yusuf", 80);
 }
+
+function typeEffectWithCursor(element, text, speed = 80) {
+  if (!element) return;
+
+  let index = 0;
+  element.innerHTML = "";
+  element.classList.add("typing-cursor"); // Tambah class
+
+  function type() {
+    if (index >= text.length) {
+      element.classList.remove("typing-cursor"); // Hilangkan cursor
+      return;
+    }
+
+    element.textContent += text.charAt(index);
+    index++;
+    setTimeout(type, speed);
+  }
+
+  type();
+}
+
+const heroName = document.getElementById("heroName");
+if (heroName) {
+  typeEffectWithCursor(heroName, "Muhammad Effendi Yusuf", 80);
+}
