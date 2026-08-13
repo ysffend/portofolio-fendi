@@ -57,8 +57,8 @@
     <!-- BACKGROUND PARTICLES -->
     <canvas id="particles"></canvas>
 
-    <!-- NAVBAR -->
-    <nav>
+    <!-- PRIMARY NAVIGATION -->
+    <nav class="navbar">
       <div class="logo">Fendi<span>.</span></div>
       <ul>
         <li><a href="#about">About</a></li>
@@ -69,704 +69,850 @@
       </ul>
     </nav>
 
-    <!-- TOMBOL THEME DI LUAR NAV -->
-    <button id="themeToggle" class="theme-fab">🌙</button>
+    <!-- TOMBOL THEME -->
+    <button id="themeToggle" class="theme-fab" aria-label="Toggle theme">
+      🌙
+    </button>
 
     <!-- MOBILE MENU BUTTON -->
-    <div class="menu-toggle">
+    <div class="menu-toggle" aria-label="Toggle mobile menu">
       <span></span>
       <span></span>
       <span></span>
     </div>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
+    <!-- HERO SECTION / HEADER -->
+    <header class="hero">
       <div class="glass">
-        <h1>Hi, I’m <span id="heroName"></span></h1>
+        <h1>Hi, I'm <span id="heroName"></span></h1>
         <h2>Front-End Developer</h2>
-        <h3 class="typing"></h3>
+        <p class="typing"></p>
 
         <div class="btn-group">
           <a href="#projects" class="btn-pill">
             Projects
-            <i class="fas fa-arrow-up-right-from-square"></i>
+            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
           </a>
           <a href="#contact" class="btn-pill">
             Contact
-            <i class="fas fa-envelope"></i>
+            <i class="fas fa-envelope" aria-hidden="true"></i>
           </a>
           <a
             href="CV - Muhammad Effendi Yusuf.pdf"
             target="_blank"
             class="btn-pill btn-pill-solid"
+            rel="noopener noreferrer"
           >
             Download CV
-            <i class="fas fa-download"></i>
+            <i class="fas fa-download" aria-hidden="true"></i>
           </a>
         </div>
 
-        <div class="hero-social">
+        <!-- Social Links -->
+        <nav class="hero-social" aria-label="Social media links">
           <a
             href="https://github.com/ysffend"
             target="_blank"
-            aria-label="GitHub"
+            rel="noopener noreferrer"
+            aria-label="GitHub profile"
             ><i class="fab fa-github"></i
           ></a>
           <a
             href="https://wa.me/6287846000691"
             target="_blank"
-            aria-label="WhatsApp"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp contact"
             ><i class="fab fa-whatsapp"></i
           ></a>
           <a
             href="https://www.linkedin.com/in/fendi-yusuf-686356399/"
             target="_blank"
-            aria-label="LinkedIn"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn profile"
             ><i class="fab fa-linkedin"></i
           ></a>
           <a
             href="https://instagram.com/ysffen_"
             target="_blank"
-            aria-label="Instagram"
+            rel="noopener noreferrer"
+            aria-label="Instagram profile"
             ><i class="fab fa-instagram"></i
           ></a>
-          <a href="mailto:fendiysf70@email.com" aria-label="Email"
+          <a href="mailto:fendiysf70@email.com" aria-label="Email contact"
             ><i class="fas fa-envelope"></i
           ></a>
-
           <a
             href="https://vercel.com/ysffends-projects"
             target="_blank"
-            aria-label="Vercel"
+            rel="noopener noreferrer"
+            aria-label="Vercel projects"
             ><i class="fas fa-server"></i
           ></a>
           <a
             href="CV - Muhammad Effendi Yusuf.pdf"
             target="_blank"
-            aria-label="CV"
+            rel="noopener noreferrer"
+            aria-label="Download CV as PDF"
             ><i class="fas fa-file-pdf"></i
           ></a>
           <a
             href="https://app.netlify.com/teams/ysffend-rri5u3e/projects"
             target="_blank"
-            aria-label="Netlify"
+            rel="noopener noreferrer"
+            aria-label="Netlify projects"
             ><img
               src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/netlify.svg"
               alt="Netlify"
               class="netlify-icon"
             />
           </a>
-        </div>
+        </nav>
       </div>
-    </section>
+    </header>
 
-    <!--Riwayat Pendidikan-->
-    <section id="education" class="section fade-up">
-      <h2 class="futuristic-text">Riwayat Pendidikan</h2>
+    <!-- MAIN CONTENT -->
+    <main>
+      <!-- RIWAYAT PENDIDIKAN SECTION -->
+      <section id="education" class="section fade-up">
+        <h2 class="futuristic-text">Riwayat Pendidikan</h2>
 
-      <div class="carousel-wrapper">
-        <button
-          class="carousel-btn carousel-prev"
-          id="eduPrev"
-          aria-label="Pendidikan sebelumnya"
-        >
-          <i class="fas fa-chevron-left"></i>
-        </button>
+        <div class="carousel-wrapper">
+          <button
+            class="carousel-btn carousel-prev"
+            id="eduPrev"
+            aria-label="Pendidikan sebelumnya"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </button>
 
-        <div class="timeline" id="eduTrack">
-          <div class="timeline-item">
-            <div class="timeline-icon">
-              <i class="fas fa-graduation-cap"></i>
+          <div class="timeline" id="eduTrack" role="list">
+            <article class="timeline-item" role="listitem">
+              <div class="timeline-icon">
+                <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+              </div>
+              <div class="timeline-content">
+                <time class="timeline-year">2024 - Sekarang</time>
+                <h3>Universitas Ahmad Dahlan Yogyakarta</h3>
+                <p>Program Studi Teknik Informatika</p>
+              </div>
+            </article>
+
+            <article class="timeline-item" role="listitem">
+              <div class="timeline-icon">
+                <i class="fas fa-school" aria-hidden="true"></i>
+              </div>
+              <div class="timeline-content">
+                <time class="timeline-year">2021 - 2024</time>
+                <h3>SMA Negeri 1 Kebonsari Kab.Madiun Provinsi Jawa Timur</h3>
+                <p>Jurusan Teknik Komputer dan Jaringan</p>
+              </div>
+            </article>
+
+            <article class="timeline-item" role="listitem">
+              <div class="timeline-icon">
+                <i class="fas fa-school" aria-hidden="true"></i>
+              </div>
+              <div class="timeline-content">
+                <time class="timeline-year">2018 - 2021</time>
+                <h3>SMP Negeri 11 BanjarBaru Provinsi Kalimantan Selatan</h3>
+              </div>
+            </article>
+
+            <article class="timeline-item" role="listitem">
+              <div class="timeline-icon">
+                <i class="fas fa-school" aria-hidden="true"></i>
+              </div>
+              <div class="timeline-content">
+                <time class="timeline-year">2012 - 2018</time>
+                <h3>
+                  SD Alam Muhammadiyah BanjarBaru Provinsi Kalimantan Selatan
+                </h3>
+              </div>
+            </article>
+          </div>
+
+          <button
+            class="carousel-btn carousel-next"
+            id="eduNext"
+            aria-label="Pendidikan selanjutnya"
+          >
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="carousel-dots" id="eduDots" role="tablist"></div>
+      </section>
+
+      <!-- ABOUT SECTION -->
+      <section id="about" class="section fade-up">
+        <h2 class="futuristic-text">About Me</h2>
+
+        <div class="about-container stagger">
+          <figure class="about-img">
+            <img src="Fendi1.jpeg" alt="Foto Profil Muhammad Effendi Yusuf" />
+            <figcaption class="sr-only">
+              Foto profil Muhammad Effendi Yusuf, mahasiswa Teknik Informatika
+            </figcaption>
+          </figure>
+
+          <div class="about-text">
+            <p id="aboutText">
+              Halo! Saya
+              <strong>Muhammad Effendi Yusuf</strong>, seorang mahasiswa yang
+              sedang menempuh pendidikan di program Studi
+              <strong class="highlight-univ">Teknik Informatika</strong>
+              <strong class="highlight-univ">Universitas Ahmad Dahlan</strong>
+              Yogyakarta. Saya memiliki minat yang besar dalam pengembangan web
+              dan antarmuka pengguna interaktif. Dengan latar belakang
+              pendidikan di Informatika UAD Yogyakarta, saya memiliki keahlian
+              dalam HTML, CSS, dan JavaScript, UI/UX untuk membangun antarmuka
+              pengguna yang responsif dan modern. Saya selalu berusaha untuk
+              menggabungkan kreativitas dengan teknologi untuk menghasilkan
+              solusi web yang inovatif. Saya juga punya beberapa prestasi di
+              bidang olahraga, jika ingin melihat prestasi saya, silakan
+              kunjungi bagian "Achievements" di portofolio ini. Dan jika Anda
+              tertarik untuk bekerja sama atau memiliki pertanyaan, jangan ragu
+              untuk menghubungi saya melalui bagian "Contact" di bawah ini. Jika
+              anda ingin melihat hasil project saya, silakan kunjungi bagian
+              "Projects" di portofolio ini atau klik logo vercel untuk lebih
+              lengkapnya.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS SECTION -->
+      <section id="skills" class="section fade-up">
+        <h2 class="futuristic-text">Skills</h2>
+
+        <div class="skills-grid stagger">
+          <article class="skill-card" style="--skill-color: #e34f26">
+            <header class="skill-head">
+              <i class="fab fa-html5" aria-hidden="true"></i>
+              <span>HTML</span>
+            </header>
+            <div class="skill-bar">
+              <div class="skill-fill" style="width: 90%"></div>
             </div>
-            <div class="timeline-content">
-              <span class="timeline-year">2024 - Sekarang</span>
-              <h3>Universitas Ahmad Dahlan Yogyakarta</h3>
-              <p>Program Studi Teknik Informatika</p>
+            <footer>
+              <small>Mahir</small>
+            </footer>
+          </article>
+
+          <article class="skill-card" style="--skill-color: #1572b6">
+            <header class="skill-head">
+              <i class="fab fa-css3-alt" aria-hidden="true"></i>
+              <span>CSS</span>
+            </header>
+            <div class="skill-bar">
+              <div class="skill-fill" style="width: 85%"></div>
             </div>
-          </div>
+            <footer>
+              <small>Mahir</small>
+            </footer>
+          </article>
 
-          <div class="timeline-item">
-            <div class="timeline-icon"><i class="fas fa-school"></i></div>
-            <div class="timeline-content">
-              <span class="timeline-year">2021 - 2024</span>
-              <h3>SMA Negeri 1 Kebonsari Kab.Madiun Provinsi Jawa Timur</h3>
-              <p>Jurusan Teknik Komputer dan Jaringan</p>
+          <article class="skill-card" style="--skill-color: #f7df1e">
+            <header class="skill-head">
+              <i class="fab fa-js" aria-hidden="true"></i>
+              <span>JavaScript</span>
+            </header>
+            <div class="skill-bar">
+              <div class="skill-fill" style="width: 75%"></div>
             </div>
-          </div>
+            <footer>
+              <small>Menengah</small>
+            </footer>
+          </article>
 
-          <div class="timeline-item">
-            <div class="timeline-icon"><i class="fas fa-school"></i></div>
-            <div class="timeline-content">
-              <span class="timeline-year">2018 - 2021</span>
-              <h3>SMP Negeri 11 BanjarBaru Provinsi Kalimantan Selatan</h3>
+          <article class="skill-card" style="--skill-color: #4caf50">
+            <header class="skill-head">
+              <i class="fas fa-pencil-ruler" aria-hidden="true"></i>
+              <span>UI / UX</span>
+            </header>
+            <div class="skill-bar">
+              <div class="skill-fill" style="width: 70%"></div>
             </div>
-          </div>
+            <footer>
+              <small>Menengah</small>
+            </footer>
+          </article>
 
-          <div class="timeline-item">
-            <div class="timeline-icon"><i class="fas fa-school"></i></div>
-            <div class="timeline-content">
-              <span class="timeline-year">2012 - 2018</span>
-              <h3>
-                SD Alam Muhammadiyah BanjarBaru Provinsi Kalimantan Selatan
-              </h3>
+          <article class="skill-card" style="--skill-color: #ff5722">
+            <header class="skill-head">
+              <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+              <span>Responsive Design</span>
+            </header>
+            <div class="skill-bar">
+              <div class="skill-fill" style="width: 80%"></div>
             </div>
-          </div>
+            <footer>
+              <small>Mahir</small>
+            </footer>
+          </article>
+
+          <article class="skill-card" style="--skill-color: #f05032">
+            <header class="skill-head">
+              <i class="fab fa-git-alt" aria-hidden="true"></i>
+              <span>Git / GitHub</span>
+            </header>
+            <div class="skill-bar">
+              <div class="skill-fill" style="width: 75%"></div>
+            </div>
+            <footer>
+              <small>Menengah</small>
+            </footer>
+          </article>
         </div>
+      </section>
 
-        <button
-          class="carousel-btn carousel-next"
-          id="eduNext"
-          aria-label="Pendidikan selanjutnya"
-        >
-          <i class="fas fa-chevron-right"></i>
-        </button>
-      </div>
+      <!-- PROJECTS SECTION -->
+      <section id="projects" class="section fade-up">
+        <h2 class="futuristic-text">Projects</h2>
+        <p class="section-subtitle">
+          Beberapa aplikasi dan sistem web terbaru yang telah saya rancang dan
+          kembangkan.
+        </p>
 
-      <div class="carousel-dots" id="eduDots"></div>
-    </section>
+        <div class="carousel-wrapper">
+          <button
+            class="carousel-btn carousel-prev"
+            id="projectsPrev"
+            aria-label="Project sebelumnya"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </button>
 
-    <!-- ABOUT -->
-    <section id="about" class="section fade-up">
-      <h2 class="futuristic-text">About Me</h2>
-
-      <div class="about-container stagger">
-        <div class="about-img">
-          <img src="Fendi1.jpeg" alt="Foto Fendi" />
-        </div>
-
-        <div class="about-text">
-          <p id="aboutText">
-            Halo! Saya
-            <strong>Muhammad Effendi Yusuf</strong>, seorang mahasiswa yang
-            sedang menempuh pendidikan di program Studi
-            <strong class="highlight-univ">Teknik Informatika</strong>
-            <strong class="highlight-univ">Universitas Ahmad Dahlan</strong>
-            Yogyakarta. Saya memiliki minat yang besar dalam pengembangan web
-            dan antarmuka pengguna interaktif. Dengan latar belakang pendidikan
-            di Informatika UAD Yogyakarta, saya memiliki keahlian dalam HTML,
-            CSS, dan JavaScript, UI/UX untuk membangun antarmuka pengguna yang
-            responsif dan modern. Saya selalu berusaha untuk menggabungkan
-            kreativitas dengan teknologi untuk menghasilkan solusi web yang
-            inovatif. Saya juga punya beberapa prestasi di bidang olahraga, jika
-            ingin melihat prestasi saya, silakan kunjungi bagian "Achievements"
-            di portofolio ini. Dan jika Anda tertarik untuk bekerja sama atau
-            memiliki pertanyaan, jangan ragu untuk menghubungi saya melalui
-            bagian "Contact" di bawah ini. Jika anda ingin melihat hasil project
-            saya, silakan kunjungi bagian "Projects" di portofolio ini atau klik
-            logo vercel untuk lebih lengkapnya.
-          </p>
-        </div>
-      </div>
-    </section>
-    <!-- SKILLS -->
-    <section id="skills" class="section fade-up">
-      <h2 class="futuristic-text">Skills</h2>
-
-      <div class="skills-grid stagger">
-        <div class="skill-card" style="--skill-color: #e34f26">
-          <div class="skill-head">
-            <i class="fab fa-html5"></i>
-            <span>HTML</span>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" style="width: 90%"></div>
-          </div>
-          <small>Mahir</small>
-        </div>
-
-        <div class="skill-card" style="--skill-color: #1572b6">
-          <div class="skill-head">
-            <i class="fab fa-css3-alt"></i>
-            <span>CSS</span>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" style="width: 85%"></div>
-          </div>
-          <small>Mahir</small>
-        </div>
-
-        <div class="skill-card" style="--skill-color: #f7df1e">
-          <div class="skill-head">
-            <i class="fab fa-js"></i>
-            <span>JavaScript</span>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" style="width: 75%"></div>
-          </div>
-          <small>Menengah</small>
-        </div>
-
-        <div class="skill-card" style="--skill-color: #4caf50">
-          <div class="skill-head">
-            <i class="fas fa-pencil-ruler"></i>
-            <span>UI / UX</span>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" style="width: 70%"></div>
-          </div>
-          <small>Menengah</small>
-        </div>
-
-        <div class="skill-card" style="--skill-color: #ff5722">
-          <div class="skill-head">
-            <i class="fas fa-mobile-alt"></i>
-            <span>Responsive Design</span>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" style="width: 80%"></div>
-          </div>
-          <small>Mahir</small>
-        </div>
-
-        <div class="skill-card" style="--skill-color: #f05032">
-          <div class="skill-head">
-            <i class="fab fa-git-alt"></i>
-            <span>Git / GitHub</span>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-fill" style="width: 75%"></div>
-          </div>
-          <small>Menengah</small>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" class="section fade-up">
-      <h2 class="futuristic-text">Projects</h2>
-      <p class="section-subtitle">
-        Beberapa aplikasi dan sistem web terbaru yang telah saya rancang dan
-        kembangkan.
-      </p>
-
-      <div class="carousel-wrapper">
-        <button
-          class="carousel-btn carousel-prev"
-          id="projectsPrev"
-          aria-label="Project sebelumnya"
-        >
-          <i class="fas fa-chevron-left"></i>
-        </button>
-
-        <div class="projects stagger" id="projectsTrack">
-          <div class="project-card-wrapper">
-            <a href="presensi.html" class="card-link">
-              <div
-                class="card"
-                data-tilt
-                data-tilt-max="8"
-                data-tilt-speed="400"
-                style="--card-glow: #00f0ff"
-              >
-                <div class="card-thumb">
+          <div
+            class="projects stagger"
+            id="projectsTrack"
+            role="region"
+            aria-label="Projects carousel"
+          >
+            <!-- PROJECT 1: ASTRA PRESENCE -->
+            <article
+              class="project-card"
+              data-tilt
+              data-tilt-max="8"
+              data-tilt-speed="400"
+              style="--card-glow: #00f0ff"
+            >
+              <figure>
+                <a href="presensi.html">
                   <img
                     src="Astra Presence.jpeg"
-                    alt="Astra Presence preview"
+                    alt="Astra Presence - Aplikasi presensi berbasis web"
                     loading="lazy"
                   />
-                  <span class="card-thumb-cta"
-                    ><i class="fas fa-arrow-up-right-from-square"></i
-                  ></span>
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title">Presensi</h3>
-                  <p class="card-desc">
-                    Aplikasi presensi berbasis web dengan fitur absensi,
-                    laporan, dan manajemen data mahasiswa.
-                  </p>
-                  <span class="view-btn"
-                    >View Details <i class="fas fa-arrow-right"></i
-                  ></span>
-                  <div class="card-tags">
-                    <span class="tag">HTML</span>
-                    <span class="tag">CSS</span>
-                    <span class="tag">JavaScript</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <a
-              href="https://github.com/ysffend/portofolio-fendi"
-              target="_blank"
-              class="github-badge"
-              title="Lihat source code"
-              ><i class="fab fa-github"></i
-            ></a>
-          </div>
+                  <figcaption class="card-thumb-cta">
+                    <i
+                      class="fas fa-arrow-up-right-from-square"
+                      aria-hidden="true"
+                    ></i>
+                  </figcaption>
+                </a>
+              </figure>
 
-          <div class="project-card-wrapper">
-            <a href="foto videografi.html" class="card-link">
-              <div
-                class="card"
-                data-tilt
-                data-tilt-max="8"
-                data-tilt-speed="400"
-                style="--card-glow: #bd00ff"
-              >
-                <div class="card-thumb">
-                  <img src="lumina.jpeg" alt="Lumina preview" loading="lazy" />
-                  <span class="card-thumb-cta"
-                    ><i class="fas fa-arrow-up-right-from-square"></i
-                  ></span>
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title">Lumina</h3>
-                  <p class="card-desc">
-                    Aplikasi galeri foto videografi dengan tampilan modern dan
-                    fitur upload serta kategorisasi foto.
-                  </p>
-                  <span class="view-btn"
-                    >View Details <i class="fas fa-arrow-right"></i
-                  ></span>
-                  <div class="card-tags">
-                    <span class="tag">HTML</span>
-                    <span class="tag">CSS</span>
-                    <span class="tag">JavaScript</span>
+              <div class="card-body">
+                <h3>Presensi</h3>
+                <p>
+                  Aplikasi presensi berbasis web dengan fitur absensi, laporan,
+                  dan manajemen data mahasiswa.
+                </p>
+                <footer class="card-footer">
+                  <a href="presensi.html" class="view-btn">
+                    View Details
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                  </a>
+                  <div class="card-tags" role="list">
+                    <span class="tag" role="listitem">HTML</span>
+                    <span class="tag" role="listitem">CSS</span>
+                    <span class="tag" role="listitem">JavaScript</span>
                   </div>
-                </div>
+                  <a
+                    href="https://github.com/ysffend/portofolio-fendi"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="github-badge"
+                    title="Lihat source code di GitHub"
+                    aria-label="Source code: Presensi di GitHub"
+                    ><i class="fab fa-github"></i
+                  ></a>
+                </footer>
               </div>
-            </a>
-            <a
-              href="https://github.com/ysffend/portofolio-fendi"
-              target="_blank"
-              class="github-badge"
-              title="Lihat source code"
-              ><i class="fab fa-github"></i
-            ></a>
-          </div>
+            </article>
 
-          <div class="project-card-wrapper">
-            <a href="expense tracker.html" class="card-link">
-              <div
-                class="card"
-                data-tilt
-                data-tilt-max="8"
-                data-tilt-speed="400"
-                style="--card-glow: #ff5722"
-              >
-                <div class="card-thumb">
+            <!-- PROJECT 2: LUMINA -->
+            <article
+              class="project-card"
+              data-tilt
+              data-tilt-max="8"
+              data-tilt-speed="400"
+              style="--card-glow: #bd00ff"
+            >
+              <figure>
+                <a href="foto videografi.html">
+                  <img
+                    src="lumina.jpeg"
+                    alt="Lumina - Aplikasi galeri foto videografi"
+                    loading="lazy"
+                  />
+                  <figcaption class="card-thumb-cta">
+                    <i
+                      class="fas fa-arrow-up-right-from-square"
+                      aria-hidden="true"
+                    ></i>
+                  </figcaption>
+                </a>
+              </figure>
+
+              <div class="card-body">
+                <h3>Lumina</h3>
+                <p>
+                  Aplikasi galeri foto videografi dengan tampilan modern dan
+                  fitur upload serta kategorisasi foto.
+                </p>
+                <footer class="card-footer">
+                  <a href="foto videografi.html" class="view-btn">
+                    View Details
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                  </a>
+                  <div class="card-tags" role="list">
+                    <span class="tag" role="listitem">HTML</span>
+                    <span class="tag" role="listitem">CSS</span>
+                    <span class="tag" role="listitem">JavaScript</span>
+                  </div>
+                  <a
+                    href="https://github.com/ysffend/portofolio-fendi"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="github-badge"
+                    title="Lihat source code di GitHub"
+                    aria-label="Source code: Lumina di GitHub"
+                    ><i class="fab fa-github"></i
+                  ></a>
+                </footer>
+              </div>
+            </article>
+
+            <!-- PROJECT 3: COSMIC SPEND -->
+            <article
+              class="project-card"
+              data-tilt
+              data-tilt-max="8"
+              data-tilt-speed="400"
+              style="--card-glow: #ff5722"
+            >
+              <figure>
+                <a href="expense tracker.html">
                   <img
                     src="cosmic spend.jpeg"
-                    alt="Cosmic Spend preview"
+                    alt="Cosmic Spend - Expense tracker bertema galaxy"
                     loading="lazy"
                   />
-                  <span class="card-thumb-cta"
-                    ><i class="fas fa-arrow-up-right-from-square"></i
-                  ></span>
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title">Cosmic Spend</h3>
-                  <p class="card-desc">
-                    Expense tracker bertema galaxy dengan visualisasi chart,
-                    budget tracking, dan export CSV.
-                  </p>
-                  <span class="view-btn"
-                    >View Details <i class="fas fa-arrow-right"></i
-                  ></span>
-                  <div class="card-tags">
-                    <span class="tag">HTML</span>
-                    <span class="tag">CSS</span>
-                    <span class="tag">JavaScript</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <a
-              href="https://github.com/ysffend/portofolio-fendi"
-              target="_blank"
-              class="github-badge"
-              title="Lihat source code"
-              ><i class="fab fa-github"></i
-            ></a>
-          </div>
+                  <figcaption class="card-thumb-cta">
+                    <i
+                      class="fas fa-arrow-up-right-from-square"
+                      aria-hidden="true"
+                    ></i>
+                  </figcaption>
+                </a>
+              </figure>
 
-          <div class="project-card-wrapper">
-            <a href="manajemen tugas.html" class="card-link">
-              <div
-                class="card"
-                data-tilt
-                data-tilt-max="8"
-                data-tilt-speed="400"
-                style="--card-glow: #4caf50"
-              >
-                <div class="card-thumb">
-                  <img src="orbit.jpeg" alt="Orbit preview" loading="lazy" />
-                  <span class="card-thumb-cta"
-                    ><i class="fas fa-arrow-up-right-from-square"></i
-                  ></span>
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title">Orbit</h3>
-                  <p class="card-desc">
-                    Manajemen tugas dengan antarmuka futuristik dan fitur
-                    kolaborasi.
-                  </p>
-                  <span class="view-btn"
-                    >View Details <i class="fas fa-arrow-right"></i
-                  ></span>
-                  <div class="card-tags">
-                    <span class="tag">HTML</span>
-                    <span class="tag">CSS</span>
-                    <span class="tag">JavaScript</span>
+              <div class="card-body">
+                <h3>Cosmic Spend</h3>
+                <p>
+                  Expense tracker bertema galaxy dengan visualisasi chart,
+                  budget tracking, dan export CSV.
+                </p>
+                <footer class="card-footer">
+                  <a href="expense tracker.html" class="view-btn">
+                    View Details
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                  </a>
+                  <div class="card-tags" role="list">
+                    <span class="tag" role="listitem">HTML</span>
+                    <span class="tag" role="listitem">CSS</span>
+                    <span class="tag" role="listitem">JavaScript</span>
                   </div>
-                </div>
+                  <a
+                    href="https://github.com/ysffend/portofolio-fendi"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="github-badge"
+                    title="Lihat source code di GitHub"
+                    aria-label="Source code: Cosmic Spend di GitHub"
+                    ><i class="fab fa-github"></i
+                  ></a>
+                </footer>
               </div>
-            </a>
-            <a
-              href="https://github.com/ysffend/portofolio-fendi"
-              target="_blank"
-              class="github-badge"
-              title="Lihat source code"
-              ><i class="fab fa-github"></i
-            ></a>
-          </div>
+            </article>
 
-          <div class="project-card-wrapper">
-            <a href="tabungan.html" class="card-link">
-              <div
-                class="card"
-                data-tilt
-                data-tilt-max="8"
-                data-tilt-speed="400"
-                style="--card-glow: #00f0ff"
-              >
-                <div class="card-thumb">
+            <!-- PROJECT 4: ORBIT -->
+            <article
+              class="project-card"
+              data-tilt
+              data-tilt-max="8"
+              data-tilt-speed="400"
+              style="--card-glow: #4caf50"
+            >
+              <figure>
+                <a href="manajemen tugas.html">
+                  <img
+                    src="orbit.jpeg"
+                    alt="Orbit - Manajemen tugas dengan antarmuka futuristik"
+                    loading="lazy"
+                  />
+                  <figcaption class="card-thumb-cta">
+                    <i
+                      class="fas fa-arrow-up-right-from-square"
+                      aria-hidden="true"
+                    ></i>
+                  </figcaption>
+                </a>
+              </figure>
+
+              <div class="card-body">
+                <h3>Orbit</h3>
+                <p>
+                  Manajemen tugas dengan antarmuka futuristik dan fitur
+                  kolaborasi.
+                </p>
+                <footer class="card-footer">
+                  <a href="manajemen tugas.html" class="view-btn">
+                    View Details
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                  </a>
+                  <div class="card-tags" role="list">
+                    <span class="tag" role="listitem">HTML</span>
+                    <span class="tag" role="listitem">CSS</span>
+                    <span class="tag" role="listitem">JavaScript</span>
+                  </div>
+                  <a
+                    href="https://github.com/ysffend/portofolio-fendi"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="github-badge"
+                    title="Lihat source code di GitHub"
+                    aria-label="Source code: Orbit di GitHub"
+                    ><i class="fab fa-github"></i
+                  ></a>
+                </footer>
+              </div>
+            </article>
+
+            <!-- PROJECT 5: NEBULA VAULT -->
+            <article
+              class="project-card"
+              data-tilt
+              data-tilt-max="8"
+              data-tilt-speed="400"
+              style="--card-glow: #00f0ff"
+            >
+              <figure>
+                <a href="tabungan.html">
                   <img
                     src="nebula vault.jpeg"
-                    alt="Nebula Vault preview"
+                    alt="Nebula Vault - Aplikasi tabungan bertema luar angkasa"
                     loading="lazy"
                   />
-                  <span class="card-thumb-cta"
-                    ><i class="fas fa-arrow-up-right-from-square"></i
-                  ></span>
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title">Nebula Vault</h3>
-                  <p class="card-desc">
-                    Aplikasi tabungan bertema luar angkasa dengan fitur target
-                    tabungan, log transaksi, dan visualisasi progres.
-                  </p>
-                  <span class="view-btn"
-                    >View Details <i class="fas fa-arrow-right"></i
-                  ></span>
-                  <div class="card-tags">
-                    <span class="tag">HTML</span>
-                    <span class="tag">CSS</span>
-                    <span class="tag">JavaScript</span>
+                  <figcaption class="card-thumb-cta">
+                    <i
+                      class="fas fa-arrow-up-right-from-square"
+                      aria-hidden="true"
+                    ></i>
+                  </figcaption>
+                </a>
+              </figure>
+
+              <div class="card-body">
+                <h3>Nebula Vault</h3>
+                <p>
+                  Aplikasi tabungan bertema luar angkasa dengan fitur target
+                  tabungan, log transaksi, dan visualisasi progres.
+                </p>
+                <footer class="card-footer">
+                  <a href="tabungan.html" class="view-btn">
+                    View Details
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                  </a>
+                  <div class="card-tags" role="list">
+                    <span class="tag" role="listitem">HTML</span>
+                    <span class="tag" role="listitem">CSS</span>
+                    <span class="tag" role="listitem">JavaScript</span>
                   </div>
-                </div>
+                  <a
+                    href="https://github.com/ysffend/portofolio-fendi"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="github-badge"
+                    title="Lihat source code di GitHub"
+                    aria-label="Source code: Nebula Vault di GitHub"
+                    ><i class="fab fa-github"></i
+                  ></a>
+                </footer>
               </div>
+            </article>
+          </div>
+
+          <button
+            class="carousel-btn carousel-next"
+            id="projectsNext"
+            aria-label="Project selanjutnya"
+          >
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="carousel-dots" id="projectsDots" role="tablist"></div>
+      </section>
+
+      <!-- ACHIEVEMENTS SECTION -->
+      <section id="achievements" class="section fade-up">
+        <h2 class="futuristic-text">Prestasi</h2>
+
+        <div class="carousel-wrapper">
+          <button
+            class="carousel-btn carousel-prev"
+            id="achievementsPrev"
+            aria-label="Prestasi sebelumnya"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </button>
+
+          <div
+            class="achievements-track"
+            id="achievementsTrack"
+            role="region"
+            aria-label="Achievements carousel"
+          >
+            <article class="achievement-card">
+              <figure>
+                <img
+                  src="medali1.jpeg"
+                  alt="Medali Juara 1 Karate"
+                  class="card-icon-3d"
+                />
+                <figcaption class="sr-only">Penghargaan Juara 1</figcaption>
+              </figure>
+              <div class="card-content">
+                <h3>
+                  Juara 1 National Karate Championship Budi Luhur University
+                  2026
+                </h3>
+                <p>Juara 1 u-60kg Senior Mahasiswa.</p>
+                <time datetime="2026">2026</time>
+              </div>
+            </article>
+
+            <article class="achievement-card">
+              <figure>
+                <img
+                  src="UDINUS.jpeg"
+                  alt="Medali Juara 2 UDINUS"
+                  class="card-icon-3d"
+                />
+                <figcaption class="sr-only">Penghargaan Juara 2</figcaption>
+              </figure>
+              <div class="card-content">
+                <h3>Juara 2 Udinus Piala Rektor II 2026</h3>
+                <p>Juara 2 u-60kg Senior Mahasiswa.</p>
+                <time datetime="2026">2026</time>
+              </div>
+            </article>
+
+            <article class="achievement-card">
+              <figure>
+                <i
+                  class="fas fa-palette card-icon-3d"
+                  style="font-size: 60px; color: #00f0ff"
+                  aria-hidden="true"
+                ></i>
+                <figcaption class="sr-only">Penghargaan UI/UX</figcaption>
+              </figure>
+              <div class="card-content">
+                <h3>Juara Harapan 1 Lomba UI/UX</h3>
+                <p>Lomba UI/UX tingkat Regional.</p>
+                <time datetime="2021">2021</time>
+              </div>
+            </article>
+
+            <article class="achievement-card">
+              <figure>
+                <i
+                  class="fas fa-pen-ruler card-icon-3d"
+                  style="font-size: 60px; color: #00f0ff"
+                  aria-hidden="true"
+                ></i>
+                <figcaption class="sr-only">
+                  Penghargaan Desain Grafis
+                </figcaption>
+              </figure>
+              <div class="card-content">
+                <h3>Juara 3 Lomba Desain Grafis</h3>
+                <p>Lomba Desain Grafis tingkat Kota.</p>
+                <time datetime="2020">2020</time>
+              </div>
+            </article>
+          </div>
+
+          <button
+            class="carousel-btn carousel-next"
+            id="achievementsNext"
+            aria-label="Prestasi selanjutnya"
+          >
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="carousel-dots" id="achievementsDots" role="tablist"></div>
+      </section>
+
+      <!-- CONTACT SECTION -->
+      <section id="contact" class="section fade-up">
+        <h2 class="futuristic-text">Contact Me</h2>
+        <p class="section-subtitle">
+          Hubungi saya melalui media sosial atau platform profesional di bawah
+          ini.
+        </p>
+
+        <div class="carousel-wrapper">
+          <button
+            class="carousel-btn carousel-prev"
+            id="contactPrev"
+            aria-label="Contact sebelumnya"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </button>
+
+          <address class="contact-final-box" id="contactTrack">
+            <a href="mailto:fendiysf70@email.com" class="contact-final-item">
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+              <span>fendiysf70@email.com</span>
             </a>
+
             <a
-              href="https://github.com/ysffend/portofolio-fendi"
+              href="https://instagram.com/ysffen_"
               target="_blank"
-              class="github-badge"
-              title="Lihat source code"
-              ><i class="fab fa-github"></i
-            ></a>
-          </div>
+              rel="noopener noreferrer"
+              class="contact-final-item"
+              aria-label="Instagram: @ysffen_"
+            >
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+              <span>@ysffen_</span>
+            </a>
+
+            <a
+              href="https://github.com/ysffend"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-final-item"
+              aria-label="GitHub: ysffend"
+            >
+              <i class="fab fa-github" aria-hidden="true"></i>
+              <span>github.com/ysffend</span>
+            </a>
+
+            <a
+              href="https://wa.me/6287846000691"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-final-item"
+              aria-label="WhatsApp: +62 878-4600-0691"
+            >
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+              <span>+62 878-4600-0691</span>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/fendi-yusuf-686356399/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-final-item"
+              aria-label="LinkedIn: Fendi Yusuf"
+            >
+              <i class="fab fa-linkedin" aria-hidden="true"></i>
+              <span>linkedin.com/in/fendi-yusuf-686356399/</span>
+            </a>
+          </address>
+
+          <button
+            class="carousel-btn carousel-next"
+            id="contactNext"
+            aria-label="Contact selanjutnya"
+          >
+            <i class="fas fa-chevron-right"></i>
+          </button>
         </div>
 
-        <button
-          class="carousel-btn carousel-next"
-          id="projectsNext"
-          aria-label="Project selanjutnya"
+        <div class="carousel-dots" id="contactDots" role="tablist"></div>
+      </section>
+
+      <!-- FEEDBACK / MESSAGE SECTION -->
+      <section id="feedback" class="section fade-up">
+        <h2 class="futuristic-text">Kritik & Saran</h2>
+        <p class="section-subtitle">
+          Ada masukan buat portofolio atau proyek saya? Kirim lewat form di
+          bawah ini.
+        </p>
+
+        <form
+          id="contactForm"
+          class="contact-form glass"
+          method="POST"
+          action="#"
         >
-          <i class="fas fa-chevron-right"></i>
-        </button>
-      </div>
-
-      <div class="carousel-dots" id="projectsDots"></div>
-    </section>
-
-    <!-- PRESTASI SAYA -->
-    <section id="achievements" class="achievements-section">
-      <h2 class="section-title-neon">PRESTASI SAYA</h2>
-
-      <div class="carousel-wrapper">
-        <!-- Tombol Prev -->
-        <button
-          class="carousel-btn carousel-prev"
-          id="achievementsPrev"
-          aria-label="Prestasi sebelumnya"
-        >
-          <i class="fas fa-chevron-left"></i>
-        </button>
-
-        <!-- Track Slider -->
-        <div class="achievements-track" id="achievementsTrack">
-          <div class="achievement-card">
-            <div class="card-icon-container">
-              <img src="medali1.jpeg" alt="Ikon Karate" class="card-icon-3d" />
-            </div>
-            <div class="card-content">
-              <h3>
-                Juara 1 National Karate Championship Budi Luhur University 2026
-              </h3>
-              <p>Juara 1 u-60kg Senior Mahasiswa.</p>
-            </div>
+          <div class="form-group">
+            <label for="user_name">Nama</label>
+            <input
+              type="text"
+              id="user_name"
+              name="user_name"
+              required
+              aria-required="true"
+            />
           </div>
 
-          <div class="achievement-card">
-            <div class="card-icon-container">
-              <img
-                src="UDINUS.jpeg"
-                alt="Ikon Medali Perak"
-                class="card-icon-3d"
-              />
-            </div>
-            <div class="card-content">
-              <h3>Juara 2 Udinus Piala Rektor II 2026</h3>
-              <p>Juara 2 u-60kg Senior Mahasiswa.</p>
-            </div>
+          <div class="form-group">
+            <label for="user_email">Email</label>
+            <input
+              type="email"
+              id="user_email"
+              name="user_email"
+              required
+              aria-required="true"
+            />
           </div>
 
-          <div class="achievement-card">
-            <div class="card-icon-container">
-              <i
-                class="fas fa-palette card-icon-3d"
-                style="font-size: 60px; color: #00f0ff"
-              ></i>
-            </div>
-            <div class="card-content">
-              <h3>Juara Harapan 1 Lomba UI/UX</h3>
-              <p>Lomba UI/UX tingkat Regional, 2021.</p>
-            </div>
+          <div class="form-group">
+            <label for="message">Kritik & Saran</label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              aria-required="true"
+            ></textarea>
           </div>
 
-          <div class="achievement-card">
-            <div class="card-icon-container">
-              <i
-                class="fas fa-pen-ruler card-icon-3d"
-                style="font-size: 60px; color: #00f0ff"
-              ></i>
-            </div>
-            <div class="card-content">
-              <h3>Juara 3 Lomba Desain Grafis</h3>
-              <p>Lomba Desain Grafis tingkat Kota, 2020.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tombol Next -->
-        <button
-          class="carousel-btn carousel-next"
-          id="achievementsNext"
-          aria-label="Prestasi selanjutnya"
-        >
-          <i class="fas fa-chevron-right"></i>
-        </button>
-      </div>
-
-      <!-- Indikator Dots -->
-      <div class="carousel-dots" id="achievementsDots"></div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="section fade-up">
-      <h2 class="futuristic-text">Contact Me</h2>
-      <p class="section-subtitle">
-        Hubungi saya melalui media sosial atau platform profesional di bawah
-        ini.
-      </p>
-
-      <div class="carousel-wrapper">
-        <button
-          class="carousel-btn carousel-prev"
-          id="contactPrev"
-          aria-label="Contact sebelumnya"
-        >
-          <i class="fas fa-chevron-left"></i>
-        </button>
-
-        <div class="contact-final-box" id="contactTrack">
-          <a href="mailto:fendiysf70@email.com" class="contact-final-item">
-            <i class="fas fa-envelope"></i>
-            <span>fendiysf70@email.com</span>
-          </a>
-
-          <a
-            href="https://instagram.com/ysffen_"
-            target="_blank"
-            class="contact-final-item"
-          >
-            <i class="fab fa-instagram"></i>
-            <span>@ysffen_</span>
-          </a>
-
-          <a
-            href="https://github.com/ysffend"
-            target="_blank"
-            class="contact-final-item"
-          >
-            <i class="fab fa-github"></i>
-            <span>github.com/ysffend</span>
-          </a>
-
-          <a
-            href="https://wa.me/6287846000691"
-            target="_blank"
-            class="contact-final-item"
-          >
-            <i class="fab fa-whatsapp"></i>
-            <span>+62 878-4600-0691</span>
-          </a>
-
-          <a
-            href="https://www.linkedin.com/in/fendi-yusuf-686356399/"
-            target="_blank"
-            class="contact-final-item"
-          >
-            <i class="fab fa-linkedin"></i>
-            <span>linkedin.com/in/fendi-yusuf-686356399/</span>
-          </a>
-        </div>
-
-        <button
-          class="carousel-btn carousel-next"
-          id="contactNext"
-          aria-label="Contact selanjutnya"
-        >
-          <i class="fas fa-chevron-right"></i>
-        </button>
-      </div>
-
-      <div class="carousel-dots" id="contactDots"></div>
-    </section>
-
-    <!-- FEEDBACK -->
-    <section id="feedback" class="section fade-up">
-      <h2 class="futuristic-text">Kritik & Saran</h2>
-      <p class="section-subtitle">
-        Ada masukan buat portofolio atau proyek saya? Kirim lewat form di bawah
-        ini.
-      </p>
-
-      <form id="contactForm" class="contact-form glass">
-        <input type="text" name="user_name" placeholder="Nama" required />
-        <input type="email" name="user_email" placeholder="Email" required />
-        <textarea
-          name="message"
-          placeholder="Kritik & Saran..."
-          required
-        ></textarea>
-        <button type="submit" class="btn-pill btn-pill-solid">
-          Kirim Pesan <i class="fas fa-paper-plane"></i>
-        </button>
-      </form>
-    </section>
+          <button type="submit" class="btn-pill btn-pill-solid">
+            Kirim Pesan <i class="fas fa-paper-plane" aria-hidden="true"></i>
+          </button>
+        </form>
+      </section>
+    </main>
 
     <!-- FOOTER -->
     <footer>
-      <p>© 2026 Fendi. All Rights Reserved.</p>
+      <p>&copy; 2026 Fendi. All Rights Reserved.</p>
     </footer>
 
-    <div id="toastNotif" class="toast-notif">
+    <!-- TOAST NOTIFICATION -->
+    <div id="toastNotif" class="toast-notif" role="status" aria-live="polite">
       <span id="toastIcon" class="toast-icon"></span>
       <span id="toastText" class="toast-text"></span>
     </div>
 
-    <!-- SCRIPT -->
+    <!-- SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script src="script.js"></script>
   </body>
