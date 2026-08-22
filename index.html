@@ -58,31 +58,15 @@
     <canvas id="particles"></canvas>
 
     <!-- NAVBAR -->
-    <nav class="navbar">
-      <a href="#about" class="nav-link active">About</a>
-      <a href="#skills" class="nav-link">Skills</a>
-      <a href="#projects" class="nav-link">Projects</a>
-      <a href="#contact" class="nav-link">Contact</a>
-      <a href="#achievements" class="nav-link">Achievements</a>
-
-      <!-- SVG untuk liquid effect -->
-      <svg class="nav-liquid" viewBox="0 0 300 60">
-        <defs>
-          <filter id="liquidFilter">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.02"
-              numOctaves="3"
-              result="noise"
-            />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
-          </filter>
-        </defs>
-        <path
-          class="liquid-path"
-          d="M 0,30 Q 75,10 150,30 T 300,30 L 300,60 L 0,60 Z"
-        />
-      </svg>
+    <nav>
+      <div class="logo">Fendi<span>.</span></div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+      </ul>
     </nav>
 
     <!-- TOMBOL THEME DI LUAR NAV -->
