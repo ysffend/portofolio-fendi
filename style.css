@@ -1953,3 +1953,49 @@ img {
   filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.6));
   transform: scale(1.05);
 }
+
+.navbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  fonst-size: 16px;
+  font-weight: 500;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+.nav-link:hover {
+  color: var(--text-primary);
+}
+
+.nav-link.active {
+  color: var(--cyan);
+}
+
+/* SVG Liquid Background */
+.nav-liquid {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.liquid-path {
+  fill: rgba(45, 226, 230, 0.15);
+  filter: url(#liquidFilter);
+  animation: liquidWave 3s ease-in-out infinite;
+}
