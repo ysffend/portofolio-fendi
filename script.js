@@ -38,12 +38,6 @@ document.querySelectorAll(".fade-up, .stagger").forEach((el) => {
 });
 
 /* ===============================
-   PROJECTS CAROUSEL - REMOVED
-   Featured Project section (static) menggantikan carousel
-=============================== */
-// Carousel dihapus, menggunakan static Featured Project section
-
-/* ===============================
    TYPING EFFECT - SUBTITLE
    Target: <h3 class="typing"></h3> di hero section
 =============================== */
@@ -266,182 +260,111 @@ if (contactForm) {
 }
 
 /* ===============================
-   ACHIEVEMENTS CAROUSEL
+   UNIVERSAL CAROUSEL INITIALIZER
 =============================== */
-const achTrack = document.getElementById("achievementsTrack");
-const achPrev = document.getElementById("achievementsPrev");
-const achNext = document.getElementById("achievementsNext");
-const achDotsWrap = document.getElementById("achievementsDots");
+function initCarousel({ trackId, prevId, nextId, dotsId }) {
+  const track = document.getElementById(trackId);
+  const prev = document.getElementById(prevId);
+  const next = document.getElementById(nextId);
+  const dotsWrap = document.getElementById(dotsId);
 
-if (achTrack && achPrev && achNext && achDotsWrap) {
-  const achCards = Array.from(achTrack.children);
+  if (!track || !prev || !next) return;
 
-  // Bikin Dots secara otomatis
-  achCards.forEach((_, i) => {
-    const dot = document.createElement("button");
-    dot.className = "dot";
-    dot.setAttribute("aria-label", `Ke prestasi ${i + 1}`);
-    dot.addEventListener("click", () => {
-      achCards[i].scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "start",
+  const cards = Array.from(track.children);
+  if (cards.length === 0) return;
+
+  // Bikin Dots secara otomatis jika dots container tersedia
+  if (dotsWrap) {
+    dotsWrap.innerHTML = "";
+    cards.forEach((_, i) => {
+      const dot = document.createElement("button");
+      dot.className = "dot" + (i === 0 ? " active" : "");
+      dot.setAttribute("aria-label", `Slide ${i + 1}`);
+      dot.addEventListener("click", () => {
+        cards[i].scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "start",
+        });
       });
+      dotsWrap.appendChild(dot);
     });
-    achDotsWrap.appendChild(dot);
-  });
+  }
 
-  const achDots = Array.from(achDotsWrap.children);
+  const dots = dotsWrap ? Array.from(dotsWrap.children) : [];
 
-  function getAchCardStep() {
-    const style = getComputedStyle(achTrack);
+  function getStep() {
+    const style = getComputedStyle(track);
     const gap = parseFloat(style.columnGap || style.gap || 0);
-    return achCards[0].getBoundingClientRect().width + gap;
+    const firstWidth = cards[0].getBoundingClientRect().width;
+    return (firstWidth || 300) + gap;
   }
 
-  function updateAchActiveDot() {
-    const index = Math.round(achTrack.scrollLeft / getAchCardStep());
-    achDots.forEach((d, i) => d.classList.toggle("active", i === index));
+  function updateActiveState() {
+    const step = getStep();
+    if (step <= 0) return;
+    const index = Math.min(
+      cards.length - 1,
+      Math.max(0, Math.round(track.scrollLeft / step)),
+    );
+    dots.forEach((d, i) => d.classList.toggle("active", i === index));
 
-    achPrev.disabled = achTrack.scrollLeft <= 4;
-    achNext.disabled =
-      achTrack.scrollLeft >= achTrack.scrollWidth - achTrack.clientWidth - 4;
+    prev.disabled = track.scrollLeft <= 6;
+    next.disabled =
+      track.scrollLeft >= track.scrollWidth - track.clientWidth - 6;
   }
 
-  achPrev.addEventListener("click", () => {
-    achTrack.scrollBy({ left: -getAchCardStep(), behavior: "smooth" });
+  prev.addEventListener("click", () => {
+    track.scrollBy({ left: -getStep(), behavior: "smooth" });
   });
 
-  achNext.addEventListener("click", () => {
-    achTrack.scrollBy({ left: getAchCardStep(), behavior: "smooth" });
+  next.addEventListener("click", () => {
+    track.scrollBy({ left: getStep(), behavior: "smooth" });
   });
 
-  achTrack.addEventListener("scroll", () => {
-    requestAnimationFrame(updateAchActiveDot);
+  track.addEventListener("scroll", () => {
+    requestAnimationFrame(updateActiveState);
   });
 
-  window.addEventListener("resize", updateAchActiveDot);
-  updateAchActiveDot();
+  window.addEventListener("resize", updateActiveState);
+  updateActiveState();
 }
 
-/* ===============================
-   EDUCATION CAROUSEL
-=============================== */
-const eduTrack = document.getElementById("eduTrack");
-const eduPrev = document.getElementById("eduPrev");
-const eduNext = document.getElementById("eduNext");
-const eduDotsWrap = document.getElementById("eduDots");
+// Inisialisasi Carousel untuk Projects, Kepanitiaan, Prestasi, Pendidikan, & Contact
+initCarousel({
+  trackId: "projectsTrack",
+  prevId: "projectsPrev",
+  nextId: "projectsNext",
+  dotsId: "projectsDots",
+});
 
-if (eduTrack && eduPrev && eduNext && eduDotsWrap) {
-  const eduCards = Array.from(eduTrack.children);
+initCarousel({
+  trackId: "orgTrack",
+  prevId: "orgPrev",
+  nextId: "orgNext",
+  dotsId: "orgDots",
+});
 
-  // Bikin Dots secara otomatis
-  eduCards.forEach((_, i) => {
-    const dot = document.createElement("button");
-    dot.className = "dot";
-    dot.setAttribute("aria-label", `Ke pendidikan ${i + 1}`);
-    dot.addEventListener("click", () => {
-      eduCards[i].scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "start",
-      });
-    });
-    eduDotsWrap.appendChild(dot);
-  });
+initCarousel({
+  trackId: "achievementsTrack",
+  prevId: "achievementsPrev",
+  nextId: "achievementsNext",
+  dotsId: "achievementsDots",
+});
 
-  const eduDots = Array.from(eduDotsWrap.children);
+initCarousel({
+  trackId: "eduTrack",
+  prevId: "eduPrev",
+  nextId: "eduNext",
+  dotsId: "eduDots",
+});
 
-  function getEduCardStep() {
-    const style = getComputedStyle(eduTrack);
-    const gap = parseFloat(style.columnGap || style.gap || 0);
-    return eduCards[0].getBoundingClientRect().width + gap;
-  }
-
-  function updateEduActiveDot() {
-    const index = Math.round(eduTrack.scrollLeft / getEduCardStep());
-    eduDots.forEach((d, i) => d.classList.toggle("active", i === index));
-
-    eduPrev.disabled = eduTrack.scrollLeft <= 4;
-    eduNext.disabled =
-      eduTrack.scrollLeft >= eduTrack.scrollWidth - eduTrack.clientWidth - 4;
-  }
-
-  eduPrev.addEventListener("click", () => {
-    eduTrack.scrollBy({ left: -getEduCardStep(), behavior: "smooth" });
-  });
-
-  eduNext.addEventListener("click", () => {
-    eduTrack.scrollBy({ left: getEduCardStep(), behavior: "smooth" });
-  });
-
-  eduTrack.addEventListener("scroll", () => {
-    requestAnimationFrame(updateEduActiveDot);
-  });
-
-  window.addEventListener("resize", updateEduActiveDot);
-  updateEduActiveDot();
-}
-
-/* ===============================
-   CONTACT CAROUSEL
-=============================== */
-const contactTrack = document.getElementById("contactTrack");
-const contactPrev = document.getElementById("contactPrev");
-const contactNext = document.getElementById("contactNext");
-const contactDotsWrap = document.getElementById("contactDots");
-
-if (contactTrack && contactPrev && contactNext && contactDotsWrap) {
-  const contactCards = Array.from(contactTrack.children);
-
-  // Bikin Dots secara otomatis
-  contactCards.forEach((_, i) => {
-    const dot = document.createElement("button");
-    dot.className = "dot";
-    dot.setAttribute("aria-label", `Ke kontak ${i + 1}`);
-    dot.addEventListener("click", () => {
-      contactCards[i].scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "start",
-      });
-    });
-    contactDotsWrap.appendChild(dot);
-  });
-
-  const contactDots = Array.from(contactDotsWrap.children);
-
-  function getContactCardStep() {
-    const style = getComputedStyle(contactTrack);
-    const gap = parseFloat(style.columnGap || style.gap || 0);
-    return contactCards[0].getBoundingClientRect().width + gap;
-  }
-
-  function updateContactActiveDot() {
-    const index = Math.round(contactTrack.scrollLeft / getContactCardStep());
-    contactDots.forEach((d, i) => d.classList.toggle("active", i === index));
-
-    contactPrev.disabled = contactTrack.scrollLeft <= 4;
-    contactNext.disabled =
-      contactTrack.scrollLeft >=
-      contactTrack.scrollWidth - contactTrack.clientWidth - 4;
-  }
-
-  contactPrev.addEventListener("click", () => {
-    contactTrack.scrollBy({ left: -getContactCardStep(), behavior: "smooth" });
-  });
-
-  contactNext.addEventListener("click", () => {
-    contactTrack.scrollBy({ left: getContactCardStep(), behavior: "smooth" });
-  });
-
-  contactTrack.addEventListener("scroll", () => {
-    requestAnimationFrame(updateContactActiveDot);
-  });
-
-  window.addEventListener("resize", updateContactActiveDot);
-  updateContactActiveDot();
-}
+initCarousel({
+  trackId: "contactTrack",
+  prevId: "contactPrev",
+  nextId: "contactNext",
+  dotsId: "contactDots",
+});
 
 /* ===================================================
    SLIDE-IN OBSERVER (TIMELINE, CONTACT, & ACHIVEMENTS)
