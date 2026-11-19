@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap");
+
 /* ===============================
    SCROLL PROGRESS BAR
 =============================== */
@@ -12,8 +14,6 @@
   transition: width 0.1s ease-out;
   box-shadow: 0 0 10px #00f0ff;
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap");
 
 /* RESET */
 * {
@@ -1978,24 +1978,4 @@ img {
   opacity: 1;
   filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.6));
   transform: scale(1.05);
-}
-
-#eduTrack {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: stretch;
-  gap: 24px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-}
-
-#eduTrack .timeline-item {
-  flex: 0 0 calc((100% - 48px) / 3);
-  align-self: stretch;
-  align-items: flex-start;
-  scroll-snap-align: start;
-}
-
-#eduTrack .timeline-content {
-  height: 100%;
 }
